@@ -1,15 +1,16 @@
 import React from "react";
 import { shallow } from "enzyme";
 import { expect } from "chai";
-import Track from ".";
+import { fromJS } from "immutable";
+import Track from "./index";
 
 describe("Track", () => {
-    const track = {
+    const track = fromJS({
         title: "Believa",
         artist: "Raelee Nikole",
         album: "Answers",
         duration: 243, // 4:03
-    };
+    });
 
     it("renders with correct class name", () => {
         const component = shallow(<Track />);

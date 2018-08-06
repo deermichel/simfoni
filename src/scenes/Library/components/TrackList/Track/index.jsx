@@ -1,8 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
+import ImmutablePropTypes from "react-immutable-proptypes";
+import { Map } from "immutable";
 
 const propTypes = {
-    track: PropTypes.shape({
+    track: ImmutablePropTypes.contains({
         title: PropTypes.string,
         artist: PropTypes.string,
         album: PropTypes.string,
@@ -10,31 +12,26 @@ const propTypes = {
     }),
 };
 const defaultProps = {
-    track: {},
+    track: Map(),
 };
 
 const Track = ({ track }) => {
-    const {
-        title,
-        artist,
-        album,
-        duration,
-    } = track;
+    const duration = track.get("duration");
     const formattedDuration = `${Math.trunc(duration / 60)}:${(duration % 60).toString().padStart(2, "0")}`;
 
     return (
         <div className="track">
             <span className="title">
-                {title}
+                {track.get("title")}
             </span>
             <span className="artist">
-                {artist}
+                {track.get("artist")}
             </span>
             <span className="album">
-                {album}
+                {track.get("album")}
             </span>
             <span className="duration">
-                {formattedDuration}
+                {duration && formattedDuration}
             </span>
         </div>
     );

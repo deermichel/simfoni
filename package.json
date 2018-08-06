@@ -29,6 +29,7 @@
     "immutable": "^3.8.2",
     "prop-types": "^15.6.2",
     "react": "^16.4.2",
-    "react-dom": "^16.4.2"
+    "react-dom": "^16.4.2",
+    "react-immutable-proptypes": "^2.1.0"
   }
 }

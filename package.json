@@ -9,6 +9,10 @@
     "test:watch": "yarn test --watch",
     "lint": "eslint . --ext .js,.jsx"
   },
+  "pre-commit": [
+    "test",
+    "lint"
+  ],
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-plugin-module-resolver": "^3.1.1",
@@ -25,7 +29,8 @@
     "eslint-plugin-import": "^2.13.0",
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-react": "^7.10.0",
-    "mocha": "^5.2.0"
+    "mocha": "^5.2.0",
+    "pre-commit": "^1.2.2"
   },
   "dependencies": {
     "immutable": "^3.8.2",

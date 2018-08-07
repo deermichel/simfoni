@@ -5,6 +5,8 @@
   "description": "the nifty music player",
   "private": true,
   "scripts": {
+    "dev": "webpack-dev-server --mode development",
+    "build": "webpack --mode production",
     "test": "mocha --require babel-core/register --require ./test/setup.js 'src/**/*spec@(.js|.jsx)'",
     "test:watch": "yarn test --watch",
     "lint": "eslint . --ext .js,.jsx"
@@ -15,6 +17,7 @@
   ],
   "devDependencies": {
     "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
     "babel-plugin-module-resolver": "^3.1.1",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
@@ -30,7 +33,10 @@
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-react": "^7.10.0",
     "mocha": "^5.2.0",
-    "pre-commit": "^1.2.2"
+    "pre-commit": "^1.2.2",
+    "webpack": "^4.16.5",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.5"
   },
   "dependencies": {
     "immutable": "^3.8.2",

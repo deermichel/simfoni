@@ -2,7 +2,7 @@ import React from "react";
 import { shallow } from "enzyme";
 import { expect } from "chai";
 import { fromJS } from "immutable";
-import TrackList from "./ui";
+import TrackList from "./index";
 import Track from "./Track";
 
 describe("TrackList", () => {

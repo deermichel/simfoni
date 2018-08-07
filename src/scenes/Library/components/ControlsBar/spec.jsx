@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 import { expect } from "chai";
-import ControlsBar from "./ui";
+import ControlsBar from "./index";
 import PlayButton from "./PlayButton";
 import SkipButton, { SkipDirection } from "./SkipButton";
 import DurationBar from "./DurationBar";

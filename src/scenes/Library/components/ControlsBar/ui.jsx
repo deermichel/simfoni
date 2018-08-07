@@ -3,9 +3,6 @@ import SkipButton, { SkipDirection } from "./SkipButton";
 import PlayButton from "./PlayButton";
 import DurationBar from "./DurationBar";
 
-const propTypes = {};
-const defaultProps = {};
-
 const ControlsBar = () => (
     <div className="controlsBar">
         <DurationBar />
@@ -14,8 +11,5 @@ const ControlsBar = () => (
         <SkipButton direction={SkipDirection.BACKWARD} />
     </div>
 );
-
-ControlsBar.propTypes = propTypes;
-ControlsBar.defaultProps = defaultProps;
 
 export default ControlsBar;

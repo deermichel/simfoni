@@ -1,7 +1,8 @@
 const path = require("path");
 const webpack = require("webpack");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-module.exports = {
+module.exports = (env, argv) => ({
 
     entry: "./src/index.jsx",
     output: {
@@ -14,7 +15,16 @@ module.exports = {
             {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
-                use: "babel-loader",
+                loader: "babel-loader",
+            },
+            {
+                test: /\.scss$/,
+                exclude: /node_modules/,
+                use: [
+                    (argv.mode === "development") ? "style-loader" : MiniCssExtractPlugin.loader,
+                    "css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]",
+                    "sass-loader",
+                ],
             },
         ],
     },
@@ -25,6 +35,9 @@ module.exports = {
 
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
+        new MiniCssExtractPlugin({
+            filename: "style.css",
+        }),
     ],
 
     devServer: {
@@ -32,4 +45,4 @@ module.exports = {
         inline: true,
         hot: true,
     },
-};
+});

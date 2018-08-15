@@ -1,0 +1,10 @@
+.tracklist {
+    // background: rgb(255, 215, 209);
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 5px 0;
+}

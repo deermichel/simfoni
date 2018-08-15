@@ -4,6 +4,7 @@ import { expect } from "chai";
 import { fromJS } from "immutable";
 import TrackList from "./index";
 import Track from "./Track";
+import Header from "./Header";
 
 describe("TrackList", () => {
     const tracks = fromJS([
@@ -30,11 +31,17 @@ describe("TrackList", () => {
         },
     ]);
 
-    it("renders with correct class name", () => {
+    it("renders itself", () => {
         const component = shallow(<TrackList />);
 
         expect(component).to.be.present();
-        expect(component).to.have.className("trackList");
+    });
+
+    it("contains one <Header />", () => {
+        const component = shallow(<TrackList />);
+
+        expect(component).to.have.exactly(1).descendants(Header);
+        expect(component).to.contain(<Header />);
     });
 
     it("contains one <Track /> child per track", () => {

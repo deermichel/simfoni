@@ -1,0 +1,23 @@
+.track {
+    display: grid;
+    grid-gap: 2%;
+    grid-template-columns: 1.3fr 1fr 1fr 60px;
+    padding: 5px;
+
+    span {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    &:nth-child(odd) {
+        background: none;
+    }
+    &:nth-child(even) {
+        background: rgba(0, 0, 0, 0.08);
+    }
+}
+
+.duration {
+    text-align: end;
+}

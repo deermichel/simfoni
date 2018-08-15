@@ -12,38 +12,33 @@ describe("Track", () => {
         duration: 243, // 4:03
     });
 
-    it("renders with correct class name", () => {
+    it("renders itself", () => {
         const component = shallow(<Track />);
 
         expect(component).to.be.present();
-        expect(component).to.have.className("track");
     });
 
-    it("has a title field", () => {
+    it("displays the title", () => {
         const component = shallow(<Track track={track} />);
 
-        expect(component.find(".title")).to.be.present();
-        expect(component.find(".title")).to.contain.text("Believa");
+        expect(component).to.contain.text("Believa");
     });
 
-    it("has an artist field", () => {
+    it("displays the artist", () => {
         const component = shallow(<Track track={track} />);
 
-        expect(component.find(".artist")).to.be.present();
-        expect(component.find(".artist")).to.contain.text("Raelee Nikole");
+        expect(component).to.contain.text("Raelee Nikole");
     });
 
-    it("has an album field", () => {
+    it("displays the album", () => {
         const component = shallow(<Track track={track} />);
 
-        expect(component.find(".album")).to.be.present();
-        expect(component.find(".album")).to.contain.text("Answers");
+        expect(component).to.contain.text("Answers");
     });
 
-    it("has a duration field", () => {
+    it("displays the duration", () => {
         const component = shallow(<Track track={track} />);
 
-        expect(component.find(".duration")).to.be.present();
-        expect(component.find(".duration")).to.contain.text("4:03");
+        expect(component).to.contain.text("4:03");
     });
 });

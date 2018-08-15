@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import ImmutablePropTypes from "react-immutable-proptypes";
 import { Map } from "immutable";
+import styles from "./style.scss";
 
 const propTypes = {
     track: ImmutablePropTypes.contains({
@@ -20,17 +21,17 @@ const Track = ({ track }) => {
     const formattedDuration = `${Math.trunc(duration / 60)}:${(duration % 60).toString().padStart(2, "0")}`;
 
     return (
-        <div className="track">
-            <span className="title">
+        <div className={styles.track}>
+            <span className={styles.title}>
                 {track.get("title")}
             </span>
-            <span className="artist">
+            <span className={styles.artist}>
                 {track.get("artist")}
             </span>
-            <span className="album">
+            <span className={styles.album}>
                 {track.get("album")}
             </span>
-            <span className="duration">
+            <span className={styles.duration}>
                 {duration && formattedDuration}
             </span>
         </div>

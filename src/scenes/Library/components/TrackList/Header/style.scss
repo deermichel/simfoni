@@ -1,0 +1,18 @@
+@import "../Track/style";
+
+.header {
+    @extend .track;
+
+    align-items: center;
+    font-size: 16px;
+    text-transform: uppercase;
+
+    span {
+        opacity: 0.7;
+    }
+}
+
+.duration {
+    max-height: 16px;
+    line-height: 16px;
+}

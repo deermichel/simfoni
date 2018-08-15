@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import styles from "./style.scss";
 
 const propTypes = {
     children: PropTypes.node,
@@ -9,7 +10,7 @@ const defaultProps = {
 };
 
 const App = ({ children }) => (
-    <div className="app">
+    <div className={styles.app}>
         {children}
     </div>
 );

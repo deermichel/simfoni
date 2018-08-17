@@ -5,6 +5,23 @@
     grid-template-rows: 4px 48px;
 }
 
+.container {
+    background: red;
+    display: flex;
+    min-width: 0;
+    justify-content: space-evenly;
+    justify-self: stretch;
+}
+
+.currenttitle, .currentartist {
+    align-self: center;
+    background: green;
+    overflow: hidden;
+    padding: 0 5px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 .buttons {
     align-items: stretch;
     background: lightcoral;

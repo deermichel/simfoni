@@ -16,7 +16,6 @@ describe("PlayButton", () => {
         const component = shallow(<PlayButton />);
 
         expect(component).to.have.exactly(1).descendants(Play);
-        expect(component).to.contain(<Play />);
     });
 
     it("invokes callback on click", () => {

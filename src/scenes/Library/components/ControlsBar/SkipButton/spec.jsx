@@ -25,7 +25,6 @@ describe("SkipButton", () => {
 
         expect(component).to.have.exactly(1).descendants(SkipForward);
         expect(component).to.have.exactly(0).descendants(SkipBack);
-        expect(component).to.contain(<SkipForward />);
     });
 
     it("displays a skip backward icon", () => {
@@ -33,7 +32,6 @@ describe("SkipButton", () => {
 
         expect(component).to.have.exactly(0).descendants(SkipForward);
         expect(component).to.have.exactly(1).descendants(SkipBack);
-        expect(component).to.contain(<SkipBack />);
     });
 
     it("invokes callback on click", () => {

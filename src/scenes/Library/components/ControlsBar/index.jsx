@@ -2,13 +2,16 @@ import React from "react";
 import SkipButton, { SkipDirection } from "./SkipButton";
 import PlayButton from "./PlayButton";
 import DurationBar from "./DurationBar";
+import styles from "./style.scss";
 
 const ControlsBar = () => (
-    <div className="controlsBar">
+    <div className={styles.controlsbar}>
         <DurationBar />
-        <SkipButton direction={SkipDirection.FORWARD} />
-        <PlayButton />
-        <SkipButton direction={SkipDirection.BACKWARD} />
+        <div className={styles.buttons}>
+            <SkipButton direction={SkipDirection.BACKWARD} />
+            <PlayButton />
+            <SkipButton direction={SkipDirection.FORWARD} />
+        </div>
     </div>
 );
 

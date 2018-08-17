@@ -1,0 +1,15 @@
+.controlsbar {
+    background: lightblue;
+    display: grid;
+    justify-items: center;
+    grid-template-rows: 4px 48px;
+}
+
+.buttons {
+    align-items: stretch;
+    background: lightcoral;
+    display: inline-grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    justify-items: stretch;
+    width: 200px;
+}

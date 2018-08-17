@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import styles from "./style.scss";
 
 const propTypes = {
     children: PropTypes.node,
@@ -11,7 +12,7 @@ const defaultProps = {
 };
 
 const Button = ({ children, onClick }) => (
-    <div className="button" onClick={onClick}>
+    <div className={styles.button} onClick={onClick}>
         {children}
     </div>
 );

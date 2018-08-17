@@ -12,7 +12,7 @@ const defaultProps = {
 
 const PlayButton = ({ onPlay }) => (
     <Button className="playButton" onClick={onPlay}>
-        <Play />
+        <Play size={32} />
     </Button>
 );
 

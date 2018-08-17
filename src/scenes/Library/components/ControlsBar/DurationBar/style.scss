@@ -1,0 +1,30 @@
+.durationbar {
+    background-color: lightsalmon;
+    display: block;
+    height: 100%;
+    width: 100%;
+
+    &:hover {
+        .details {
+            bottom: 20px;
+            height: 20px;
+        }
+    }
+}
+
+.details {
+    background-color: lightsalmon;
+    bottom: 0px;
+    cursor: pointer;
+    display: flex;
+    height: 0px;
+    font-size: 14px;
+    justify-content: space-between;
+    line-height: 24px;
+    overflow: hidden;
+    padding: 0px 5px;
+    position: relative;
+    transition:
+        .2s bottom ease-out,
+        .2s height ease-out;
+}

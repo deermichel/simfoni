@@ -4,11 +4,10 @@ import { expect } from "chai";
 import Button from "./index";
 
 describe("Button", () => {
-    it("renders with correct class name", () => {
+    it("renders itself", () => {
         const component = shallow(<Button />);
 
         expect(component).to.be.present();
-        expect(component).to.have.className("button");
     });
 
     it("renders its children", () => {

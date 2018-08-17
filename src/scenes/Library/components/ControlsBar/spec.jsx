@@ -7,11 +7,10 @@ import SkipButton, { SkipDirection } from "./SkipButton";
 import DurationBar from "./DurationBar";
 
 describe("ControlsBar", () => {
-    it("renders with correct class name", () => {
+    it("renders itself", () => {
         const component = shallow(<ControlsBar />);
 
         expect(component).to.be.present();
-        expect(component).to.have.className("controlsBar");
     });
 
     it("contains one <PlayButton />", () => {

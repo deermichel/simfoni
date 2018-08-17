@@ -20,10 +20,10 @@ const defaultProps = {
 const SkipButton = ({ direction, onSkip }) => (
     <Button className="skipButton" onClick={onSkip}>
         {direction === SkipDirection.FORWARD
-            && <SkipForward />
+            && <SkipForward size={24} />
         }
         {direction === SkipDirection.BACKWARD
-            && <SkipBack />
+            && <SkipBack size={24} />
         }
     </Button>
 );

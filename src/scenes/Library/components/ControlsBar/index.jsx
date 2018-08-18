@@ -1,26 +1,61 @@
 import React from "react";
+import PropTypes from "prop-types";
+import ImmutablePropTypes from "react-immutable-proptypes";
+import { Map } from "immutable";
 import SkipButton, { SkipDirection } from "./SkipButton";
 import PlayButton from "./PlayButton";
 import DurationBar from "./DurationBar";
+import ScrollingText from "~/components/ScrollingText";
+import PlayState from "~/constants/PlayState";
 import styles from "./style.scss";
 
-const ControlsBar = () => (
+const propTypes = {
+    nowPlaying: ImmutablePropTypes.contains({
+        track: ImmutablePropTypes.contains({
+            title: PropTypes.string,
+            artist: PropTypes.string,
+            album: PropTypes.string,
+            duration: PropTypes.number,
+        }),
+        currentTime: PropTypes.number,
+        state: PropTypes.oneOf(Object.values(PlayState)),
+    }),
+    onSkipForward: PropTypes.func,
+    onSkipBackward: PropTypes.func,
+    onPlay: PropTypes.func,
+};
+const defaultProps = {
+    nowPlaying: Map(),
+    onSkipForward: () => 0,
+    onSkipBackward: () => 0,
+    onPlay: () => 0,
+};
+
+const ControlsBar = ({
+    nowPlaying,
+    onSkipForward,
+    onSkipBackward,
+    onPlay,
+}) => (
     <div className={styles.controlsbar}>
-        <DurationBar />
+        <DurationBar currentTime={nowPlaying.get("currentTime")} totalTime={nowPlaying.getIn(["track", "duration"])} />
         <div className={styles.container}>
-            <span className={styles.currenttitle}>
-                Brother (feat. Gavin DeGraw)
-            </span>
-            <div className={styles.buttons}>
-                <SkipButton direction={SkipDirection.BACKWARD} />
-                <PlayButton />
-                <SkipButton direction={SkipDirection.FORWARD} />
+            <div className={styles.currenttitle}>
+                <ScrollingText text={nowPlaying.getIn(["track", "title"])} />
             </div>
-            <span className={styles.currentartist}>
-                NEEDTOBREATHE, Gavin DeGraw
-            </span>
+            <div className={styles.buttons}>
+                <SkipButton direction={SkipDirection.BACKWARD} onSkip={onSkipBackward} />
+                <PlayButton playing={nowPlaying.get("state") === PlayState.PLAYING} onPlay={onPlay} />
+                <SkipButton direction={SkipDirection.FORWARD} onSkip={onSkipForward} />
+            </div>
+            <div className={styles.currentartist}>
+                <ScrollingText text={nowPlaying.getIn(["track", "artist"])} />
+            </div>
         </div>
     </div>
 );
+
+ControlsBar.propTypes = propTypes;
+ControlsBar.defaultProps = defaultProps;
 
 export default ControlsBar;

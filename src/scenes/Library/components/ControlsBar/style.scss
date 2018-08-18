@@ -15,11 +15,9 @@
 
 .currenttitle, .currentartist {
     align-self: center;
-    background: green;
+    background: yellow;
+    margin: 0 5px;
     overflow: hidden;
-    padding: 0 5px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
 }
 
 .buttons {

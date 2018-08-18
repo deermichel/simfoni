@@ -24,6 +24,6 @@ describe("Library", () => {
         const component = shallow(<Library />);
 
         expect(component).to.have.exactly(1).descendants(ControlsBar);
-        expect(component).to.contain(<ControlsBar />);
+        // expect(component).to.contain(<ControlsBar />);
     });
 });

@@ -18,6 +18,7 @@ class ScrollingText extends React.Component {
 
     componentDidMount() {
         window.addEventListener("resize", this.checkOverflow);
+        this.checkOverflow();
     }
 
     componentWillUnmount() {

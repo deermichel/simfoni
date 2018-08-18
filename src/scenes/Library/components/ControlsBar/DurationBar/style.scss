@@ -1,5 +1,6 @@
 .durationbar {
     background-color: lightsalmon;
+    cursor: pointer;
     display: block;
     height: 100%;
     width: 100%;
@@ -15,7 +16,6 @@
 .details {
     background-color: lightsalmon;
     bottom: 0px;
-    cursor: pointer;
     display: flex;
     height: 0px;
     font-size: 14px;

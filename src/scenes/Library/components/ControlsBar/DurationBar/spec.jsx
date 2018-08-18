@@ -21,4 +21,18 @@ describe("DurationBar", () => {
 
         expect(component).to.contain.text("0:32");
     });
+
+    it("invokes seek callback on click", () => {
+        let seekedTo = -1;
+        const onSeek = (time) => { seekedTo = time; };
+        const component = shallow(<DurationBar totalTime={100} onSeek={onSeek} />);
+        component.simulate("click", {
+            clientX: 50,
+            target: {
+                getBoundingClientRect: () => ({ left: 0, width: 200 }),
+            },
+        });
+
+        expect(seekedTo).to.equal(25);
+    });
 });

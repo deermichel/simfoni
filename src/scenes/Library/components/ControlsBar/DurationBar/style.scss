@@ -27,4 +27,8 @@
     transition:
         .2s bottom ease-out,
         .2s height ease-out;
+
+    span {
+        pointer-events: none;
+    }
 }

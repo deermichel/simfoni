@@ -23,12 +23,14 @@ const propTypes = {
     onSkipForward: PropTypes.func,
     onSkipBackward: PropTypes.func,
     onPlay: PropTypes.func,
+    onSeek: PropTypes.func,
 };
 const defaultProps = {
     nowPlaying: Map(),
     onSkipForward: () => 0,
     onSkipBackward: () => 0,
     onPlay: () => 0,
+    onSeek: () => 0,
 };
 
 const ControlsBar = ({
@@ -36,9 +38,14 @@ const ControlsBar = ({
     onSkipForward,
     onSkipBackward,
     onPlay,
+    onSeek,
 }) => (
     <div className={styles.controlsbar}>
-        <DurationBar currentTime={nowPlaying.get("currentTime")} totalTime={nowPlaying.getIn(["track", "duration"])} />
+        <DurationBar
+            currentTime={nowPlaying.get("currentTime")}
+            totalTime={nowPlaying.getIn(["track", "duration"])}
+            onSeek={onSeek}
+        />
         <div className={styles.container}>
             <div className={styles.currenttitle}>
                 <ScrollingText text={nowPlaying.getIn(["track", "title"])} />

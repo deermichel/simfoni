@@ -5,11 +5,10 @@ import { SkipForward, SkipBack } from "react-feather";
 import SkipButton, { SkipDirection } from "./index";
 
 describe("SkipButton", () => {
-    it("renders with correct class name", () => {
+    it("renders itself", () => {
         const component = shallow(<SkipButton />);
 
         expect(component).to.be.present();
-        expect(component).to.have.className("skipButton");
     });
 
     it("displays no icon without direction prop", () => {

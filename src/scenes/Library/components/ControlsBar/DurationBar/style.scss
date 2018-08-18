@@ -1,5 +1,5 @@
 .durationbar {
-    background-color: lightsalmon;
+    // background: via js;
     cursor: pointer;
     display: block;
     height: 100%;
@@ -14,7 +14,7 @@
 }
 
 .details {
-    background-color: lightsalmon;
+    background: inherit;
     bottom: 0px;
     display: flex;
     height: 0px;

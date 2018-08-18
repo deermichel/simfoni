@@ -2,6 +2,7 @@ import React from "react";
 import { fromJS } from "immutable";
 import TrackList from "./components/TrackList";
 import ControlsBar from "./components/ControlsBar";
+import PlayState from "~/constants/PlayState";
 
 const tracks = fromJS([
     {
@@ -26,11 +27,22 @@ const tracks = fromJS([
         duration: 226, // 3:46
     },
 ]);
+const nowPlaying = fromJS({
+    track: {
+        id: "a",
+        title: "Believa",
+        artist: "Raelee Nikole",
+        album: "Answers",
+        duration: 243,
+    },
+    currentTime: 203,
+    state: PlayState.PLAYING,
+});
 
 const Library = () => (
     <div className="library">
         <TrackList tracks={tracks} />
-        <ControlsBar />
+        <ControlsBar nowPlaying={nowPlaying} />
     </div>
 );
 

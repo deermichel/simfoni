@@ -1,18 +1,23 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Play } from "react-feather";
+import { Play, Pause } from "react-feather";
 import Button from "~/components/Button";
 
 const propTypes = {
     onPlay: PropTypes.func,
+    playing: PropTypes.bool,
 };
 const defaultProps = {
     onPlay: null,
+    playing: false,
 };
 
-const PlayButton = ({ onPlay }) => (
-    <Button className="playButton" onClick={onPlay}>
-        <Play size={32} />
+const PlayButton = ({ onPlay, playing }) => (
+    <Button onClick={onPlay}>
+        {playing
+            ? <Pause size={32} />
+            : <Play size={32} />
+        }
     </Button>
 );
 

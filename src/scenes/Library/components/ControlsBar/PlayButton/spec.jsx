@@ -1,21 +1,28 @@
 import React from "react";
 import { shallow } from "enzyme";
 import { expect } from "chai";
-import { Play } from "react-feather";
+import { Play, Pause } from "react-feather";
 import PlayButton from "./index";
 
 describe("PlayButton", () => {
-    it("renders with correct class name", () => {
+    it("renders itself", () => {
         const component = shallow(<PlayButton />);
 
         expect(component).to.be.present();
-        expect(component).to.have.className("playButton");
     });
 
     it("displays a play icon", () => {
         const component = shallow(<PlayButton />);
 
         expect(component).to.have.exactly(1).descendants(Play);
+        expect(component).to.have.exactly(0).descendants(Pause);
+    });
+
+    it("displays a pause icon when playing", () => {
+        const component = shallow(<PlayButton playing />);
+
+        expect(component).to.have.exactly(0).descendants(Play);
+        expect(component).to.have.exactly(1).descendants(Pause);
     });
 
     it("invokes callback on click", () => {

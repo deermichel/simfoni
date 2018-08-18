@@ -1,0 +1,23 @@
+.scrollingtext {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.scrollbox {
+    // animation-duration: via js;
+    animation-iteration-count: infinite;
+    animation-name: scrollingtext;
+    animation-timing-function: ease-in-out;
+    display: inline-block;
+
+    &::after {
+        content: attr(data-content);
+        margin-left: 32px;
+        position: absolute;
+    }
+}
+
+@keyframes scrollingtext {
+    20% { transform: translateX(0px); }
+    100% { transform: translateX(calc(-100% - 30px)); }
+}

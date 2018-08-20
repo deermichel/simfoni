@@ -51,6 +51,9 @@
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-feather": "^1.1.1",
-    "react-immutable-proptypes": "^2.1.0"
+    "react-immutable-proptypes": "^2.1.0",
+    "react-redux": "^5.0.7",
+    "redux": "^4.0.0",
+    "redux-logger": "^3.0.6"
   }
 }

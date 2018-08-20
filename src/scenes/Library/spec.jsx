@@ -1,16 +1,15 @@
 import React from "react";
 import { shallow } from "enzyme";
 import { expect } from "chai";
-import Library from "./index";
+import Library from "./ui";
 import TrackList from "./components/TrackList";
 import ControlsBar from "./components/ControlsBar";
 
 describe("Library", () => {
-    it("renders with correct class name", () => {
+    it("renders itself", () => {
         const component = shallow(<Library />);
 
         expect(component).to.be.present();
-        expect(component).to.have.className("library");
     });
 
     it("contains one <TrackList />", () => {

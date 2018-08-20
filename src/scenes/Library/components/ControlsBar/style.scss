@@ -1,12 +1,10 @@
 .controlsbar {
-    background: lightblue;
     display: grid;
     justify-items: center;
     grid-template-rows: 4px 48px;
 }
 
 .container {
-    background: red;
     display: flex;
     min-width: 0;
     justify-content: space-evenly;
@@ -15,14 +13,12 @@
 
 .currenttitle, .currentartist {
     align-self: center;
-    background: yellow;
     margin: 0 5px;
     overflow: hidden;
 }
 
 .buttons {
     align-items: stretch;
-    background: lightcoral;
     display: inline-grid;
     grid-template-columns: 1fr 2fr 1fr;
     justify-items: stretch;

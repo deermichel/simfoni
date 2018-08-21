@@ -1,18 +1,19 @@
 .controlsbar {
     display: grid;
-    justify-items: center;
+    justify-items: stretch;
     grid-template-rows: 4px 48px;
 }
 
 .container {
-    display: flex;
-    min-width: 0;
-    justify-content: space-evenly;
-    justify-self: stretch;
+    display: grid;
+    grid-template-columns: 1fr 200px 1fr;
+    justify-items: stretch;
 }
 
 .currenttitle, .currentartist {
-    align-self: center;
+    align-items: center;
+    display: flex;
+    justify-content: center;
     margin: 0 5px;
     overflow: hidden;
 }
@@ -22,5 +23,4 @@
     display: inline-grid;
     grid-template-columns: 1fr 2fr 1fr;
     justify-items: stretch;
-    width: 200px;
 }

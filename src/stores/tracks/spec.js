@@ -24,7 +24,7 @@ describe("tracks reducer", () => {
         ]);
         const nextState = reducer(initialState, action);
 
-        expect(nextState).to.equals(fromJS([
+        expect(nextState).to.equal(fromJS([
             {
                 id: "a",
                 title: "Believa",
@@ -54,7 +54,7 @@ describe("tracks reducer", () => {
         ]);
         const nextState = reducer(undefined, action);
 
-        expect(nextState).to.equals(fromJS([
+        expect(nextState).to.equal(fromJS([
             {
                 id: "a",
                 title: "Believa",

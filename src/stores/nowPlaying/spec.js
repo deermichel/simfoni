@@ -9,7 +9,7 @@ describe("nowPlaying reducer", () => {
     it("has an initial state", () => {
         const nextState = reducer(undefined, {});
 
-        expect(nextState).to.equals(fromJS({
+        expect(nextState).to.equal(fromJS({
             state: PlayState.PAUSED,
         }));
     });
@@ -19,7 +19,7 @@ describe("nowPlaying reducer", () => {
         const action = actions.playTrack("id123");
         const nextState = reducer(initialState, action);
 
-        expect(nextState).to.equals(fromJS({
+        expect(nextState).to.equal(fromJS({
             trackId: "id123",
             currentTime: 0,
             state: PlayState.PLAYING,
@@ -35,7 +35,7 @@ describe("nowPlaying reducer", () => {
         const action = actions.pauseTrack();
         const nextState = reducer(initialState, action);
 
-        expect(nextState).to.equals(fromJS({
+        expect(nextState).to.equal(fromJS({
             trackId: "id123",
             currentTime: 142,
             state: PlayState.PAUSED,

@@ -5,6 +5,7 @@ import { fromJS } from "immutable";
 import TrackList from "./index";
 import Track from "./Track";
 import Header from "./Header";
+import Button from "~/components/Button";
 
 describe("TrackList", () => {
     const tracks = fromJS([
@@ -44,9 +45,10 @@ describe("TrackList", () => {
         expect(component).to.contain(<Header />);
     });
 
-    it("contains one <Track /> child per track", () => {
+    it("contains one <Track /> and <Button /> child per track", () => {
         const component = shallow(<TrackList tracks={tracks} />);
 
+        expect(component).to.have.exactly(3).descendants(Button);
         expect(component).to.have.exactly(3).descendants(Track);
         expect(component).to.contain(<Track
             track={fromJS({

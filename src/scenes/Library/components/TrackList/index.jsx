@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import ImmutablePropTypes from "react-immutable-proptypes";
 import { List } from "immutable";
+import Button from "~/components/Button";
 import Track from "./Track";
 import Header from "./Header";
 import styles from "./style.scss";
@@ -28,7 +29,9 @@ const TrackList = ({ tracks }) => (
         </div>
         <div className={styles.tracks}>
             {tracks.map((track) => (
-                <Track key={track.get("id")} track={track} />
+                <Button key={track.get("id")}>
+                    <Track track={track} />
+                </Button>
             ))}
         </div>
     </div>

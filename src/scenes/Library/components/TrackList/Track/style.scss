@@ -1,5 +1,6 @@
 .track {
     display: grid;
+    flex-grow: 1;
     grid-gap: 2%;
     grid-template-columns: 1.3fr 1fr 1fr 60px;
     padding: 5px;

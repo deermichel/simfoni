@@ -31,18 +31,6 @@ store.dispatch(tracksOperations.setTracks([
     },
 ]));
 
-// const nowPlaying = fromJS({
-//     track: {
-//         id: "a",
-//         title: "Believa",
-//         artist: "Raelee Nikole",
-//         album: "Answers",
-//         duration: 243,
-//     },
-//     currentTime: 203,
-//     state: PlayState.PLAYING,
-// });
-
 const app = (
     <Provider store={store}>
         <App>

@@ -1,9 +1,13 @@
 import { connect } from "react-redux";
 import Library from "./ui";
-import { nowPlayingOperations } from "~/stores/nowPlaying";
+import {
+    nowPlayingOperations,
+    nowPlayingSelectors,
+} from "~/stores/nowPlaying";
 
 const mapStateToProps = (state) => ({
     tracks: state.tracks,
+    nowPlaying: nowPlayingSelectors.getNowPlayingWithTrack(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

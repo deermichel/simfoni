@@ -17,19 +17,21 @@ const propTypes = {
             duration: PropTypes.number,
         }),
     ),
+    onClickTrack: PropTypes.func,
 };
 const defaultProps = {
     tracks: List(),
+    onClickTrack: () => 0,
 };
 
-const TrackList = ({ tracks }) => (
+const TrackList = ({ tracks, onClickTrack }) => (
     <div className={styles.tracklist}>
         <div className={styles.header}>
             <Header />
         </div>
         <div className={styles.tracks}>
             {tracks.map((track) => (
-                <Button key={track.get("id")}>
+                <Button key={track.get("id")} onClick={() => onClickTrack(track.get("id"))}>
                     <Track track={track} />
                 </Button>
             ))}

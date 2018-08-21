@@ -26,15 +26,17 @@ const propTypes = {
         currentTime: PropTypes.number,
         state: PropTypes.oneOf(Object.values(PlayState)),
     }),
+    onPlayTrack: PropTypes.func,
 };
 const defaultProps = {
     tracks: List(),
     nowPlaying: Map(),
+    onPlayTrack: () => 0,
 };
 
-const Library = ({ tracks, nowPlaying }) => (
+const Library = ({ tracks, nowPlaying, onPlayTrack }) => (
     <div className="library">
-        <TrackList tracks={tracks} />
+        <TrackList tracks={tracks} onClickTrack={onPlayTrack} />
         <ControlsBar nowPlaying={nowPlaying} />
     </div>
 );

@@ -45,10 +45,9 @@ describe("TrackList", () => {
         expect(component).to.contain(<Header />);
     });
 
-    it("contains one <Track /> and <Button /> child per track", () => {
+    it("contains one <Track /> child per track", () => {
         const component = shallow(<TrackList tracks={tracks} />);
 
-        expect(component).to.have.exactly(3).descendants(Button);
         expect(component).to.have.exactly(3).descendants(Track);
         expect(component).to.contain(<Track
             track={fromJS({
@@ -77,5 +76,15 @@ describe("TrackList", () => {
                 duration: 226, // 3:46
             })}
         />);
+    });
+
+    it("invokes onClickTrack callback with correct trackId on click", () => {
+        let clickedId;
+        const onClickTrack = (trackId) => { clickedId = trackId; };
+        const component = shallow(<TrackList tracks={tracks} onClickTrack={onClickTrack} />);
+        component.find(Button).first().simulate("click");
+
+        expect(component).to.have.exactly(3).descendants(Button);
+        expect(clickedId).to.equal("a");
     });
 });

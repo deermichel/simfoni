@@ -43,10 +43,11 @@ const togglePlayback = (state) => {
 
 const skipForward = (state) => {
     const queue = state.get("queue");
+    const playState = state.get("playState");
     if (queue.isEmpty()) {
         return stopPlayback(state);
     }
-    return playQueue(state, { queue });
+    return playQueue(state, { queue }).merge({ playState });
 };
 
 const skipBackward = (state) => {
@@ -64,7 +65,8 @@ const skipBackward = (state) => {
     }
 
     const track = history.first();
-    return playTrack(newState, { track });
+    const playState = state.get("playState");
+    return playTrack(newState, { track }).merge({ playState });
 };
 
 const seek = (state, payload) => state.set("currentTime", payload.time);

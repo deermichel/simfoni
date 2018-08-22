@@ -92,6 +92,26 @@ describe("nowPlaying reducer", () => {
         }));
     });
 
+    it("handles SKIP_FORWARD when paused", () => {
+        const initialState = fromJS({
+            currentTrack: "id1",
+            currentTime: 142,
+            playState: PlayState.PAUSED,
+            queue: ["id2", "id3"],
+            history: ["id1"],
+        });
+        const action = actions.skipForward();
+        const nextState = reducer(initialState, action);
+
+        expect(nextState).to.equal(fromJS({
+            currentTrack: "id2",
+            currentTime: 0,
+            playState: PlayState.PAUSED,
+            queue: ["id3"],
+            history: ["id2", "id1"],
+        }));
+    });
+
     it("handles SKIP_FORWARD on empty queue", () => {
         const initialState = fromJS({
             currentTrack: "id1",
@@ -125,6 +145,26 @@ describe("nowPlaying reducer", () => {
             currentTrack: "id1",
             currentTime: 0,
             playState: PlayState.PLAYING,
+            queue: ["id2", "id3"],
+            history: ["id1"],
+        }));
+    });
+
+    it("handles SKIP_BACKWARD (time >= 0:03 -> to beginning of track) when paused", () => {
+        const initialState = fromJS({
+            currentTrack: "id1",
+            currentTime: 3,
+            playState: PlayState.PAUSED,
+            queue: ["id2", "id3"],
+            history: ["id1"],
+        });
+        const action = actions.skipBackward();
+        const nextState = reducer(initialState, action);
+
+        expect(nextState).to.equal(fromJS({
+            currentTrack: "id1",
+            currentTime: 0,
+            playState: PlayState.PAUSED,
             queue: ["id2", "id3"],
             history: ["id1"],
         }));

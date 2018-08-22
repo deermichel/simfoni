@@ -29,9 +29,12 @@ class ScrollingText extends React.Component {
     }
 
     checkOverflow() {
+        if (this.lastOffsetWidth === this.container.offsetWidth) return;
+        this.lastOffsetWidth = this.container.offsetWidth;
+
         clearTimeout(this.timeout);
         this.timeout = setTimeout(() => {
-            this.setState({ animate: (this.container.offsetWidth < this.text.offsetWidth) });
+            this.setState({ animate: (this.container.offsetWidth + 1 < this.text.offsetWidth) });
         }, 1000);
     }
 

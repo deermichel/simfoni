@@ -11,7 +11,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    onPlayQueue: (queue) => dispatch(nowPlayingOperations.playQueue(queue)),
+    onPlayQueue: (queue, history) => dispatch(nowPlayingOperations.playQueue(queue, history)),
     onTogglePlayback: () => dispatch(nowPlayingOperations.togglePlayback()),
     onSkipForward: () => dispatch(nowPlayingOperations.skipForward()),
     onSkipBackward: () => dispatch(nowPlayingOperations.skipBackward()),

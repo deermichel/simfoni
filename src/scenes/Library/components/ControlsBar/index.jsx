@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ImmutablePropTypes from "react-immutable-proptypes";
-import { Map, List } from "immutable";
+import { Map } from "immutable";
 import SkipButton, { SkipDirection } from "./SkipButton";
 import PlayButton from "./PlayButton";
 import DurationBar from "./DurationBar";
@@ -52,13 +52,13 @@ const ControlsBar = ({
             </div>
             <div className={styles.buttons}>
                 <SkipButton
-                    disabled={nowPlaying.get("history", List()).isEmpty()}
+                    disabled={nowPlaying.get("playState") === PlayState.STOPPED}
                     direction={SkipDirection.BACKWARD}
                     onSkip={onSkipBackward}
                 />
                 <PlayButton playing={nowPlaying.get("playState") === PlayState.PLAYING} onPlay={onPlay} />
                 <SkipButton
-                    disabled={nowPlaying.get("queue", List()).isEmpty()}
+                    disabled={nowPlaying.get("playState") === PlayState.STOPPED}
                     direction={SkipDirection.FORWARD}
                     onSkip={onSkipForward}
                 />

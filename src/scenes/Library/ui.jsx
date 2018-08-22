@@ -44,7 +44,9 @@ const defaultProps = {
 
 const onClickTrack = (onPlayQueue, tracks, trackId) => {
     const trackIds = tracks.map((track) => track.get("id"));
-    onPlayQueue(trackIds.skipUntil((id) => id === trackId));
+    const queue = trackIds.skipUntil((id) => id === trackId);
+    const history = trackIds.takeUntil((id) => id === trackId);
+    onPlayQueue(queue, history.reverse());
 };
 
 const onPlay = (onPlayQueue, onTogglePlayback, tracks, nowPlaying) => {

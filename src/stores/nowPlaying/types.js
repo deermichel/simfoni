@@ -5,4 +5,5 @@ export default {
     SKIP_BACKWARD: "SKIP_BACKWARD",
     SEEK: "SEEK",
     PLAY_TRACK: "PLAY_TRACK",
+    STOP_PLAYBACK: "STOP_PLAYBACK",
 };

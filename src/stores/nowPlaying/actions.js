@@ -1,8 +1,8 @@
 import types from "./types";
 
-const playQueue = (queue) => ({
+const playQueue = (queue, history) => ({
     type: types.PLAY_QUEUE,
-    payload: { queue },
+    payload: { queue, history },
 });
 
 const togglePlayback = () => ({ type: types.TOGGLE_PLAYBACK });
@@ -21,6 +21,8 @@ const playTrack = (track) => ({
     payload: { track },
 });
 
+const stopPlayback = () => ({ type: types.STOP_PLAYBACK });
+
 export default {
     playQueue,
     togglePlayback,
@@ -28,4 +30,5 @@ export default {
     skipBackward,
     seek,
     playTrack,
+    stopPlayback,
 };

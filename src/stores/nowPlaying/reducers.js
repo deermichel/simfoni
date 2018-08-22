@@ -5,6 +5,7 @@ import PlayState from "~/constants/PlayState";
 const INITIAL_STATE = Map({
     playState: PlayState.STOPPED,
     history: List(),
+    queue: List(),
 });
 
 const playTrack = (state, payload) => {
@@ -19,11 +20,18 @@ const playTrack = (state, payload) => {
 
 const playQueue = (state, payload) => {
     const queue = List(payload.queue);
+    const history = (payload.history) ? List(payload.history) : state.get("history");
     const track = queue.first();
-    return playTrack(state, { track }).merge({
+    return playTrack(state.merge({
         queue: queue.shift(),
-    });
+        history,
+    }), { track });
 };
+
+const stopPlayback = (state) => state
+    .remove("currentTime")
+    .remove("currentTrack")
+    .set("playState", PlayState.STOPPED);
 
 const togglePlayback = (state) => {
     const playState = state.get("playState");
@@ -35,6 +43,9 @@ const togglePlayback = (state) => {
 
 const skipForward = (state) => {
     const queue = state.get("queue");
+    if (queue.isEmpty()) {
+        return stopPlayback(state);
+    }
     return playQueue(state, { queue });
 };
 
@@ -43,11 +54,17 @@ const skipBackward = (state) => {
     const time = state.get("currentTime");
     const queue = state.get("queue");
     const history = (time >= 3) ? state.get("history") : state.get("history").shift();
-    const track = history.first();
-    return playTrack(state.merge({
+    const newState = state.merge({
         history: history.shift(),
         queue: (time >= 3) ? queue : queue.unshift(currentTrack),
-    }), { track });
+    });
+
+    if (history.isEmpty()) {
+        return stopPlayback(newState);
+    }
+
+    const track = history.first();
+    return playTrack(newState, { track });
 };
 
 const seek = (state, payload) => state.set("currentTime", payload.time);
@@ -66,6 +83,8 @@ const nowPlayingReducer = (state = INITIAL_STATE, action) => {
             return skipBackward(state, action.payload);
         case types.SEEK:
             return seek(state, action.payload);
+        case types.STOP_PLAYBACK:
+            return stopPlayback(state, action.payload);
         default:
             return state;
     }

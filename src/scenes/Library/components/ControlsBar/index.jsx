@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ImmutablePropTypes from "react-immutable-proptypes";
-import { Map } from "immutable";
+import { Map, List } from "immutable";
 import SkipButton, { SkipDirection } from "./SkipButton";
 import PlayButton from "./PlayButton";
 import DurationBar from "./DurationBar";
@@ -51,9 +51,17 @@ const ControlsBar = ({
                 <ScrollingText text={nowPlaying.getIn(["currentTrack", "title"])} />
             </div>
             <div className={styles.buttons}>
-                <SkipButton direction={SkipDirection.BACKWARD} onSkip={onSkipBackward} />
+                <SkipButton
+                    disabled={nowPlaying.get("history", List()).isEmpty()}
+                    direction={SkipDirection.BACKWARD}
+                    onSkip={onSkipBackward}
+                />
                 <PlayButton playing={nowPlaying.get("playState") === PlayState.PLAYING} onPlay={onPlay} />
-                <SkipButton direction={SkipDirection.FORWARD} onSkip={onSkipForward} />
+                <SkipButton
+                    disabled={nowPlaying.get("queue", List()).isEmpty()}
+                    direction={SkipDirection.FORWARD}
+                    onSkip={onSkipForward}
+                />
             </div>
             <div className={styles.currentartist}>
                 <ScrollingText text={nowPlaying.getIn(["currentTrack", "artist"])} />

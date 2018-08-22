@@ -59,5 +59,15 @@ describe("ControlsBar", () => {
         const component = shallow(<ControlsBar nowPlaying={nowPlaying} />);
 
         expect(component.find(PlayButton)).to.have.prop("playing", true);
+        expect(component.find(SkipButton).at(0).prop("disabled")).to.equal(false);
+        expect(component.find(SkipButton).at(1).prop("disabled")).to.equal(false);
+    });
+
+    it("disables skip buttons when playback stopped", () => {
+        const stopped = fromJS({ playState: PlayState.STOPPED });
+        const component = shallow(<ControlsBar nowPlaying={stopped} />);
+
+        expect(component.find(SkipButton).at(0).prop("disabled")).to.equal(true);
+        expect(component.find(SkipButton).at(1).prop("disabled")).to.equal(true);
     });
 });

@@ -42,9 +42,17 @@ const defaultProps = {
     onSeek: () => 0,
 };
 
-const onPlayTrack = (onPlayQueue, tracks, trackId) => {
+const onClickTrack = (onPlayQueue, tracks, trackId) => {
     const trackIds = tracks.map((track) => track.get("id"));
     onPlayQueue(trackIds.skipUntil((id) => id === trackId));
+};
+
+const onPlay = (onPlayQueue, onTogglePlayback, tracks, nowPlaying) => {
+    if (nowPlaying.get("playState") === PlayState.STOPPED) {
+        onPlayQueue(tracks.map((track) => track.get("id")));
+    } else {
+        onTogglePlayback();
+    }
 };
 
 const Library = ({
@@ -59,13 +67,13 @@ const Library = ({
     <div className="library">
         <TrackList
             tracks={tracks}
-            onClickTrack={(trackId) => onPlayTrack(onPlayQueue, tracks, trackId)}
+            onClickTrack={(trackId) => onClickTrack(onPlayQueue, tracks, trackId)}
         />
         <ControlsBar
             nowPlaying={nowPlaying}
             onSkipForward={onSkipForward}
             onSkipBackward={onSkipBackward}
-            onPlay={onTogglePlayback}
+            onPlay={() => onPlay(onPlayQueue, onTogglePlayback, tracks, nowPlaying)}
             onSeek={onSeek}
         />
     </div>

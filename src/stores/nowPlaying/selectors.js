@@ -6,12 +6,10 @@ const getNowPlaying = (state) => state.nowPlaying;
 const getNowPlayingWithTrack = createSelector(
     [getTracks, getNowPlaying],
     (tracks, nowPlaying) => {
-        const trackId = nowPlaying.get("trackId", "");
+        const trackId = nowPlaying.get("currentTrack", "");
         const track = tracks.find((t) => t.get("id") === trackId);
 
-        const nowPlayingWithTrack = nowPlaying
-            .remove("trackId")
-            .set("track", track);
+        const nowPlayingWithTrack = nowPlaying.set("currentTrack", track);
         return nowPlayingWithTrack;
     },
 );

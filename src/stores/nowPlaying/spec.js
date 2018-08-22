@@ -134,7 +134,7 @@ describe("nowPlaying reducer", () => {
     });
 });
 
-xdescribe("nowPlaying selectors", () => {
+describe("nowPlaying selectors", () => {
     describe("getNowPlayingWithTrack", () => {
         it("returns nowPlaying with full track object", () => {
             const state = {
@@ -146,15 +146,17 @@ xdescribe("nowPlaying selectors", () => {
                     duration: 259,
                 }]),
                 nowPlaying: fromJS({
-                    trackId: "sail",
+                    currentTrack: "sail",
                     currentTime: 142,
                     state: PlayState.PAUSED,
+                    history: ["sail", "id1", "id2"],
+                    queue: ["id3", "id4"],
                 }),
             };
             const selected = selectors.getNowPlayingWithTrack(state);
 
             expect(selected).to.equal(fromJS({
-                track: {
+                currentTrack: {
                     id: "sail",
                     title: "Sail",
                     artist: "AWOLNATION",
@@ -163,6 +165,8 @@ xdescribe("nowPlaying selectors", () => {
                 },
                 currentTime: 142,
                 state: PlayState.PAUSED,
+                history: ["sail", "id1", "id2"],
+                queue: ["id3", "id4"],
             }));
         });
     });

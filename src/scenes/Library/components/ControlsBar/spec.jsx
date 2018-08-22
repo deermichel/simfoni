@@ -11,7 +11,7 @@ import ScrollingText from "~/components/ScrollingText";
 
 describe("ControlsBar", () => {
     const nowPlaying = fromJS({
-        track: {
+        currentTrack: {
             id: "a",
             title: "Believa",
             artist: "Raelee Nikole",
@@ -19,7 +19,9 @@ describe("ControlsBar", () => {
             duration: 243,
         },
         currentTime: 203,
-        state: PlayState.PLAYING,
+        playState: PlayState.PLAYING,
+        history: ["a", "id1", "id2"],
+        queue: ["id5"],
     });
 
     it("renders itself", () => {

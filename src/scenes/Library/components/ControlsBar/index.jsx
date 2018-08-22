@@ -43,20 +43,20 @@ const ControlsBar = ({
     <div className={styles.controlsbar}>
         <DurationBar
             currentTime={nowPlaying.get("currentTime")}
-            totalTime={nowPlaying.getIn(["track", "duration"])}
+            totalTime={nowPlaying.getIn(["currentTrack", "duration"])}
             onSeek={onSeek}
         />
         <div className={styles.container}>
             <div className={styles.currenttitle}>
-                <ScrollingText text={nowPlaying.getIn(["track", "title"])} />
+                <ScrollingText text={nowPlaying.getIn(["currentTrack", "title"])} />
             </div>
             <div className={styles.buttons}>
                 <SkipButton direction={SkipDirection.BACKWARD} onSkip={onSkipBackward} />
-                <PlayButton playing={nowPlaying.get("state") === PlayState.PLAYING} onPlay={onPlay} />
+                <PlayButton playing={nowPlaying.get("playState") === PlayState.PLAYING} onPlay={onPlay} />
                 <SkipButton direction={SkipDirection.FORWARD} onSkip={onSkipForward} />
             </div>
             <div className={styles.currentartist}>
-                <ScrollingText text={nowPlaying.getIn(["track", "artist"])} />
+                <ScrollingText text={nowPlaying.getIn(["currentTrack", "artist"])} />
             </div>
         </div>
     </div>

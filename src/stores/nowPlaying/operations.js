@@ -1,8 +1,17 @@
 import actions from "./actions";
 
-const { playTrack, pauseTrack } = actions;
+const {
+    playQueue,
+    togglePlayback,
+    skipForward,
+    skipBackward,
+    seek,
+} = actions;
 
 export default {
-    playTrack,
-    pauseTrack,
+    playQueue,
+    togglePlayback,
+    skipForward,
+    skipBackward,
+    seek,
 };

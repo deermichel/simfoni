@@ -11,11 +11,8 @@
         white-space: nowrap;
     }
 
-    &:nth-child(odd) {
-        background: none;
-    }
-    &:nth-child(even) {
-        background: rgba(0, 0, 0, 0.08);
+    &:hover {
+        background: __COLOR_PRIMARY_BASE;
     }
 }
 

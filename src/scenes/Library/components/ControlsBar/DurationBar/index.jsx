@@ -17,7 +17,8 @@ const formatDuration = (duration) => `${Math.trunc(duration / 60)}:${(duration %
 const generateStyle = (currentTime, totalTime) => {
     const progress = (totalTime === 0) ? 0 : 100.0 * currentTime / totalTime;
     return {
-        background: `linear-gradient(to right, rgb(235, 235, 235) ${progress}%, white ${progress}%)`,
+        background: `linear-gradient(to right, __COLOR_SECONDARY_DARK ${progress}%,`
+            + `__COLOR_SECONDARY_LIGHT ${progress}%)`,
     };
 };
 

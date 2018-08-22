@@ -1,6 +1,18 @@
 const path = require("path");
 const webpack = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const Colors = require("./colors");
+
+const colorsReplaceLoader = () => {
+    const rules = Object.entries(Colors)
+        .map(([key, val]) => ({ search: `__COLOR_${key}`, replace: val }));
+    return {
+        loader: "string-replace-loader",
+        options: {
+            multiple: rules,
+        },
+    };
+};
 
 module.exports = (env, argv) => ({
 
@@ -15,7 +27,10 @@ module.exports = (env, argv) => ({
             {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
-                loader: "babel-loader",
+                use: [
+                    "babel-loader",
+                    colorsReplaceLoader(),
+                ],
             },
             {
                 test: /\.scss$/,
@@ -24,6 +39,7 @@ module.exports = (env, argv) => ({
                     (argv.mode === "development") ? "style-loader" : MiniCssExtractPlugin.loader,
                     "css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]",
                     "sass-loader",
+                    colorsReplaceLoader(),
                 ],
             },
         ],

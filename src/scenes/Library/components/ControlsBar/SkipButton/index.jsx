@@ -12,16 +12,18 @@ export const SkipDirection = {
 const propTypes = {
     onSkip: PropTypes.func,
     direction: PropTypes.oneOf(Object.values(SkipDirection)),
+    disabled: PropTypes.bool,
 };
 const defaultProps = {
     onSkip: null,
     direction: null,
+    disabled: false,
 };
 
-const SkipButton = ({ direction, onSkip }) => (
+const SkipButton = ({ direction, onSkip, disabled }) => (
     <div className={styles.skipbutton}>
-        <Button onClick={onSkip}>
-            <div className={styles.hovercolor}>
+        <Button onClick={onSkip} disabled={disabled}>
+            <div className={(disabled) ? styles.disabled : styles.hovercolor}>
                 {direction === SkipDirection.FORWARD
                     && <SkipForward size={24} />
                 }

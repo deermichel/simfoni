@@ -41,4 +41,10 @@ describe("SkipButton", () => {
 
         expect(callbackInvoked).to.equal(true);
     });
+
+    it("disables button when disabled", () => {
+        const component = shallow(<SkipButton disabled />);
+
+        expect(component.find(Button).prop("disabled")).to.equal(true);
+    });
 });

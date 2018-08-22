@@ -11,7 +11,11 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    onPlayTrack: (trackId) => dispatch(nowPlayingOperations.playQueue([trackId])),
+    onPlayQueue: (queue) => dispatch(nowPlayingOperations.playQueue(queue)),
+    onTogglePlayback: () => dispatch(nowPlayingOperations.togglePlayback()),
+    onSkipForward: () => dispatch(nowPlayingOperations.skipForward()),
+    onSkipBackward: () => dispatch(nowPlayingOperations.skipBackward()),
+    onSeek: (time) => dispatch(nowPlayingOperations.seek(time)),
 });
 
 const LibraryContainer = connect(

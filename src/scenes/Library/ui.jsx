@@ -26,18 +26,48 @@ const propTypes = {
         currentTime: PropTypes.number,
         state: PropTypes.oneOf(Object.values(PlayState)),
     }),
-    onPlayTrack: PropTypes.func,
+    onPlayQueue: PropTypes.func,
+    onSkipForward: PropTypes.func,
+    onSkipBackward: PropTypes.func,
+    onTogglePlayback: PropTypes.func,
+    onSeek: PropTypes.func,
 };
 const defaultProps = {
     tracks: List(),
     nowPlaying: Map(),
-    onPlayTrack: () => 0,
+    onPlayQueue: () => 0,
+    onSkipForward: () => 0,
+    onSkipBackward: () => 0,
+    onTogglePlayback: () => 0,
+    onSeek: () => 0,
 };
 
-const Library = ({ tracks, nowPlaying, onPlayTrack }) => (
+const onPlayTrack = (onPlayQueue, tracks, trackId) => {
+    const trackIds = tracks.map((track) => track.get("id"));
+    onPlayQueue(trackIds.skipUntil((id) => id === trackId));
+};
+
+const Library = ({
+    tracks,
+    nowPlaying,
+    onPlayQueue,
+    onSkipForward,
+    onSkipBackward,
+    onTogglePlayback,
+    onSeek,
+}) => (
     <div className="library">
-        <TrackList tracks={tracks} onClickTrack={onPlayTrack} />
-        <ControlsBar nowPlaying={nowPlaying} />
+        <TrackList
+            tracks={tracks}
+            onClickTrack={(trackId) => onPlayTrack(onPlayQueue, tracks, trackId)}
+        />
+        <ControlsBar
+            nowPlaying={nowPlaying}
+            onSkipForward={onSkipForward}
+            onSkipBackward={onSkipBackward}
+            onPlay={onTogglePlayback}
+            onSeek={onSeek}
+        />
     </div>
 );
 

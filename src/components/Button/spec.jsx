@@ -43,4 +43,13 @@ describe("Button", () => {
 
         expect(callbackInvoked).to.equal(true);
     });
+
+    it("does not invoke callback on click when disabled", () => {
+        let callbackInvoked = false;
+        const onClick = () => { callbackInvoked = true; };
+        const component = shallow(<Button onClick={onClick} disabled />);
+        component.simulate("click");
+
+        expect(callbackInvoked).to.equal(false);
+    });
 });

@@ -1,9 +1,13 @@
 .button {
-    align-items: center;
-    display: flex;
-    justify-content: center;
+    @extend .disabledbutton;
 
     &:hover {
         cursor: pointer;
     }
+}
+
+.disabledbutton {
+    align-items: center;
+    display: flex;
+    justify-content: center;
 }

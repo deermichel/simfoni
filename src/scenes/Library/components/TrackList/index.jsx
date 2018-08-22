@@ -31,7 +31,7 @@ const TrackList = ({ tracks, onClickTrack }) => (
         </div>
         <div className={styles.tracks}>
             {tracks.map((track) => (
-                <div className={styles.coloredTrack} key={track.get("id")}>
+                <div className={styles.trackitem} key={track.get("id")}>
                     <Button onClick={() => onClickTrack(track.get("id"))}>
                         <Track track={track} />
                     </Button>

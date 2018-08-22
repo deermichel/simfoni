@@ -9,12 +9,18 @@
 }
 
 .tracks {
-    .coloredTrack {
+    .trackitem {
+        transition: background .1s ease-out;
+
         &:nth-child(odd) {
             background: none;
         }
         &:nth-child(even) {
             background: rgba(0, 0, 0, 0.06);
+        }
+
+        &:hover {
+            background: __COLOR_PRIMARY_BASE;
         }
     }
 }

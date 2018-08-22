@@ -38,8 +38,8 @@ module.exports = (env, argv) => ({
                 use: [
                     (argv.mode === "development") ? "style-loader" : MiniCssExtractPlugin.loader,
                     "css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]",
-                    "sass-loader",
                     colorsReplaceLoader(),
+                    "sass-loader",
                 ],
             },
         ],

@@ -132,6 +132,26 @@ describe("nowPlaying reducer", () => {
             history: ["id2", "id1"],
         }));
     });
+
+    it("handles SEEK", () => {
+        const initialState = fromJS({
+            currentTrack: "id1",
+            currentTime: 32,
+            playState: PlayState.PAUSED,
+            queue: ["id4", "id3"],
+            history: ["id1"],
+        });
+        const action = actions.seek(45);
+        const nextState = reducer(initialState, action);
+
+        expect(nextState).to.equal(fromJS({
+            currentTrack: "id1",
+            currentTime: 45,
+            playState: PlayState.PAUSED,
+            queue: ["id4", "id3"],
+            history: ["id1"],
+        }));
+    });
 });
 
 describe("nowPlaying selectors", () => {

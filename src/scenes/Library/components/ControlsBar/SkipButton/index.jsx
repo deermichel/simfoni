@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { SkipForward, SkipBack } from "react-feather";
 import Button from "~/components/Button";
+import styles from "./style.scss";
 
 export const SkipDirection = {
     FORWARD: "FORWARD",
@@ -18,14 +19,18 @@ const defaultProps = {
 };
 
 const SkipButton = ({ direction, onSkip }) => (
-    <Button onClick={onSkip}>
-        {direction === SkipDirection.FORWARD
-            && <SkipForward size={24} />
-        }
-        {direction === SkipDirection.BACKWARD
-            && <SkipBack size={24} />
-        }
-    </Button>
+    <div className={styles.skipbutton}>
+        <Button onClick={onSkip}>
+            <div className={styles.hovercolor}>
+                {direction === SkipDirection.FORWARD
+                    && <SkipForward size={24} />
+                }
+                {direction === SkipDirection.BACKWARD
+                    && <SkipBack size={24} />
+                }
+            </div>
+        </Button>
+    </div>
 );
 
 SkipButton.propTypes = propTypes;

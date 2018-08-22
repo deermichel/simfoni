@@ -3,6 +3,7 @@ import { shallow } from "enzyme";
 import { expect } from "chai";
 import { SkipForward, SkipBack } from "react-feather";
 import SkipButton, { SkipDirection } from "./index";
+import Button from "~/components/Button";
 
 describe("SkipButton", () => {
     it("renders itself", () => {
@@ -16,7 +17,6 @@ describe("SkipButton", () => {
 
         expect(component).to.have.exactly(0).descendants(SkipForward);
         expect(component).to.have.exactly(0).descendants(SkipBack);
-        expect(component).to.be.blank();
     });
 
     it("displays a skip forward icon", () => {
@@ -37,7 +37,7 @@ describe("SkipButton", () => {
         let callbackInvoked = false;
         const onClick = () => { callbackInvoked = true; };
         const component = shallow(<SkipButton onSkip={onClick} />);
-        component.simulate("click");
+        component.find(Button).simulate("click");
 
         expect(callbackInvoked).to.equal(true);
     });

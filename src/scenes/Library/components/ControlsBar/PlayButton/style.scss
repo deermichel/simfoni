@@ -1,0 +1,17 @@
+.playbutton {
+    display: grid;
+
+    .hovercolor {
+        align-content: center;
+        border-radius: 100%;
+        display: grid;
+        height: 44px;
+        justify-content: center;
+        transition: background .1s ease-out;
+        width: 44px;
+    }
+
+    &:hover .hovercolor {
+        background: __COLOR_PRIMARY_BASE;
+    }
+}

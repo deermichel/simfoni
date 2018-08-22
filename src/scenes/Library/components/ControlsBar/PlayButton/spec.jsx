@@ -3,6 +3,7 @@ import { shallow } from "enzyme";
 import { expect } from "chai";
 import { Play, Pause } from "react-feather";
 import PlayButton from "./index";
+import Button from "~/components/Button";
 
 describe("PlayButton", () => {
     it("renders itself", () => {
@@ -29,7 +30,7 @@ describe("PlayButton", () => {
         let callbackInvoked = false;
         const onClick = () => { callbackInvoked = true; };
         const component = shallow(<PlayButton onPlay={onClick} />);
-        component.simulate("click");
+        component.find(Button).simulate("click");
 
         expect(callbackInvoked).to.equal(true);
     });

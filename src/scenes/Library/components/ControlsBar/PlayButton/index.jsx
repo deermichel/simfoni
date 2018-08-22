@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Play, Pause } from "react-feather";
 import Button from "~/components/Button";
+import styles from "./style.scss";
 
 const propTypes = {
     onPlay: PropTypes.func,
@@ -13,12 +14,16 @@ const defaultProps = {
 };
 
 const PlayButton = ({ onPlay, playing }) => (
-    <Button onClick={onPlay}>
-        {playing
-            ? <Pause size={32} />
-            : <Play size={32} />
-        }
-    </Button>
+    <div className={styles.playbutton}>
+        <Button onClick={onPlay}>
+            <div className={styles.hovercolor}>
+                {playing
+                    ? <Pause size={32} />
+                    : <Play size={32} />
+                }
+            </div>
+        </Button>
+    </div>
 );
 
 PlayButton.propTypes = propTypes;

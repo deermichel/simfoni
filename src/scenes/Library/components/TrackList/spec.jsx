@@ -2,6 +2,7 @@ import React from "react";
 import { shallow } from "enzyme";
 import { expect } from "chai";
 import { fromJS } from "immutable";
+import { Play, Pause } from "react-feather";
 import TrackList from "./index";
 import Track from "./Track";
 import Header from "./Header";
@@ -86,5 +87,14 @@ describe("TrackList", () => {
 
         expect(component).to.have.exactly(3).descendants(Button);
         expect(clickedId).to.equal("a");
+    });
+
+    it("displays the icons", () => {
+        const icons = fromJS({ a: <Play />, b: <Pause /> });
+        const component = shallow(<TrackList tracks={tracks} icons={icons} />);
+
+        expect(component.find(Track).at(0).prop("icon")).to.equal(fromJS(<Play />));
+        expect(component.find(Track).at(1).prop("icon")).to.equal(fromJS(<Pause />));
+        expect(component.find(Track).at(2).prop("icon")).to.equal(null);
     });
 });

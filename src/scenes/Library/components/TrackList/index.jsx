@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ImmutablePropTypes from "react-immutable-proptypes";
-import { List } from "immutable";
+import { Map, List } from "immutable";
 import Button from "~/components/Button";
 import Track from "./Track";
 import Header from "./Header";
@@ -17,14 +17,16 @@ const propTypes = {
             duration: PropTypes.number,
         }),
     ),
+    icons: ImmutablePropTypes.map,
     onClickTrack: PropTypes.func,
 };
 const defaultProps = {
     tracks: List(),
+    icons: Map(),
     onClickTrack: () => 0,
 };
 
-const TrackList = ({ tracks, onClickTrack }) => (
+const TrackList = ({ tracks, icons, onClickTrack }) => (
     <div className={styles.tracklist}>
         <div className={styles.header}>
             <Header />
@@ -33,7 +35,7 @@ const TrackList = ({ tracks, onClickTrack }) => (
             {tracks.map((track) => (
                 <div className={styles.trackitem} key={track.get("id")}>
                     <Button onClick={() => onClickTrack(track.get("id"))}>
-                        <Track track={track} />
+                        <Track track={track} icon={icons.get(track.get("id"))} />
                     </Button>
                 </div>
             ))}

@@ -3,25 +3,28 @@ import types from "./types";
 const playQueue = (queue, history) => ({
     type: types.PLAY_QUEUE,
     payload: { queue, history },
+    meta: { player: true },
 });
 
-const togglePlayback = () => ({ type: types.TOGGLE_PLAYBACK });
+const togglePlayback = () => ({ type: types.TOGGLE_PLAYBACK, meta: { player: true } });
 
-const skipForward = () => ({ type: types.SKIP_FORWARD });
+const skipForward = () => ({ type: types.SKIP_FORWARD, meta: { player: true } });
 
-const skipBackward = () => ({ type: types.SKIP_BACKWARD });
+const skipBackward = () => ({ type: types.SKIP_BACKWARD, meta: { player: true } });
 
 const seek = (time) => ({
     type: types.SEEK,
     payload: { time },
+    meta: { player: true },
 });
 
 const playTrack = (track) => ({
     type: types.PLAY_TRACK,
     payload: { track },
+    meta: { player: true },
 });
 
-const stopPlayback = () => ({ type: types.STOP_PLAYBACK });
+const stopPlayback = () => ({ type: types.STOP_PLAYBACK, meta: { player: true } });
 
 const updateTime = (time) => ({
     type: types.UPDATE_TIME,

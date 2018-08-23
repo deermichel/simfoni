@@ -1,5 +1,5 @@
 import AudioPlayer from "./audioPlayer";
-import { nowPlayingTypes, nowPlayingOperations } from "~/stores/nowPlaying";
+import { nowPlayingOperations } from "~/stores/nowPlaying";
 import PlayState from "~/constants/PlayState";
 
 const player = new AudioPlayer();
@@ -10,8 +10,6 @@ const updateTime = (store, time) => {
         store.dispatch(nowPlayingOperations.updateTime(time));
     }
 };
-
-const seek = (time) => player.seek(time);
 
 const update = (store) => {
     const state = store.getState();
@@ -30,6 +28,11 @@ const update = (store) => {
         player.setUpdateTimeCallback((time) => updateTime(store, time));
     }
 
+    // sync time
+    const currentTime = state.nowPlaying.get("currentTime");
+    player.seek(currentTime);
+
+    // continue or start playback
     player.play()
         .then(() => {
             playingTrack = currentTrack;
@@ -41,25 +44,8 @@ const update = (store) => {
 
 export default (store) => (next) => (action) => {
     const result = next(action);
-
-    switch (action.type) {
-        case nowPlayingTypes.PLAY_QUEUE:
-        case nowPlayingTypes.TOGGLE_PLAYBACK:
-        case nowPlayingTypes.SKIP_FORWARD:
-        // case nowPlayingTypes.PLAY_TRACK:
-        // case nowPlayingTypes.STOP_PLAYBACK:
-            update(store);
-            break;
-        case nowPlayingTypes.SKIP_BACKWARD:
-            seek(0); // same song
-            update(store);
-            break;
-        case nowPlayingTypes.SEEK:
-            seek(action.payload.time);
-            break;
-        default:
-            break;
+    if (action.meta && action.meta.player) {
+        update(store);
     }
-
     return result;
 };

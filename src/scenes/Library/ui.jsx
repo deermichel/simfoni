@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import ImmutablePropTypes from "react-immutable-proptypes";
 import { List, Map } from "immutable";
+import { Play, Pause } from "react-feather";
 import TrackList from "./components/TrackList";
 import ControlsBar from "./components/ControlsBar";
 import PlayState from "~/constants/PlayState";
@@ -57,6 +58,13 @@ const onPlay = (onPlayQueue, onTogglePlayback, tracks, nowPlaying) => {
     }
 };
 
+const icons = (nowPlaying) => Map({
+    [nowPlaying.getIn(["currentTrack", "id"])]:
+        (nowPlaying.get("playState") === PlayState.PLAYING)
+            ? <Play size={16} />
+            : <Pause size={16} />,
+});
+
 const Library = ({
     tracks,
     nowPlaying,
@@ -69,6 +77,7 @@ const Library = ({
     <div className="library">
         <TrackList
             tracks={tracks}
+            icons={icons(nowPlaying)}
             onClickTrack={(trackId) => onClickTrack(onPlayQueue, tracks, trackId)}
         />
         <ControlsBar

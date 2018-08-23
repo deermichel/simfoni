@@ -52,7 +52,7 @@ const onClickTrack = (onPlayQueue, tracks, trackId) => {
 
 const onPlay = (onPlayQueue, onTogglePlayback, tracks, nowPlaying) => {
     if (nowPlaying.get("playState") === PlayState.STOPPED) {
-        onPlayQueue(tracks.map((track) => track.get("id")));
+        onClickTrack(onPlayQueue, tracks, tracks.first().get("id"));
     } else {
         onTogglePlayback();
     }

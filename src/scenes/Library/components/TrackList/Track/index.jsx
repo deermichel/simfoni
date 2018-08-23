@@ -11,17 +11,22 @@ const propTypes = {
         album: PropTypes.string,
         duration: PropTypes.number,
     }),
+    icon: PropTypes.node,
 };
 const defaultProps = {
     track: Map(),
+    icon: null,
 };
 
-const Track = ({ track }) => {
+const Track = ({ track, icon }) => {
     const duration = track.get("duration");
     const formattedDuration = `${Math.trunc(duration / 60)}:${(duration % 60).toString().padStart(2, "0")}`;
 
     return (
         <div className={styles.track}>
+            <span className={styles.icon}>
+                {icon}
+            </span>
             <span className={styles.title}>
                 {track.get("title")}
             </span>

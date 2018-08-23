@@ -4,6 +4,7 @@ import styles from "./style.scss";
 
 const Header = () => (
     <div className={styles.header}>
+        <span className={styles.icon} />
         <span className={styles.title}>
             Title
         </span>

@@ -2,7 +2,7 @@
     display: grid;
     flex-grow: 1;
     grid-gap: 2%;
-    grid-template-columns: 1.3fr 1fr 1fr 60px;
+    grid-template-columns: 24px 1.3fr 1fr 1fr 60px;
     padding: 5px;
 
     span {
@@ -14,4 +14,10 @@
 
 .duration {
     text-align: end;
+}
+
+.icon {
+    align-content: center;
+    display: grid;
+    justify-content: center;
 }

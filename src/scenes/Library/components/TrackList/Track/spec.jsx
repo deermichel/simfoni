@@ -2,6 +2,7 @@ import React from "react";
 import { shallow } from "enzyme";
 import { expect } from "chai";
 import { fromJS } from "immutable";
+import { Play } from "react-feather";
 import Track from "./index";
 
 describe("Track", () => {
@@ -16,6 +17,12 @@ describe("Track", () => {
         const component = shallow(<Track />);
 
         expect(component).to.be.present();
+    });
+
+    it("displays the icon", () => {
+        const component = shallow(<Track track={track} icon={<Play />} />);
+
+        expect(component).to.have.exactly(1).descendants(Play);
     });
 
     it("displays the title", () => {

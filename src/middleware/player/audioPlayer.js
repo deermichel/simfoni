@@ -3,15 +3,26 @@ class AudioPlayer {
         this.audio = new Audio();
     }
 
+    setUpdateTimeCallback(updateTime) {
+        this.audio.ontimeupdate = () => updateTime(this.audio.currentTime);
+    }
+
+    seek(time) {
+        this.audio.currentTime = time;
+    }
+
     pause() {
         this.audio.pause();
     }
 
-    play(source, updateTime) {
+    play() {
+        return this.audio.play();
+    }
+
+    load(source) {
         this.pause();
         this.audio.src = source;
-        this.audio.ontimeupdate = () => updateTime(this.audio.currentTime);
-        return this.audio.play();
+        this.audio.load();
     }
 }
 

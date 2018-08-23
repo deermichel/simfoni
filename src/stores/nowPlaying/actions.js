@@ -3,6 +3,7 @@ import types from "./types";
 const playQueue = (queue, history) => ({
     type: types.PLAY_QUEUE,
     payload: { queue, history },
+    meta: { player: true },
 });
 
 const togglePlayback = () => ({ type: types.TOGGLE_PLAYBACK });

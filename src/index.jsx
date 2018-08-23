@@ -14,6 +14,7 @@ store.dispatch(tracksOperations.setTracks([
         artist: "Raelee Nikole",
         album: "Answers",
         duration: 243, // 4:03
+        source: "_mp3/Believa.mp3",
     },
     {
         id: "pumped",
@@ -21,6 +22,7 @@ store.dispatch(tracksOperations.setTracks([
         artist: "Foster The People",
         album: "Torches",
         duration: 240, // 4:00
+        source: "_mp3/Pumped Up Kicks.mp3",
     },
     {
         id: "no",
@@ -28,6 +30,7 @@ store.dispatch(tracksOperations.setTracks([
         artist: "Chet Faker",
         album: "Digging the Blogosphere",
         duration: 226, // 3:46
+        source: "_mp3/No Diggity.mp3",
     },
     {
         id: "born",
@@ -35,6 +38,7 @@ store.dispatch(tracksOperations.setTracks([
         artist: "The New Schematics",
         album: "The New Schematics (Unplugged+)",
         duration: 263, // 4:23
+        source: "_mp3/Born Without Borders (Unplugged).mp3",
     },
     {
         id: "it",
@@ -42,6 +46,7 @@ store.dispatch(tracksOperations.setTracks([
         artist: "Norah Jones",
         album: "It Was You",
         duration: 331, // 5:31
+        source: "_mp3/It Was You.mp3",
     },
 ]));
 

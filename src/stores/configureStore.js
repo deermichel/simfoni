@@ -2,6 +2,7 @@ import { createStore, applyMiddleware } from "redux";
 import { Iterable } from "immutable";
 import { createLogger } from "redux-logger";
 import rootReducer from "./rootReducer";
+import playerMiddleware from "~/middleware/player";
 
 const stateTransformer = (state) => {
     const newState = {};
@@ -22,6 +23,7 @@ const configureStore = (initialState) => createStore(
     initialState,
     applyMiddleware(
         loggerMiddleware,
+        playerMiddleware,
     ),
 );
 

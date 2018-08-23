@@ -9,3 +9,6 @@ node_modules/
 # build
 public/bundle.js
 public/style.css
+
+# use your own music ;)
+public/_mp3

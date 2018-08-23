@@ -2,7 +2,7 @@ import React from "react";
 import { shallow } from "enzyme";
 import { expect } from "chai";
 import { Play, Pause } from "react-feather";
-import PlayButton from "./index";
+import PlayButton, { PlayWithMargin } from "./index";
 import Button from "~/components/Button";
 
 describe("PlayButton", () => {
@@ -14,15 +14,17 @@ describe("PlayButton", () => {
 
     it("displays a play icon", () => {
         const component = shallow(<PlayButton />);
+        const icon = shallow(<PlayWithMargin />);
 
-        expect(component).to.have.exactly(1).descendants(Play);
+        expect(icon).to.have.exactly(1).descendants(Play);
+        expect(component).to.have.exactly(1).descendants(PlayWithMargin);
         expect(component).to.have.exactly(0).descendants(Pause);
     });
 
     it("displays a pause icon when playing", () => {
         const component = shallow(<PlayButton playing />);
 
-        expect(component).to.have.exactly(0).descendants(Play);
+        expect(component).to.have.exactly(0).descendants(PlayWithMargin);
         expect(component).to.have.exactly(1).descendants(Pause);
     });
 

@@ -11,6 +11,8 @@ const updateTime = (store, time) => {
     }
 };
 
+const ended = (store) => store.dispatch(nowPlayingOperations.skipForward());
+
 const update = (store) => {
     const state = store.getState();
 
@@ -26,6 +28,7 @@ const update = (store) => {
         const track = state.tracks.find((t) => t.get("id") === currentTrack);
         player.load(track.get("source"));
         player.setUpdateTimeCallback((time) => updateTime(store, time));
+        player.setEndedCallback(() => ended(store));
     }
 
     // sync time

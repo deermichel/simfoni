@@ -7,6 +7,10 @@ class AudioPlayer {
         this.audio.ontimeupdate = () => updateTime(this.audio.currentTime);
     }
 
+    setEndedCallback(ended) {
+        this.audio.onended = () => ended();
+    }
+
     seek(time) {
         this.audio.currentTime = time;
     }

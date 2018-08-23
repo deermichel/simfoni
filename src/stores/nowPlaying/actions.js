@@ -3,7 +3,6 @@ import types from "./types";
 const playQueue = (queue, history) => ({
     type: types.PLAY_QUEUE,
     payload: { queue, history },
-    meta: { player: true },
 });
 
 const togglePlayback = () => ({ type: types.TOGGLE_PLAYBACK });
@@ -24,6 +23,11 @@ const playTrack = (track) => ({
 
 const stopPlayback = () => ({ type: types.STOP_PLAYBACK });
 
+const updateTime = (time) => ({
+    type: types.UPDATE_TIME,
+    payload: { time },
+});
+
 export default {
     playQueue,
     togglePlayback,
@@ -32,4 +36,5 @@ export default {
     seek,
     playTrack,
     stopPlayback,
+    updateTime,
 };

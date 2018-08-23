@@ -6,4 +6,5 @@ export default {
     SEEK: "SEEK",
     PLAY_TRACK: "PLAY_TRACK",
     STOP_PLAYBACK: "STOP_PLAYBACK",
+    UPDATE_TIME: "UPDATE_TIME",
 };

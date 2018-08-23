@@ -6,6 +6,7 @@ const {
     skipForward,
     skipBackward,
     seek,
+    updateTime,
 } = actions;
 
 export default {
@@ -14,4 +15,5 @@ export default {
     skipForward,
     skipBackward,
     seek,
+    updateTime,
 };

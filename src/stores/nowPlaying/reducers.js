@@ -71,6 +71,8 @@ const skipBackward = (state) => {
 
 const seek = (state, payload) => state.set("currentTime", payload.time);
 
+const updateTime = (state, payload) => state.set("currentTime", Math.trunc(payload.time));
+
 const nowPlayingReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case types.PLAY_TRACK:
@@ -87,6 +89,8 @@ const nowPlayingReducer = (state = INITIAL_STATE, action) => {
             return seek(state, action.payload);
         case types.STOP_PLAYBACK:
             return stopPlayback(state, action.payload);
+        case types.UPDATE_TIME:
+            return updateTime(state, action.payload);
         default:
             return state;
     }

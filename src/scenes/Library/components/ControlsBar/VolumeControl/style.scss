@@ -9,10 +9,26 @@
         justify-content: center;
         transition: background .1s ease-out;
         width: 32px;
-        position: fixed;
     }
 
     &:hover .hovercolor {
         background: __COLOR_PRIMARY_BASE;
     }
+
+    &:active .hovercolor {
+        animation-direction: alternate;
+        animation-iteration-count: infinite;
+        animation-name: animatebubble;
+        animation-timing-function: ease-in-out;
+        background: __COLOR_PRIMARY_DARK;
+    }
+}
+
+@keyframes animatebubble {
+    0% { box-shadow: inset 0px 0px 0px 15px __COLOR_PRIMARY_BASE; }
+    20% { box-shadow: inset 0px 10px 0px 30px __COLOR_PRIMARY_BASE; }
+    40% { box-shadow: inset 10px 0px 0px 15px __COLOR_PRIMARY_BASE; }
+    60% { box-shadow: inset 0px -10px 0px 30px __COLOR_PRIMARY_BASE; }
+    80% { box-shadow: inset -10px 0px 0px 15px __COLOR_PRIMARY_BASE; }
+    100% { box-shadow: inset 0px 0px 0px 30px __COLOR_PRIMARY_BASE; }
 }

@@ -5,7 +5,7 @@ const Colors = require("./colors");
 
 const colorsReplaceLoader = () => {
     const rules = Object.entries(Colors)
-        .map(([key, val]) => ({ search: `__COLOR_${key}`, replace: val }));
+        .map(([key, val]) => ({ search: `__COLOR_${key}`, replace: val, flags: "g" }));
     return {
         loader: "string-replace-loader",
         options: {

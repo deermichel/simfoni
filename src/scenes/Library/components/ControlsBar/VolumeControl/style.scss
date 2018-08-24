@@ -20,15 +20,15 @@
         animation-iteration-count: infinite;
         animation-name: animatebubble;
         animation-timing-function: ease-in-out;
-        background: __COLOR_PRIMARY_DARK;
+        background: __COLOR_PRIMARY_BASE;
     }
 }
 
 @keyframes animatebubble {
-    0% { box-shadow: inset 0px 0px 0px 15px __COLOR_PRIMARY_BASE; }
-    20% { box-shadow: inset 0px 10px 0px 30px __COLOR_PRIMARY_BASE; }
-    40% { box-shadow: inset 10px 0px 0px 15px __COLOR_PRIMARY_BASE; }
-    60% { box-shadow: inset 0px -10px 0px 30px __COLOR_PRIMARY_BASE; }
-    80% { box-shadow: inset -10px 0px 0px 15px __COLOR_PRIMARY_BASE; }
-    100% { box-shadow: inset 0px 0px 0px 30px __COLOR_PRIMARY_BASE; }
+    0% { box-shadow: inset 0px 0px 0px 15px __COLOR_PRIMARY_DARK; }
+    20% { box-shadow: inset 0px 10px 0px 30px __COLOR_PRIMARY_DARK; }
+    40% { box-shadow: inset 10px 0px 0px 15px __COLOR_PRIMARY_DARK; }
+    60% { box-shadow: inset 0px -10px 0px 30px __COLOR_PRIMARY_DARK; }
+    80% { box-shadow: inset -10px 0px 0px 15px __COLOR_PRIMARY_DARK; }
+    100% { box-shadow: inset 0px 0px 0px 30px __COLOR_PRIMARY_DARK; }
 }

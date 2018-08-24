@@ -50,7 +50,7 @@ class VolumeControl extends React.Component {
         this.setState({
             hoverCoverStyle: {
                 animationDuration: "6s",
-                background: "__COLOR_PRIMARY_DARK",
+                background: "__COLOR_PRIMARY_BASE",
                 height: size,
                 position: "fixed",
                 width: size,

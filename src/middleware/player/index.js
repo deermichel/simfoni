@@ -3,7 +3,6 @@ import { nowPlayingOperations } from "~/stores/nowPlaying";
 import PlayState from "~/constants/PlayState";
 
 const player = new AudioPlayer();
-let playingTrack = null;
 
 const updateTime = (store, time) => {
     if (store.getState().nowPlaying.get("currentTime") !== Math.trunc(time)) { // less overhead
@@ -13,42 +12,59 @@ const updateTime = (store, time) => {
 
 const ended = (store) => store.dispatch(nowPlayingOperations.skipForward());
 
-const update = (store) => {
-    const state = store.getState();
-
-    // sync state
-    if (state.nowPlaying.get("playState") !== PlayState.PLAYING) {
+const update = (previousState, currentState) => {
+    // stopped?
+    const playState = currentState.nowPlaying.get("playState");
+    if (playState === PlayState.STOPPED) {
         player.pause();
         return;
     }
 
     // sync track
-    const currentTrack = state.nowPlaying.get("currentTrack");
-    if (currentTrack !== playingTrack) {
-        const track = state.tracks.find((t) => t.get("id") === currentTrack);
+    const currentTrack = currentState.nowPlaying.get("currentTrack");
+    let playRequested = false;
+    if (currentTrack !== previousState.nowPlaying.get("currentTrack")) {
+        const track = currentState.tracks.find((t) => t.get("id") === currentTrack);
         player.load(track.get("source"));
-        player.setUpdateTimeCallback((time) => updateTime(store, time));
-        player.setEndedCallback(() => ended(store));
+        playRequested = true;
     }
 
     // sync time
-    const currentTime = state.nowPlaying.get("currentTime");
-    player.seek(currentTime);
+    const currentTime = currentState.nowPlaying.get("currentTime");
+    if (currentTime !== previousState.nowPlaying.get("currentTime")) {
+        player.seek(currentTime);
+    }
 
-    // continue or start playback
-    player.play()
-        .then(() => {
-            playingTrack = currentTrack;
-        })
-        .catch(() => {
-            // TODO: error handling
-        });
+    // sync state
+    if (playState !== previousState.nowPlaying.get("playState") || playRequested) {
+        if (playState !== PlayState.PLAYING) {
+            player.pause();
+        } else {
+            player.play()
+                .catch(() => {
+                    // TODO: error handling
+                });
+        }
+    }
 };
 
-export default (store) => (next) => (action) => {
-    const result = next(action);
-    if (action.meta && action.meta.player) {
-        update(store);
-    }
-    return result;
+export default (store) => {
+    // init: setup callbacks
+    player.setUpdateTimeCallback((time) => updateTime(store, time));
+    player.setEndedCallback(() => ended(store));
+
+    // main middleware
+    return (next) => (action) => {
+        if (!action.meta || !action.meta.player) {
+            return next(action);
+        }
+
+        const previousState = store.getState();
+        const result = next(action);
+        const currentState = store.getState();
+
+        update(previousState, currentState);
+
+        return result;
+    };
 };

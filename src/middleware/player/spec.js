@@ -119,4 +119,34 @@ describe("player middleware", () => {
 
         expect(fakePlayer.seek).to.have.been.calledOnceWith(23);
     });
+
+    it("dispatches updateTime action on time change callback", () => {
+        const fakePlayer = sinon.createStubInstance(AudioPlayer);
+        const store = createStore(rootReducer);
+        store.dispatch = sinon.stub();
+        fakePlayer.setUpdateTimeCallback = sinon.stub();
+        playerMiddleware(fakePlayer)(store);
+
+        const updateTime = fakePlayer.setUpdateTimeCallback.getCall(0).args[0];
+        updateTime(42);
+
+        expect(store.dispatch).to.have.been.calledOnceWith(
+            nowPlayingActions.updateTime(42),
+        );
+    });
+
+    it("dispatches skipForward action on track ended callback", () => {
+        const fakePlayer = sinon.createStubInstance(AudioPlayer);
+        const store = createStore(rootReducer);
+        store.dispatch = sinon.stub();
+        fakePlayer.setEndedCallback = sinon.stub();
+        playerMiddleware(fakePlayer)(store);
+
+        const ended = fakePlayer.setEndedCallback.getCall(0).args[0];
+        ended();
+
+        expect(store.dispatch).to.have.been.calledOnceWith(
+            nowPlayingActions.skipForward(),
+        );
+    });
 });

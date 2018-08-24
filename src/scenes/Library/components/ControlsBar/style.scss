@@ -6,7 +6,7 @@
 
 .container {
     display: grid;
-    grid-template-columns: 1fr 200px 1fr;
+    grid-template-columns: 36px 1fr 200px 1fr 36px;
     justify-items: stretch;
 }
 
@@ -23,4 +23,10 @@
     display: inline-grid;
     grid-template-columns: 1fr 2fr 1fr;
     justify-items: stretch;
+}
+
+.volumecontrol {
+    align-items: stretch;
+    display: grid;
+    justify-content: stretch;
 }

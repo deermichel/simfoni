@@ -8,6 +8,7 @@ import DurationBar from "./DurationBar";
 import ScrollingText from "~/components/ScrollingText";
 import PlayState from "~/constants/PlayState";
 import styles from "./style.scss";
+import VolumeControl from "./VolumeControl";
 
 const propTypes = {
     nowPlaying: ImmutablePropTypes.contains({
@@ -47,6 +48,7 @@ const ControlsBar = ({
             onSeek={onSeek}
         />
         <div className={styles.container}>
+            <div />
             <div className={styles.currenttitle}>
                 <ScrollingText text={nowPlaying.getIn(["currentTrack", "title"])} />
             </div>
@@ -65,6 +67,9 @@ const ControlsBar = ({
             </div>
             <div className={styles.currentartist}>
                 <ScrollingText text={nowPlaying.getIn(["currentTrack", "artist"])} />
+            </div>
+            <div className={styles.volumecontrol}>
+                <VolumeControl />
             </div>
         </div>
     </div>

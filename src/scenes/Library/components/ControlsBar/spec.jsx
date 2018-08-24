@@ -8,6 +8,7 @@ import SkipButton from "./SkipButton";
 import DurationBar from "./DurationBar";
 import PlayState from "~/constants/PlayState";
 import ScrollingText from "~/components/ScrollingText";
+import VolumeControl from "./VolumeControl";
 
 describe("ControlsBar", () => {
     const nowPlaying = fromJS({
@@ -46,6 +47,12 @@ describe("ControlsBar", () => {
         const component = shallow(<ControlsBar />);
 
         expect(component).to.have.exactly(1).descendants(DurationBar);
+    });
+
+    it("contains one <VolumeControl />", () => {
+        const component = shallow(<ControlsBar />);
+
+        expect(component).to.have.exactly(1).descendants(VolumeControl);
     });
 
     it("displays the current title and artist", () => {

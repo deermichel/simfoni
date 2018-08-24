@@ -2,7 +2,7 @@ import AudioPlayer from "./audioPlayer";
 import { nowPlayingOperations } from "~/stores/nowPlaying";
 import PlayState from "~/constants/PlayState";
 
-const player = new AudioPlayer();
+let player = null;
 
 const updateTime = (store, time) => {
     if (store.getState().nowPlaying.get("currentTime") !== Math.trunc(time)) { // less overhead
@@ -48,8 +48,9 @@ const update = (previousState, currentState) => {
     }
 };
 
-export default (store) => {
+export default (audioPlayer = new AudioPlayer()) => (store) => {
     // init: setup callbacks
+    player = audioPlayer;
     player.setUpdateTimeCallback((time) => updateTime(store, time));
     player.setEndedCallback(() => ended(store));
 

@@ -23,7 +23,7 @@ const configureStore = (initialState) => createStore(
     initialState,
     applyMiddleware(
         loggerMiddleware,
-        playerMiddleware,
+        playerMiddleware(),
     ),
 );
 

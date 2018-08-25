@@ -16,6 +16,7 @@ const mapDispatchToProps = (dispatch) => ({
     onSkipForward: () => dispatch(nowPlayingOperations.skipForward()),
     onSkipBackward: () => dispatch(nowPlayingOperations.skipBackward()),
     onSeek: (time) => dispatch(nowPlayingOperations.seek(time)),
+    onMute: () => dispatch(nowPlayingOperations.toggleMute()),
 });
 
 const LibraryContainer = connect(

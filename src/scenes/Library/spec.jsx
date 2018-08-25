@@ -19,14 +19,12 @@ describe("Library", () => {
         const component = shallow(<Library />);
 
         expect(component).to.have.exactly(1).descendants(TrackList);
-        // expect(component).to.contain(<TrackList />);
     });
 
     it("contains one <ControlsBar />", () => {
         const component = shallow(<Library />);
 
         expect(component).to.have.exactly(1).descendants(ControlsBar);
-        // expect(component).to.contain(<ControlsBar />);
     });
 
     it("displays play icon next to current track", () => {

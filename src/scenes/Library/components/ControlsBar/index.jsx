@@ -25,6 +25,7 @@ const propTypes = {
     onSkipBackward: PropTypes.func,
     onPlay: PropTypes.func,
     onSeek: PropTypes.func,
+    onMute: PropTypes.func,
 };
 const defaultProps = {
     nowPlaying: Map(),
@@ -32,6 +33,7 @@ const defaultProps = {
     onSkipBackward: () => 0,
     onPlay: () => 0,
     onSeek: () => 0,
+    onMute: () => 0,
 };
 
 const ControlsBar = ({
@@ -40,6 +42,7 @@ const ControlsBar = ({
     onSkipBackward,
     onPlay,
     onSeek,
+    onMute,
 }) => (
     <div className={styles.controlsbar}>
         <DurationBar
@@ -69,7 +72,9 @@ const ControlsBar = ({
                 <ScrollingText text={nowPlaying.getIn(["currentTrack", "artist"])} />
             </div>
             <div className={styles.volumecontrol}>
-                <VolumeControl />
+                <VolumeControl
+                    onMute={onMute}
+                />
             </div>
         </div>
     </div>

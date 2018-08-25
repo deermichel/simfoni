@@ -1,11 +1,14 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Volume2 } from "react-feather";
 import Button from "~/components/Button";
 import styles from "./style.scss";
 
 const propTypes = {
+    onMute: PropTypes.func,
 };
 const defaultProps = {
+    onMute: () => 0,
 };
 
 class VolumeControl extends React.Component {
@@ -14,7 +17,7 @@ class VolumeControl extends React.Component {
         this.startInteraction = this.startInteraction.bind(this);
         this.stopInteraction = this.stopInteraction.bind(this);
         this.mouseMove = this.mouseMove.bind(this);
-        this.state = { hoverCoverStyle: null };
+        this.state = { hoverCoverStyle: null, preventMute: false };
     }
 
     componentDidMount() {
@@ -26,6 +29,7 @@ class VolumeControl extends React.Component {
     }
 
     startInteraction() {
+        this.setState({ preventMute: false });
         window.addEventListener("mouseup", this.stopInteraction);
         window.addEventListener("mousemove", this.mouseMove);
     }
@@ -55,15 +59,17 @@ class VolumeControl extends React.Component {
                 position: "fixed",
                 width: size,
             },
+            preventMute: true,
         });
     }
 
     render() {
-        const { hoverCoverStyle } = this.state;
+        const { hoverCoverStyle, preventMute } = this.state;
+        const { onMute } = this.props;
 
         return (
             <div className={styles.volumecontrol} ref={(el) => { this.container = el; }}>
-                <Button>
+                <Button onClick={(!preventMute) ? onMute : null}>
                     <div className={styles.hovercolor} style={hoverCoverStyle}>
                         <Volume2 size={20} />
                     </div>

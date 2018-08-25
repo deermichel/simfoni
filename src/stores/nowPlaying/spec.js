@@ -307,7 +307,7 @@ describe("nowPlaying reducer", () => {
     it("handles SET_VOLUME", () => {
         const initialState = fromJS({
             volume: 0.3,
-            muted: false,
+            muted: true,
             playState: PlayState.PLAYING,
         });
         const action = actions.setVolume(0.8);

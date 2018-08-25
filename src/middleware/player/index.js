@@ -20,6 +20,18 @@ const update = (previousState, currentState) => {
         return;
     }
 
+    // sync muted
+    const muted = currentState.nowPlaying.get("muted");
+    if (muted !== previousState.nowPlaying.get("muted")) {
+        player.setMuted(muted);
+    }
+
+    // sync volume
+    const volume = currentState.nowPlaying.get("volume");
+    if (volume !== previousState.nowPlaying.get("volume")) {
+        player.setVolume(volume);
+    }
+
     // sync track
     const currentTrack = currentState.nowPlaying.get("currentTrack");
     let playRequested = false;

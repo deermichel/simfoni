@@ -77,7 +77,9 @@ const updateTime = (state, payload) => state.set("currentTime", Math.trunc(paylo
 
 const toggleMute = (state) => state.set("muted", !state.get("muted"));
 
-const setVolume = (state, payload) => state.set("volume", Math.max(0, Math.min(1, payload.volume)));
+const setVolume = (state, payload) => state
+    .set("volume", Math.max(0, Math.min(1, payload.volume)))
+    .set("muted", false);
 
 const nowPlayingReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {

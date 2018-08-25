@@ -99,6 +99,48 @@ describe("player middleware", () => {
         expect(fakePlayer.pause.calledOnce).to.equal(true);
     });
 
+    it("invokes player.mute() if muted", () => {
+        const fakePlayer = sinon.createStubInstance(AudioPlayer);
+        fakePlayer.setMuted = sinon.stub();
+
+        const store = createStore(rootReducer, applyMiddleware(
+            playerMiddleware(fakePlayer),
+        ));
+        store.dispatch({
+            type: "SET_TRACKS",
+            payload: { tracks: [{ id: "track", source: "url" }] },
+        });
+        store.dispatch({
+            type: "PLAY_TRACK",
+            payload: { track: "track" },
+        });
+        const action = nowPlayingActions.toggleMute();
+        store.dispatch(action);
+
+        expect(fakePlayer.setMuted).to.be.calledOnceWith(true);
+    });
+
+    it("invokes player.setVolume() if volume changed", () => {
+        const fakePlayer = sinon.createStubInstance(AudioPlayer);
+        fakePlayer.setVolume = sinon.stub();
+
+        const store = createStore(rootReducer, applyMiddleware(
+            playerMiddleware(fakePlayer),
+        ));
+        store.dispatch({
+            type: "SET_TRACKS",
+            payload: { tracks: [{ id: "track", source: "url" }] },
+        });
+        store.dispatch({
+            type: "PLAY_TRACK",
+            payload: { track: "track" },
+        });
+        const action = nowPlayingActions.setVolume(0.5);
+        store.dispatch(action);
+
+        expect(fakePlayer.setVolume).to.be.calledOnceWith(0.5);
+    });
+
     it("invokes player.seek() if seeked", () => {
         const fakePlayer = sinon.createStubInstance(AudioPlayer);
         fakePlayer.seek = sinon.stub();

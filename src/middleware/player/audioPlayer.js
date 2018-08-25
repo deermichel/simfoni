@@ -11,6 +11,14 @@ class AudioPlayer {
         this.audio.onended = () => ended();
     }
 
+    setVolume(volume) {
+        this.audio.volume = volume;
+    }
+
+    setMuted(muted) {
+        this.audio.muted = muted;
+    }
+
     seek(time) {
         this.audio.currentTime = time;
     }

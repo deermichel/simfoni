@@ -6,6 +6,8 @@ const INITIAL_STATE = Map({
     playState: PlayState.STOPPED,
     history: List(),
     queue: List(),
+    muted: false,
+    volume: 1.0,
 });
 
 const playTrack = (state, payload) => {
@@ -73,6 +75,10 @@ const seek = (state, payload) => state.set("currentTime", payload.time);
 
 const updateTime = (state, payload) => state.set("currentTime", Math.trunc(payload.time));
 
+const toggleMute = (state) => state.set("muted", !state.get("muted"));
+
+const setVolume = (state, payload) => state.set("volume", Math.max(0, Math.min(1, payload.volume)));
+
 const nowPlayingReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case types.PLAY_TRACK:
@@ -91,6 +97,10 @@ const nowPlayingReducer = (state = INITIAL_STATE, action) => {
             return stopPlayback(state, action.payload);
         case types.UPDATE_TIME:
             return updateTime(state, action.payload);
+        case types.TOGGLE_MUTE:
+            return toggleMute(state, action.payload);
+        case types.SET_VOLUME:
+            return setVolume(state, action.payload);
         default:
             return state;
     }

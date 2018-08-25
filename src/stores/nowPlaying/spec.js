@@ -13,6 +13,8 @@ describe("nowPlaying reducer", () => {
             playState: PlayState.STOPPED,
             history: [],
             queue: [],
+            muted: false,
+            volume: 1.0,
         }));
     });
 
@@ -283,6 +285,38 @@ describe("nowPlaying reducer", () => {
             playState: PlayState.PLAYING,
             queue: ["id4", "id3"],
             history: ["id1"],
+        }));
+    });
+
+    it("handles TOGGLE_MUTE", () => {
+        const initialState = fromJS({
+            volume: 0.7,
+            muted: false,
+            playState: PlayState.PLAYING,
+        });
+        const action = actions.toggleMute();
+        const nextState = reducer(initialState, action);
+
+        expect(nextState).to.equal(fromJS({
+            volume: 0.7,
+            muted: true,
+            playState: PlayState.PLAYING,
+        }));
+    });
+
+    it("handles SET_VOLUME", () => {
+        const initialState = fromJS({
+            volume: 0.3,
+            muted: false,
+            playState: PlayState.PLAYING,
+        });
+        const action = actions.setVolume(0.8);
+        const nextState = reducer(initialState, action);
+
+        expect(nextState).to.equal(fromJS({
+            volume: 0.8,
+            muted: false,
+            playState: PlayState.PLAYING,
         }));
     });
 });

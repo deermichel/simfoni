@@ -31,6 +31,14 @@ const updateTime = (time) => ({
     payload: { time },
 });
 
+const toggleMute = () => ({ type: types.TOGGLE_MUTE, meta: { player: true } });
+
+const setVolume = (volume) => ({
+    type: types.SET_VOLUME,
+    payload: { volume },
+    meta: { player: true },
+});
+
 export default {
     playQueue,
     togglePlayback,
@@ -40,4 +48,6 @@ export default {
     playTrack,
     stopPlayback,
     updateTime,
+    toggleMute,
+    setVolume,
 };

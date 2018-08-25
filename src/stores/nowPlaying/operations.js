@@ -7,6 +7,8 @@ const {
     skipBackward,
     seek,
     updateTime,
+    toggleMute,
+    setVolume,
 } = actions;
 
 export default {
@@ -16,4 +18,6 @@ export default {
     skipBackward,
     seek,
     updateTime,
+    toggleMute,
+    setVolume,
 };

@@ -33,6 +33,7 @@ const propTypes = {
     onTogglePlayback: PropTypes.func,
     onSeek: PropTypes.func,
     onMute: PropTypes.func,
+    onSetVolume: PropTypes.func,
 };
 const defaultProps = {
     tracks: List(),
@@ -43,6 +44,7 @@ const defaultProps = {
     onTogglePlayback: () => 0,
     onSeek: () => 0,
     onMute: () => 0,
+    onSetVolume: () => 0,
 };
 
 const onClickTrack = (onPlayQueue, tracks, trackId) => {
@@ -76,6 +78,7 @@ const Library = ({
     onTogglePlayback,
     onSeek,
     onMute,
+    onSetVolume,
 }) => (
     <div className="library">
         <TrackList
@@ -90,6 +93,7 @@ const Library = ({
             onPlay={() => onPlay(onPlayQueue, onTogglePlayback, tracks, nowPlaying)}
             onSeek={onSeek}
             onMute={onMute}
+            onSetVolume={onSetVolume}
         />
     </div>
 );

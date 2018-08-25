@@ -26,6 +26,7 @@ const propTypes = {
     onPlay: PropTypes.func,
     onSeek: PropTypes.func,
     onMute: PropTypes.func,
+    onSetVolume: PropTypes.func,
 };
 const defaultProps = {
     nowPlaying: Map(),
@@ -34,6 +35,7 @@ const defaultProps = {
     onPlay: () => 0,
     onSeek: () => 0,
     onMute: () => 0,
+    onSetVolume: () => 0,
 };
 
 const ControlsBar = ({
@@ -43,6 +45,7 @@ const ControlsBar = ({
     onPlay,
     onSeek,
     onMute,
+    onSetVolume,
 }) => (
     <div className={styles.controlsbar}>
         <DurationBar
@@ -74,6 +77,7 @@ const ControlsBar = ({
             <div className={styles.volumecontrol}>
                 <VolumeControl
                     onMute={onMute}
+                    onSetVolume={onSetVolume}
                 />
             </div>
         </div>

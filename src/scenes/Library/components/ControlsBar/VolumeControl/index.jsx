@@ -6,9 +6,11 @@ import styles from "./style.scss";
 
 const propTypes = {
     onMute: PropTypes.func,
+    onSetVolume: PropTypes.func,
 };
 const defaultProps = {
     onMute: () => 0,
+    onSetVolume: () => 0,
 };
 
 class VolumeControl extends React.Component {
@@ -17,7 +19,8 @@ class VolumeControl extends React.Component {
         this.startInteraction = this.startInteraction.bind(this);
         this.stopInteraction = this.stopInteraction.bind(this);
         this.mouseMove = this.mouseMove.bind(this);
-        this.state = { hoverCoverStyle: null, preventMute: false };
+        this.setVolume = this.setVolume.bind(this);
+        this.state = { hoverCoverStyle: null, setVolumeMode: false };
     }
 
     componentDidMount() {
@@ -28,8 +31,16 @@ class VolumeControl extends React.Component {
         this.container.removeEventListener("mousedown", this.startInteraction);
     }
 
+    setVolume(volume) {
+        if (Date.now() < this.lastUpdate + 100) return;
+        this.lastUpdate = Date.now();
+
+        const { onSetVolume } = this.props;
+        onSetVolume(volume);
+    }
+
     startInteraction() {
-        this.setState({ preventMute: false });
+        this.setState({ setVolumeMode: false });
         window.addEventListener("mouseup", this.stopInteraction);
         window.addEventListener("mousemove", this.mouseMove);
     }
@@ -51,6 +62,9 @@ class VolumeControl extends React.Component {
             size = window.innerWidth + ((size - window.innerWidth) ** 0.7);
         }
 
+        const volume = size / window.innerWidth;
+        this.setVolume(volume);
+
         this.setState({
             hoverCoverStyle: {
                 animationDuration: "6s",
@@ -59,17 +73,17 @@ class VolumeControl extends React.Component {
                 position: "fixed",
                 width: size,
             },
-            preventMute: true,
+            setVolumeMode: true,
         });
     }
 
     render() {
-        const { hoverCoverStyle, preventMute } = this.state;
+        const { hoverCoverStyle, setVolumeMode } = this.state;
         const { onMute } = this.props;
 
         return (
             <div className={styles.volumecontrol} ref={(el) => { this.container = el; }}>
-                <Button onClick={(!preventMute) ? onMute : null}>
+                <Button onClick={(!setVolumeMode) ? onMute : null}>
                     <div className={styles.hovercolor} style={hoverCoverStyle}>
                         <Volume2 size={20} />
                     </div>

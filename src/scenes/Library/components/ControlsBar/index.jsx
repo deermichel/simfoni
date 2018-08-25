@@ -78,6 +78,8 @@ const ControlsBar = ({
                 <VolumeControl
                     onMute={onMute}
                     onSetVolume={onSetVolume}
+                    volume={nowPlaying.get("volume")}
+                    muted={nowPlaying.get("muted")}
                 />
             </div>
         </div>

@@ -1,16 +1,25 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Volume2 } from "react-feather";
+import {
+    Volume,
+    Volume1,
+    Volume2,
+    VolumeX,
+} from "react-feather";
 import Button from "~/components/Button";
 import styles from "./style.scss";
 
 const propTypes = {
     onMute: PropTypes.func,
     onSetVolume: PropTypes.func,
+    volume: PropTypes.number,
+    muted: PropTypes.bool,
 };
 const defaultProps = {
     onMute: () => 0,
     onSetVolume: () => 0,
+    volume: 1.0,
+    muted: false,
 };
 
 class VolumeControl extends React.Component {
@@ -79,13 +88,23 @@ class VolumeControl extends React.Component {
 
     render() {
         const { hoverCoverStyle, setVolumeMode } = this.state;
-        const { onMute } = this.props;
+        const { onMute, volume, muted } = this.props;
+        let icon = <VolumeX size={20} />;
+        if (!muted) {
+            if (volume < 0.33) {
+                icon = <Volume size={20} />;
+            } else if (volume < 0.66) {
+                icon = <Volume1 size={20} />;
+            } else {
+                icon = <Volume2 size={20} />;
+            }
+        }
 
         return (
             <div className={styles.volumecontrol} ref={(el) => { this.container = el; }}>
                 <Button onClick={(!setVolumeMode) ? onMute : null}>
                     <div className={styles.hovercolor} style={hoverCoverStyle}>
-                        <Volume2 size={20} />
+                        {icon}
                     </div>
                 </Button>
             </div>

@@ -21,7 +21,7 @@ module.exports = (env, argv) => ({
         path: path.join(__dirname, "public"),
         filename: "bundle.js",
     },
-    target: "electron-main",
+    target: "electron-renderer",
 
     module: {
         rules: [

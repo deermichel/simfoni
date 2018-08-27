@@ -5,9 +5,9 @@
     ],
     "plugins": [
         ["module-resolver", {
-            "root": ["./src"],
+            "root": ["./src/renderer"],
             "alias": {
-                "~": "./src"
+                "~": "./src/renderer"
             }
         }]
     ]

@@ -16,7 +16,7 @@ const colorsReplaceLoader = () => {
 
 module.exports = (env, argv) => ({
 
-    entry: "./src/index.jsx",
+    entry: "./src/renderer/index.jsx",
     output: {
         path: path.join(__dirname, "public"),
         filename: "bundle.js",

@@ -7,8 +7,4 @@ node_modules/
 .DS_Store
 
 # build
-public/bundle.js
-public/style.css
-
-# use your own music ;)
-public/_mp3
+build/

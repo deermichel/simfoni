@@ -1,6 +1,8 @@
 const path = require("path");
 const webpack = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const GoogleFontsPlugin = require("@beyonk/google-fonts-webpack-plugin");
 const Colors = require("./colors");
 
 const colorsReplaceLoader = () => {
@@ -18,7 +20,7 @@ module.exports = (env, argv) => ({
 
     entry: "./src/renderer/index.jsx",
     output: {
-        path: path.join(__dirname, "public"),
+        path: path.join(__dirname, "build"),
         filename: "bundle.js",
     },
     target: "electron-renderer",
@@ -35,7 +37,6 @@ module.exports = (env, argv) => ({
             },
             {
                 test: /\.scss$/,
-                exclude: /node_modules/,
                 use: [
                     (argv.mode === "development") ? "style-loader" : MiniCssExtractPlugin.loader,
                     "css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]",
@@ -55,10 +56,18 @@ module.exports = (env, argv) => ({
         new MiniCssExtractPlugin({
             filename: "style.css",
         }),
+        new HtmlWebpackPlugin({
+            template: "static/index.html",
+            title: "simfoni",
+        }),
+        new GoogleFontsPlugin({
+            fonts: [{ family: "Source Sans Pro" }],
+            path: "fonts/",
+        }),
     ],
 
     devServer: {
-        contentBase: path.join(__dirname, "public"),
+        contentBase: path.join(__dirname, "build"),
         inline: true,
         hot: true,
     },

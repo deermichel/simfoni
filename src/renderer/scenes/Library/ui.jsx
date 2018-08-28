@@ -4,7 +4,6 @@ import ImmutablePropTypes from "react-immutable-proptypes";
 import { List, Map } from "immutable";
 import { Play, Pause } from "react-feather";
 import TrackList from "./components/TrackList";
-import ControlsBar from "./components/ControlsBar";
 import PlayState from "~/constants/PlayState";
 import styles from "./style.scss";
 
@@ -29,23 +28,11 @@ const propTypes = {
         state: PropTypes.oneOf(Object.values(PlayState)),
     }),
     onPlayQueue: PropTypes.func,
-    onSkipForward: PropTypes.func,
-    onSkipBackward: PropTypes.func,
-    onTogglePlayback: PropTypes.func,
-    onSeek: PropTypes.func,
-    onMute: PropTypes.func,
-    onSetVolume: PropTypes.func,
 };
 const defaultProps = {
     tracks: List(),
     nowPlaying: Map(),
     onPlayQueue: () => 0,
-    onSkipForward: () => 0,
-    onSkipBackward: () => 0,
-    onTogglePlayback: () => 0,
-    onSeek: () => 0,
-    onMute: () => 0,
-    onSetVolume: () => 0,
 };
 
 const onClickTrack = (onPlayQueue, tracks, trackId) => {
@@ -53,14 +40,6 @@ const onClickTrack = (onPlayQueue, tracks, trackId) => {
     const queue = trackIds.skipUntil((id) => id === trackId);
     const history = trackIds.takeUntil((id) => id === trackId);
     onPlayQueue(queue, history.reverse());
-};
-
-const onPlay = (onPlayQueue, onTogglePlayback, tracks, nowPlaying) => {
-    if (nowPlaying.get("playState") === PlayState.STOPPED) {
-        onClickTrack(onPlayQueue, tracks, tracks.first().get("id"));
-    } else {
-        onTogglePlayback();
-    }
 };
 
 const icons = (nowPlaying) => Map({
@@ -74,27 +53,12 @@ const Library = ({
     tracks,
     nowPlaying,
     onPlayQueue,
-    onSkipForward,
-    onSkipBackward,
-    onTogglePlayback,
-    onSeek,
-    onMute,
-    onSetVolume,
 }) => (
     <div className={styles.library}>
         <TrackList
             tracks={tracks}
             icons={icons(nowPlaying)}
             onClickTrack={(trackId) => onClickTrack(onPlayQueue, tracks, trackId)}
-        />
-        <ControlsBar
-            nowPlaying={nowPlaying}
-            onSkipForward={onSkipForward}
-            onSkipBackward={onSkipBackward}
-            onPlay={() => onPlay(onPlayQueue, onTogglePlayback, tracks, nowPlaying)}
-            onSeek={onSeek}
-            onMute={onMute}
-            onSetVolume={onSetVolume}
         />
     </div>
 );

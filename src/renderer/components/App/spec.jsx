@@ -1,13 +1,27 @@
 import React from "react";
 import { shallow } from "enzyme";
 import { expect } from "chai";
-import App from "./index";
+import App from "./ui";
+import ControlsBar from "./components/ControlsBar";
+import Menu from "./components/Menu";
 
 describe("App", () => {
     it("renders itself", () => {
         const component = shallow(<App />);
 
         expect(component).to.be.present();
+    });
+
+    it("contains one <ControlsBar />", () => {
+        const component = shallow(<App />);
+
+        expect(component).to.have.exactly(1).descendants(ControlsBar);
+    });
+
+    it("contains one <Menu />", () => {
+        const component = shallow(<App />);
+
+        expect(component).to.have.exactly(1).descendants(Menu);
     });
 
     it("renders its children", () => {

@@ -5,7 +5,6 @@ import { expect } from "chai";
 import { Play } from "react-feather";
 import Library from "./ui";
 import TrackList from "./components/TrackList";
-import ControlsBar from "./components/ControlsBar";
 import PlayState from "~/constants/PlayState";
 
 describe("Library", () => {
@@ -19,12 +18,6 @@ describe("Library", () => {
         const component = shallow(<Library />);
 
         expect(component).to.have.exactly(1).descendants(TrackList);
-    });
-
-    it("contains one <ControlsBar />", () => {
-        const component = shallow(<Library />);
-
-        expect(component).to.have.exactly(1).descendants(ControlsBar);
     });
 
     it("displays play icon next to current track", () => {

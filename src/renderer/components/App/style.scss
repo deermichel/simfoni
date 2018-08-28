@@ -10,7 +10,15 @@ body {
 }
 
 .app {
+    background: lightcoral;
     display: flex;
+    flex-direction: column;
     height: 100vh;
+    justify-content: space-between;
     overflow: hidden;
+}
+
+.mainframe {
+    display: flex;
+    flex-grow: 1;
 }

@@ -1,21 +1,28 @@
-import React from "react";
-import PropTypes from "prop-types";
-import styles from "./style.scss";
+import { connect } from "react-redux";
+import App from "./ui";
+import {
+    nowPlayingOperations,
+    nowPlayingSelectors,
+} from "~/stores/nowPlaying";
 
-const propTypes = {
-    children: PropTypes.node,
-};
-const defaultProps = {
-    children: null,
-};
+const mapStateToProps = (state) => ({
+    tracks: state.tracks,
+    nowPlaying: nowPlayingSelectors.getNowPlayingWithTrack(state),
+});
 
-const App = ({ children }) => (
-    <div className={styles.app}>
-        {children}
-    </div>
-);
+const mapDispatchToProps = (dispatch) => ({
+    onPlayQueue: (queue, history) => dispatch(nowPlayingOperations.playQueue(queue, history)),
+    onTogglePlayback: () => dispatch(nowPlayingOperations.togglePlayback()),
+    onSkipForward: () => dispatch(nowPlayingOperations.skipForward()),
+    onSkipBackward: () => dispatch(nowPlayingOperations.skipBackward()),
+    onSeek: (time) => dispatch(nowPlayingOperations.seek(time)),
+    onMute: () => dispatch(nowPlayingOperations.toggleMute()),
+    onSetVolume: (volume) => dispatch(nowPlayingOperations.setVolume(volume)),
+});
 
-App.propTypes = propTypes;
-App.defaultProps = defaultProps;
+const AppContainer = connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(App);
 
-export default App;
+export default AppContainer;

@@ -8,15 +8,7 @@ import Header from "./Header";
 import styles from "./style.scss";
 
 const propTypes = {
-    tracks: ImmutablePropTypes.listOf(
-        ImmutablePropTypes.contains({
-            id: PropTypes.string.isRequired,
-            title: PropTypes.string,
-            artist: PropTypes.string,
-            album: PropTypes.string,
-            duration: PropTypes.number,
-        }),
-    ),
+    tracks: ImmutablePropTypes.list,
     icons: ImmutablePropTypes.map,
     onClickTrack: PropTypes.func,
 };

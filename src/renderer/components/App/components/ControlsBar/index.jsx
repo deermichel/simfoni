@@ -12,16 +12,7 @@ import VolumeControl from "./VolumeControl";
 import MenuButton from "./MenuButton";
 
 const propTypes = {
-    nowPlaying: ImmutablePropTypes.contains({
-        track: ImmutablePropTypes.contains({
-            title: PropTypes.string,
-            artist: PropTypes.string,
-            album: PropTypes.string,
-            duration: PropTypes.number,
-        }),
-        currentTime: PropTypes.number,
-        state: PropTypes.oneOf(Object.values(PlayState)),
-    }),
+    nowPlaying: ImmutablePropTypes.map,
     onSkipForward: PropTypes.func,
     onSkipBackward: PropTypes.func,
     onPlay: PropTypes.func,

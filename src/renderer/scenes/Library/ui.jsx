@@ -8,25 +8,8 @@ import PlayState from "~/constants/PlayState";
 import styles from "./style.scss";
 
 const propTypes = {
-    tracks: ImmutablePropTypes.listOf(
-        ImmutablePropTypes.contains({
-            id: PropTypes.string.isRequired,
-            title: PropTypes.string,
-            artist: PropTypes.string,
-            album: PropTypes.string,
-            duration: PropTypes.number,
-        }),
-    ),
-    nowPlaying: ImmutablePropTypes.contains({
-        track: ImmutablePropTypes.contains({
-            title: PropTypes.string,
-            artist: PropTypes.string,
-            album: PropTypes.string,
-            duration: PropTypes.number,
-        }),
-        currentTime: PropTypes.number,
-        state: PropTypes.oneOf(Object.values(PlayState)),
-    }),
+    tracks: ImmutablePropTypes.list,
+    nowPlaying: ImmutablePropTypes.map,
     onPlayQueue: PropTypes.func,
 };
 const defaultProps = {

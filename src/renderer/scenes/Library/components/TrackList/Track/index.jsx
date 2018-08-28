@@ -5,12 +5,7 @@ import { Map } from "immutable";
 import styles from "./style.scss";
 
 const propTypes = {
-    track: ImmutablePropTypes.contains({
-        title: PropTypes.string,
-        artist: PropTypes.string,
-        album: PropTypes.string,
-        duration: PropTypes.number,
-    }),
+    track: ImmutablePropTypes.list,
     icon: PropTypes.node,
 };
 const defaultProps = {

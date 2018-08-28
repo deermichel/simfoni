@@ -1,17 +1,23 @@
 {
   "name": "simfoni",
-  "author": "Micha Hanselmann",
+  "author": {
+      "name": "Micha Hanselmann",
+      "email": "micha.hanselmann@gmail.com",
+      "url": "https://deermichel.me"
+  },
   "version": "1.0.0",
   "description": "the nifty music player",
-  "private": true,
+  "license": "GPL-3.0",
+  "homepage": "https://github.com/DeerMichel/simfoni",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DeerMichel/simfoni.git"
+  },
   "main": "src/main/index.js",
   "scripts": {
-    "dev": "webpack-dev-server --mode development",
-    "build": "webpack --mode production",
+    "dev": "concurrently -k 'webpack-dev-server --mode development' 'electron .'",
     "test": "mocha --require babel-core/register --require ignore-styles --require ./test/setup.js 'src/**/*spec@(.js|.jsx)'",
-    "test:watch": "yarn test --watch",
-    "lint": "eslint . --ext .js,.jsx",
-    "start": "electron ."
+    "lint": "eslint . --ext .js,.jsx"
   },
   "pre-commit": [
     "test",
@@ -26,6 +32,7 @@
     "chai": "^4.1.2",
     "chai-enzyme": "^1.0.0-beta.1",
     "chai-immutable": "^1.6.0",
+    "concurrently": "^4.0.1",
     "css-loader": "^1.0.0",
     "electron": "^2.0.8",
     "enzyme": "^3.3.0",

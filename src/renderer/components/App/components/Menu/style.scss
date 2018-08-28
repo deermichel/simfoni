@@ -1,4 +1,17 @@
 .menu {
+    display: grid;
+}
+
+.container, .hidden {
+    overflow: hidden;
+    transition: width .2s ease-out;
+}
+
+.container {
     border-right: 1px solid rgba(0, 0, 0, 0.1);
-    min-width: 240px;
+    width: 240px;
+}
+
+.hidden {
+    width: 0;
 }

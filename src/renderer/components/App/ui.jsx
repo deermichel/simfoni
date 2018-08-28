@@ -11,6 +11,7 @@ const propTypes = {
     children: PropTypes.node,
     tracks: ImmutablePropTypes.list,
     nowPlaying: ImmutablePropTypes.map,
+    ui: ImmutablePropTypes.map,
     onPlayQueue: PropTypes.func,
     onSkipForward: PropTypes.func,
     onSkipBackward: PropTypes.func,
@@ -18,11 +19,13 @@ const propTypes = {
     onSeek: PropTypes.func,
     onMute: PropTypes.func,
     onSetVolume: PropTypes.func,
+    onToggleMenu: PropTypes.func,
 };
 const defaultProps = {
     children: null,
     tracks: List(),
     nowPlaying: Map(),
+    ui: Map(),
     onPlayQueue: () => 0,
     onSkipForward: () => 0,
     onSkipBackward: () => 0,
@@ -30,6 +33,7 @@ const defaultProps = {
     onSeek: () => 0,
     onMute: () => 0,
     onSetVolume: () => 0,
+    onToggleMenu: () => 0,
 };
 
 const onPlay = (onPlayQueue, onTogglePlayback, tracks, nowPlaying) => {
@@ -45,6 +49,7 @@ const App = ({
     children,
     tracks,
     nowPlaying,
+    ui,
     onPlayQueue,
     onSkipForward,
     onSkipBackward,
@@ -52,10 +57,11 @@ const App = ({
     onSeek,
     onMute,
     onSetVolume,
+    onToggleMenu,
 }) => (
     <div className={styles.app}>
         <div className={styles.mainframe}>
-            <Menu />
+            <Menu show={ui.get("showMenu")} />
             {children}
         </div>
         <ControlsBar
@@ -66,6 +72,7 @@ const App = ({
             onSeek={onSeek}
             onMute={onMute}
             onSetVolume={onSetVolume}
+            onShowMenu={onToggleMenu}
         />
     </div>
 );

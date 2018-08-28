@@ -9,6 +9,7 @@ import DurationBar from "./DurationBar";
 import PlayState from "~/constants/PlayState";
 import ScrollingText from "~/components/ScrollingText";
 import VolumeControl from "./VolumeControl";
+import MenuButton from "./MenuButton";
 
 describe("ControlsBar", () => {
     const nowPlaying = fromJS({
@@ -53,6 +54,12 @@ describe("ControlsBar", () => {
         const component = shallow(<ControlsBar />);
 
         expect(component).to.have.exactly(1).descendants(VolumeControl);
+    });
+
+    it("contains one <MenuButton />", () => {
+        const component = shallow(<ControlsBar />);
+
+        expect(component).to.have.exactly(1).descendants(MenuButton);
     });
 
     it("displays the current title and artist", () => {

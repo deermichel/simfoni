@@ -9,6 +9,7 @@ import ScrollingText from "~/components/ScrollingText";
 import PlayState from "~/constants/PlayState";
 import styles from "./style.scss";
 import VolumeControl from "./VolumeControl";
+import MenuButton from "./MenuButton";
 
 const propTypes = {
     nowPlaying: ImmutablePropTypes.contains({
@@ -27,6 +28,7 @@ const propTypes = {
     onSeek: PropTypes.func,
     onMute: PropTypes.func,
     onSetVolume: PropTypes.func,
+    onShowMenu: PropTypes.func,
 };
 const defaultProps = {
     nowPlaying: Map(),
@@ -36,6 +38,7 @@ const defaultProps = {
     onSeek: () => 0,
     onMute: () => 0,
     onSetVolume: () => 0,
+    onShowMenu: () => 0,
 };
 
 const ControlsBar = ({
@@ -46,6 +49,7 @@ const ControlsBar = ({
     onSeek,
     onMute,
     onSetVolume,
+    onShowMenu,
 }) => (
     <div className={styles.controlsbar}>
         <DurationBar
@@ -54,7 +58,9 @@ const ControlsBar = ({
             onSeek={onSeek}
         />
         <div className={styles.container}>
-            <div />
+            <div className={styles.menubutton}>
+                <MenuButton onShowMenu={onShowMenu} />
+            </div>
             <div className={styles.currenttitle}>
                 <ScrollingText text={nowPlaying.getIn(["currentTrack", "title"])} />
             </div>

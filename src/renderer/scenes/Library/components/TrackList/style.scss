@@ -9,6 +9,20 @@
 }
 
 .tracks {
+    overflow-y: overlay;
+
+    &::-webkit-scrollbar {
+        border-left: 1px solid rgba(0, 0, 0, 0.1);
+        width: 10px;
+    }
+    &::-webkit-scrollbar-thumb {
+        background: linear-gradient(to right, transparent 1px, __COLOR_PRIMARY_DARK 1px);
+
+        &:hover {
+            background: linear-gradient(to right, transparent 1px, darken(__COLOR_PRIMARY_DARK, 10%) 1px);
+        }
+    }
+
     .trackitem {
         transition: background .1s ease-out;
 

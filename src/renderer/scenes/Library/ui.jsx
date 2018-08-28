@@ -6,6 +6,7 @@ import { Play, Pause } from "react-feather";
 import TrackList from "./components/TrackList";
 import ControlsBar from "./components/ControlsBar";
 import PlayState from "~/constants/PlayState";
+import styles from "./style.scss";
 
 const propTypes = {
     tracks: ImmutablePropTypes.listOf(
@@ -80,7 +81,7 @@ const Library = ({
     onMute,
     onSetVolume,
 }) => (
-    <div className="library">
+    <div className={styles.library}>
         <TrackList
             tracks={tracks}
             icons={icons(nowPlaying)}

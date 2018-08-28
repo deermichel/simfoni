@@ -5,7 +5,7 @@ import { Map } from "immutable";
 import styles from "./style.scss";
 
 const propTypes = {
-    track: ImmutablePropTypes.list,
+    track: ImmutablePropTypes.map,
     icon: PropTypes.node,
 };
 const defaultProps = {

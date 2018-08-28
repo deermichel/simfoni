@@ -34,8 +34,8 @@ const defaultProps = {
 
 const onPlay = (onPlayQueue, onTogglePlayback, tracks, nowPlaying) => {
     if (nowPlaying.get("playState") === PlayState.STOPPED) {
-        // onClickTrack(onPlayQueue, tracks, tracks.first().get("id"));
-        // console.error("todo");
+        const queue = tracks.map((track) => track.get("id"));
+        onPlayQueue(queue, List());
     } else {
         onTogglePlayback();
     }

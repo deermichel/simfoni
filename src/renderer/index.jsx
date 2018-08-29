@@ -1,12 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
+import { createMemoryHistory } from "history";
+import { ConnectedRouter } from "connected-react-router";
+import { Switch, Route, Redirect } from "react-router";
 import App from "./components/App";
 import Library from "./scenes/Library";
 import configureStore from "./stores/configureStore";
 import { tracksOperations } from "./stores/tracks";
+import Views from "./constants/Views";
 
-const store = configureStore();
+const history = createMemoryHistory();
+const store = configureStore(history);
 store.dispatch(tracksOperations.setTracks([
     {
         id: "believa",
@@ -50,14 +55,18 @@ store.dispatch(tracksOperations.setTracks([
     },
 ]));
 
-// store.subscribe(() => {
-//     console.log(store.getState().nowPlaying.toJS());
-// });
-
 const app = (
     <Provider store={store}>
         <App>
-            <Library />
+            <ConnectedRouter history={history}>
+                <Switch>
+                    <Route path={Views.ARTISTS} />
+                    <Route path={Views.ALBUMS} />
+                    <Route path={Views.SONGS} component={Library} />
+                    <Route path={Views.SETTINGS} />
+                    <Redirect to={Views.SONGS} />
+                </Switch>
+            </ConnectedRouter>
         </App>
     </Provider>
 );

@@ -62,6 +62,8 @@
     "webpack-dev-server": "^3.1.5"
   },
   "dependencies": {
+    "connected-react-router": "^4.4.1",
+    "history": "^4.7.2",
     "immutable": "^3.8.2",
     "prop-types": "^15.6.2",
     "react": "^16.4.2",
@@ -69,6 +71,7 @@
     "react-feather": "^1.1.1",
     "react-immutable-proptypes": "^2.1.0",
     "react-redux": "^5.0.7",
+    "react-router": "^4.3.1",
     "redux": "^4.0.0",
     "redux-logger": "^3.0.6",
     "reselect": "^3.0.1"

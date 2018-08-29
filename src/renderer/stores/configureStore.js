@@ -1,4 +1,5 @@
 import { createStore, applyMiddleware } from "redux";
+import { connectRouter, routerMiddleware } from "connected-react-router";
 import { Iterable } from "immutable";
 import { createLogger } from "redux-logger";
 import rootReducer from "./rootReducer";
@@ -18,10 +19,11 @@ const stateTransformer = (state) => {
 
 const loggerMiddleware = createLogger({ stateTransformer });
 
-const configureStore = (initialState) => createStore(
-    rootReducer,
+const configureStore = (history, initialState) => createStore(
+    connectRouter(history)(rootReducer),
     initialState,
     applyMiddleware(
+        routerMiddleware(history),
         loggerMiddleware,
         playerMiddleware(),
     ),

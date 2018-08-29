@@ -1,18 +1,30 @@
 import React from "react";
+import { fromJS } from "immutable";
 import styles from "./style.scss";
+import SearchPaths from "./components/SearchPaths";
 
 const propTypes = {
 };
 const defaultProps = {
 };
 
-const Songs = () => (
+const paths = fromJS([
+    "/music",
+    "/asd/ejeq",
+    "/ejOoao/ajww",
+]);
+
+const Settings = () => (
     <div className={styles.settings}>
-        Settings
+
+        <div className={styles.section}>
+            <SearchPaths paths={paths} />
+        </div>
+
     </div>
 );
 
-Songs.propTypes = propTypes;
-Songs.defaultProps = defaultProps;
+Settings.propTypes = propTypes;
+Settings.defaultProps = defaultProps;
 
-export default Songs;
+export default Settings;

@@ -1,0 +1,19 @@
+.searchpaths {
+    .title {
+        opacity: .7;
+        text-transform: uppercase;
+    }
+
+    .header {
+        align-items: center;
+        display: grid;
+        grid-template-columns: 1fr 40px;
+        padding: 8px;
+    }
+
+    .pathitem {
+        @extend .header;
+
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+}

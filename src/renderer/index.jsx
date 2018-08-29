@@ -65,7 +65,7 @@ const app = (
                     <Route path={Views.ALBUMS} />
                     <Route path={Views.SONGS} component={Songs} />
                     <Route path={Views.SETTINGS} component={Settings} />
-                    <Redirect to={Views.SONGS} />
+                    <Redirect to={Views.SETTINGS} />
                 </Switch>
             </ConnectedRouter>
         </App>

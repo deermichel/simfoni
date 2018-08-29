@@ -12,14 +12,8 @@ const defaultProps = {
     disabled: false,
 };
 
-const tempStyle = { // TODO: remove
-    alignItems: "center",
-    display: "flex",
-    justifyContent: "center",
-};
-
 const Clickable = ({ children, onClick, disabled }) => (
-    <div onClick={(disabled) ? null : onClick} style={tempStyle}>
+    <div onClick={(disabled) ? null : onClick}>
         {children}
     </div>
 );

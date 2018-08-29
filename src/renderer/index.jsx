@@ -6,6 +6,7 @@ import { ConnectedRouter } from "connected-react-router";
 import { Switch, Route, Redirect } from "react-router";
 import App from "./components/App";
 import Library from "./scenes/Library";
+import Settings from "./scenes/Settings";
 import configureStore from "./stores/configureStore";
 import { tracksOperations } from "./stores/tracks";
 import Views from "./constants/Views";
@@ -63,7 +64,7 @@ const app = (
                     <Route path={Views.ARTISTS} />
                     <Route path={Views.ALBUMS} />
                     <Route path={Views.SONGS} component={Library} />
-                    <Route path={Views.SETTINGS} />
+                    <Route path={Views.SETTINGS} component={Settings} />
                     <Redirect to={Views.SONGS} />
                 </Switch>
             </ConnectedRouter>

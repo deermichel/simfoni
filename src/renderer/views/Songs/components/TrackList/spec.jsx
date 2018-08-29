@@ -6,7 +6,7 @@ import { Play, Pause } from "react-feather";
 import TrackList from "./index";
 import Track from "./components/Track";
 import Header from "./components/Header";
-import Button from "~/components/Button";
+import Clickable from "~/components/Clickable";
 
 describe("TrackList", () => {
     const tracks = fromJS([
@@ -83,9 +83,9 @@ describe("TrackList", () => {
         let clickedId;
         const onClickTrack = (trackId) => { clickedId = trackId; };
         const component = shallow(<TrackList tracks={tracks} onClickTrack={onClickTrack} />);
-        component.find(Button).first().simulate("click");
+        component.find(Clickable).first().simulate("click");
 
-        expect(component).to.have.exactly(3).descendants(Button);
+        expect(component).to.have.exactly(3).descendants(Clickable);
         expect(clickedId).to.equal("a");
     });
 

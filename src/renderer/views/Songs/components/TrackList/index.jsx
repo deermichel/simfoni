@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import ImmutablePropTypes from "react-immutable-proptypes";
 import { Map, List } from "immutable";
-import Button from "~/components/Button";
+import Clickable from "~/components/Clickable";
 import Track from "./components/Track";
 import Header from "./components/Header";
 import styles from "./style.scss";
@@ -26,9 +26,9 @@ const TrackList = ({ tracks, icons, onClickTrack }) => (
         <div className={styles.tracks}>
             {tracks.map((track) => (
                 <div className={styles.trackitem} key={track.get("id")}>
-                    <Button onClick={() => onClickTrack(track.get("id"))}>
+                    <Clickable onClick={() => onClickTrack(track.get("id"))}>
                         <Track track={track} icon={icons.get(track.get("id"))} />
-                    </Button>
+                    </Clickable>
                 </div>
             ))}
         </div>

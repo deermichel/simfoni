@@ -6,7 +6,7 @@ import {
     Volume2,
     VolumeX,
 } from "react-feather";
-import Button from "~/components/Button";
+import Clickable from "~/components/Clickable";
 import styles from "./style.scss";
 
 const propTypes = {
@@ -102,11 +102,11 @@ class VolumeControl extends React.Component {
 
         return (
             <div className={styles.volumecontrol} ref={(el) => { this.container = el; }}>
-                <Button onClick={(!setVolumeMode) ? onMute : null}>
+                <Clickable onClick={(!setVolumeMode) ? onMute : null}>
                     <div className={styles.hovercolor} style={hoverCoverStyle}>
                         {icon}
                     </div>
-                </Button>
+                </Clickable>
             </div>
         );
     }

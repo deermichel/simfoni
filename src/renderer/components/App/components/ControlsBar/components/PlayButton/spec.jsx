@@ -3,7 +3,7 @@ import { shallow } from "enzyme";
 import { expect } from "chai";
 import { Play, Pause } from "react-feather";
 import PlayButton, { PlayWithMargin } from "./index";
-import Button from "~/components/Button";
+import Clickable from "~/components/Clickable";
 
 describe("PlayButton", () => {
     it("renders itself", () => {
@@ -32,7 +32,7 @@ describe("PlayButton", () => {
         let callbackInvoked = false;
         const onClick = () => { callbackInvoked = true; };
         const component = shallow(<PlayButton onPlay={onClick} />);
-        component.find(Button).simulate("click");
+        component.find(Clickable).simulate("click");
 
         expect(callbackInvoked).to.equal(true);
     });

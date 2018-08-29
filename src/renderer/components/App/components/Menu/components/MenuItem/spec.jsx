@@ -3,7 +3,7 @@ import { shallow, mount } from "enzyme";
 import { expect } from "chai";
 import { List } from "react-feather";
 import MenuItem from "./index";
-import Button from "~/components/Button";
+import Clickable from "~/components/Clickable";
 
 describe("MenuItem", () => {
     it("renders itself", () => {
@@ -28,7 +28,7 @@ describe("MenuItem", () => {
         let callbackInvoked = false;
         const onClick = () => { callbackInvoked = true; };
         const component = shallow(<MenuItem onClick={onClick} />);
-        component.find(Button).simulate("click");
+        component.find(Clickable).simulate("click");
 
         expect(callbackInvoked).to.equal(true);
     });

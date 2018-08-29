@@ -3,7 +3,7 @@ import { shallow } from "enzyme";
 import { expect } from "chai";
 import { MoreVertical } from "react-feather";
 import MenuButton from "./index";
-import Button from "~/components/Button";
+import Clickable from "~/components/Clickable";
 
 describe("MenuButton", () => {
     it("renders itself", () => {
@@ -22,7 +22,7 @@ describe("MenuButton", () => {
         let callbackInvoked = false;
         const onClick = () => { callbackInvoked = true; };
         const component = shallow(<MenuButton onShowMenu={onClick} />);
-        component.find(Button).simulate("click");
+        component.find(Clickable).simulate("click");
 
         expect(callbackInvoked).to.equal(true);
     });

@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { MoreVertical } from "react-feather";
-import Button from "~/components/Button";
+import Clickable from "~/components/Clickable";
 import styles from "./style.scss";
 
 const propTypes = {
@@ -13,11 +13,11 @@ const defaultProps = {
 
 const MenuButton = ({ onShowMenu }) => (
     <div className={styles.menubutton}>
-        <Button onClick={onShowMenu}>
+        <Clickable onClick={onShowMenu}>
             <div className={styles.hovercolor}>
                 <MoreVertical size={20} />
             </div>
-        </Button>
+        </Clickable>
     </div>
 );
 

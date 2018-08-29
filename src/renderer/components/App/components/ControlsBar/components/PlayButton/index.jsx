@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Play, Pause } from "react-feather";
-import Button from "~/components/Button";
+import Clickable from "~/components/Clickable";
 import styles from "./style.scss";
 
 const propTypes = {
@@ -21,14 +21,14 @@ export const PlayWithMargin = () => ( // looks better
 
 const PlayButton = ({ onPlay, playing }) => (
     <div className={styles.playbutton}>
-        <Button onClick={onPlay}>
+        <Clickable onClick={onPlay}>
             <div className={styles.hovercolor}>
                 {playing
                     ? <Pause size={32} />
                     : <PlayWithMargin />
                 }
             </div>
-        </Button>
+        </Clickable>
     </div>
 );
 

@@ -42,7 +42,7 @@ const Menu = ({
 
             <div className={styles.section}>
                 <span className={styles.divider}>
-                    Views
+                    Collections
                 </span>
                 <MenuItem
                     text="Artists"

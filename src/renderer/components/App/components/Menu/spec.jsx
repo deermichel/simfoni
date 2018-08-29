@@ -9,7 +9,7 @@ describe("Menu", () => {
         const component = shallow(<Menu />);
 
         expect(component).to.be.present();
-        expect(component).to.contain.text("Views");
+        expect(component).to.contain.text("Collections");
         // expect(component).to.contain.text("Playlists");
     });
 

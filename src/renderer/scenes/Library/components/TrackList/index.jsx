@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import ImmutablePropTypes from "react-immutable-proptypes";
 import { Map, List } from "immutable";
 import Button from "~/components/Button";
-import Track from "./Track";
-import Header from "./Header";
+import Track from "./components/Track";
+import Header from "./components/Header";
 import styles from "./style.scss";
 
 const propTypes = {

@@ -4,8 +4,8 @@ import { expect } from "chai";
 import { fromJS } from "immutable";
 import { Play, Pause } from "react-feather";
 import TrackList from "./index";
-import Track from "./Track";
-import Header from "./Header";
+import Track from "./components/Track";
+import Header from "./components/Header";
 import Button from "~/components/Button";
 
 describe("TrackList", () => {

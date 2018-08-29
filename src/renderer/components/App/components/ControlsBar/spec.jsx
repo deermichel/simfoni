@@ -3,13 +3,13 @@ import { shallow } from "enzyme";
 import { expect } from "chai";
 import { fromJS } from "immutable";
 import ControlsBar from "./index";
-import PlayButton from "./PlayButton";
-import SkipButton from "./SkipButton";
-import DurationBar from "./DurationBar";
+import PlayButton from "./components/PlayButton";
+import SkipButton from "./components/SkipButton";
+import DurationBar from "./components/DurationBar";
 import PlayState from "~/constants/PlayState";
 import ScrollingText from "~/components/ScrollingText";
-import VolumeControl from "./VolumeControl";
-import MenuButton from "./MenuButton";
+import VolumeControl from "./components/VolumeControl";
+import MenuButton from "./components/MenuButton";
 
 describe("ControlsBar", () => {
     const nowPlaying = fromJS({

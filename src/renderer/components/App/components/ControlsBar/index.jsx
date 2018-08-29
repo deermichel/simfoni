@@ -2,14 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import ImmutablePropTypes from "react-immutable-proptypes";
 import { Map } from "immutable";
-import SkipButton, { SkipDirection } from "./SkipButton";
-import PlayButton from "./PlayButton";
-import DurationBar from "./DurationBar";
+import SkipButton, { SkipDirection } from "./components/SkipButton";
+import PlayButton from "./components/PlayButton";
+import DurationBar from "./components/DurationBar";
 import ScrollingText from "~/components/ScrollingText";
 import PlayState from "~/constants/PlayState";
 import styles from "./style.scss";
-import VolumeControl from "./VolumeControl";
-import MenuButton from "./MenuButton";
+import VolumeControl from "./components/VolumeControl";
+import MenuButton from "./components/MenuButton";
 
 const propTypes = {
     nowPlaying: ImmutablePropTypes.map,

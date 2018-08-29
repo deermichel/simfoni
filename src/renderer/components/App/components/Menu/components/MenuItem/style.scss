@@ -1,5 +1,6 @@
-.menuitem {
+.container {
     display: flex;
+    flex-grow: 1;
     font-size: 18px;
     overflow: hidden;
     padding: 5px 20px;
@@ -16,7 +17,7 @@
 }
 
 .inactive {
-    @extend .menuitem;
+    @extend .container;
 
     &:hover {
         background: __COLOR_SECONDARY_LIGHT;
@@ -25,7 +26,7 @@
 }
 
 .active {
-    @extend .menuitem;
+    @extend .container;
 
     background: __COLOR_SECONDARY_BASE;
     color: __COLOR_SECONDARY_TEXT;

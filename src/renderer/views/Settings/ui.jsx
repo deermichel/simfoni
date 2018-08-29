@@ -6,13 +6,13 @@ const propTypes = {
 const defaultProps = {
 };
 
-const Library = () => (
+const Songs = () => (
     <div className={styles.settings}>
         Settings
     </div>
 );
 
-Library.propTypes = propTypes;
-Library.defaultProps = defaultProps;
+Songs.propTypes = propTypes;
+Songs.defaultProps = defaultProps;
 
-export default Library;
+export default Songs;

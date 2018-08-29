@@ -5,7 +5,7 @@ import { createMemoryHistory } from "history";
 import { ConnectedRouter } from "connected-react-router";
 import { Switch, Route, Redirect } from "react-router";
 import App from "./components/App";
-import Library from "./views/Library";
+import Songs from "./views/Songs";
 import Settings from "./views/Settings";
 import configureStore from "./stores/configureStore";
 import { tracksOperations } from "./stores/tracks";
@@ -63,7 +63,7 @@ const app = (
                 <Switch>
                     <Route path={Views.ARTISTS} />
                     <Route path={Views.ALBUMS} />
-                    <Route path={Views.SONGS} component={Library} />
+                    <Route path={Views.SONGS} component={Songs} />
                     <Route path={Views.SETTINGS} component={Settings} />
                     <Redirect to={Views.SONGS} />
                 </Switch>

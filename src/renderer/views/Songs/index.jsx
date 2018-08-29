@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import Library from "./ui";
+import Songs from "./ui";
 import {
     nowPlayingOperations,
     nowPlayingSelectors,
@@ -20,9 +20,9 @@ const mapDispatchToProps = (dispatch) => ({
     onSetVolume: (volume) => dispatch(nowPlayingOperations.setVolume(volume)),
 });
 
-const LibraryContainer = connect(
+const SongsContainer = connect(
     mapStateToProps,
     mapDispatchToProps,
-)(Library);
+)(Songs);
 
-export default LibraryContainer;
+export default SongsContainer;

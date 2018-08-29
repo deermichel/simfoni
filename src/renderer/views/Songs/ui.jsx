@@ -32,12 +32,12 @@ const icons = (nowPlaying) => Map({
             : <Pause size={16} />,
 });
 
-const Library = ({
+const Songs = ({
     tracks,
     nowPlaying,
     onPlayQueue,
 }) => (
-    <div className={styles.library}>
+    <div className={styles.songs}>
         <TrackList
             tracks={tracks}
             icons={icons(nowPlaying)}
@@ -46,7 +46,7 @@ const Library = ({
     </div>
 );
 
-Library.propTypes = propTypes;
-Library.defaultProps = defaultProps;
+Songs.propTypes = propTypes;
+Songs.defaultProps = defaultProps;
 
-export default Library;
+export default Songs;

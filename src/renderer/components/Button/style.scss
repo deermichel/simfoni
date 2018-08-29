@@ -1,9 +1,5 @@
 .button {
     @extend .disabledbutton;
-
-    &:hover {
-        cursor: pointer;
-    }
 }
 
 .disabledbutton {

@@ -20,6 +20,15 @@ const propTypes = {
     onMute: PropTypes.func,
     onSetVolume: PropTypes.func,
     onToggleMenu: PropTypes.func,
+    onNavigate: PropTypes.shape({
+        artists: PropTypes.func,
+        albums: PropTypes.func,
+        songs: PropTypes.func,
+        settings: PropTypes.func,
+    }),
+    location: PropTypes.shape({
+        pathname: PropTypes.string,
+    }),
 };
 const defaultProps = {
     children: null,
@@ -34,6 +43,8 @@ const defaultProps = {
     onMute: () => 0,
     onSetVolume: () => 0,
     onToggleMenu: () => 0,
+    onNavigate: {},
+    location: {},
 };
 
 const onPlay = (onPlayQueue, onTogglePlayback, tracks, nowPlaying) => {
@@ -58,10 +69,16 @@ const App = ({
     onMute,
     onSetVolume,
     onToggleMenu,
+    onNavigate,
+    location,
 }) => (
     <div className={styles.app}>
         <div className={styles.mainframe}>
-            <Menu show={ui.get("showMenu")} />
+            <Menu
+                show={ui.get("showMenu")}
+                onNavigate={onNavigate}
+                location={location}
+            />
             {children}
         </div>
         <ControlsBar

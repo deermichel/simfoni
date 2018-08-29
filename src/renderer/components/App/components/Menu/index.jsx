@@ -8,17 +8,35 @@ import {
 } from "react-feather";
 import styles from "./style.scss";
 import MenuItem from "./components/MenuItem";
+import Views from "~/constants/Views";
 
 const propTypes = {
     show: PropTypes.bool,
+    onNavigate: PropTypes.shape({
+        artists: PropTypes.func,
+        albums: PropTypes.func,
+        songs: PropTypes.func,
+        settings: PropTypes.func,
+    }),
+    location: PropTypes.shape({
+        pathname: PropTypes.string,
+    }),
 };
 const defaultProps = {
     show: true,
+    onNavigate: {},
+    location: { pathname: "" },
 };
 
 // later: make resizable?
 
-const Menu = ({ show }) => (
+const isActive = (location, view) => location.pathname.startsWith(view);
+
+const Menu = ({
+    show,
+    onNavigate,
+    location,
+}) => (
     <div className={styles.menu}>
         <div className={(show) ? styles.container : styles.hidden}>
 
@@ -26,10 +44,30 @@ const Menu = ({ show }) => (
                 <span className={styles.divider}>
                     Views
                 </span>
-                <MenuItem text="Artists" icon={<User size={18} />} />
-                <MenuItem text="Albums" icon={<Disc size={18} />} />
-                <MenuItem text="Songs" icon={<List size={18} />} />
-                <MenuItem text="Settings" icon={<Settings size={18} />} />
+                <MenuItem
+                    text="Artists"
+                    icon={<User size={18} />}
+                    onClick={onNavigate.artists}
+                    active={isActive(location, Views.ARTISTS)}
+                />
+                <MenuItem
+                    text="Albums"
+                    icon={<Disc size={18} />}
+                    onClick={onNavigate.albums}
+                    active={isActive(location, Views.ALBUMS)}
+                />
+                <MenuItem
+                    text="Songs"
+                    icon={<List size={18} />}
+                    onClick={onNavigate.songs}
+                    active={isActive(location, Views.SONGS)}
+                />
+                <MenuItem
+                    text="Settings"
+                    icon={<Settings size={18} />}
+                    onClick={onNavigate.settings}
+                    active={isActive(location, Views.SETTINGS)}
+                />
             </div>
 
             <div className={styles.section}>

@@ -14,7 +14,7 @@ const defaultProps = {
 };
 
 const MenuItem = ({ text, active, icon }) => (
-    <div className={(active) ? styles.active : styles.menuitem}>
+    <div className={(active) ? styles.active : styles.inactive}>
         {icon && (
             <div className={styles.icon}>
                 {icon}

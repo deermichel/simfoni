@@ -3,12 +3,24 @@
     font-size: 18px;
     overflow: hidden;
     padding: 5px 20px;
+    transition:
+        background .1s ease-out,
+        color .1s ease-out;
     white-space: nowrap;
 
     .icon {
         align-items: center;
         display: flex;
         min-width: 26px;
+    }
+}
+
+.inactive {
+    @extend .menuitem;
+
+    &:hover {
+        background: __COLOR_SECONDARY_LIGHT;
+        color: __COLOR_SECONDARY_TEXT;
     }
 }
 

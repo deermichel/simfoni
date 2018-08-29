@@ -1,0 +1,20 @@
+.menuitem {
+    display: flex;
+    font-size: 18px;
+    overflow: hidden;
+    padding: 5px 20px;
+    white-space: nowrap;
+
+    .icon {
+        align-items: center;
+        display: flex;
+        min-width: 26px;
+    }
+}
+
+.active {
+    @extend .menuitem;
+
+    background: __COLOR_SECONDARY_BASE;
+    color: __COLOR_SECONDARY_TEXT;
+}

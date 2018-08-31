@@ -1,0 +1,42 @@
+.iconbutton {
+    border: 1px solid #000;
+    display: grid;
+
+    &.large {
+        height: 44px;
+        .disabled { height: 44px; width: 44px; }
+    }
+    &.medium {
+        height: 36px;
+        .disabled { height: 36px; width: 36px; }
+    }
+    &.small {
+        height: 32px;
+        .disabled { height: 32px; width: 32px; }
+    }
+
+    .disabled {
+        align-content: center;
+        border-radius: 100%;
+        display: grid;
+        justify-content: center;
+        opacity: .3;
+        transition:
+            background .1s ease-out,
+            opacity .2s ease-out;
+    }
+
+    .container {
+        @extend .disabled;
+
+        opacity: 1;
+    }
+
+    &:hover .container {
+        background: __COLOR_PRIMARY_BASE;
+
+        &.destructive {
+            background: lighten(__COLOR_SECONDARY_LIGHT, 25);
+        }
+    }
+}

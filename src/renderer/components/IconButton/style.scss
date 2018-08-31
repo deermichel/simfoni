@@ -1,17 +1,19 @@
 .iconbutton {
-    border: 1px solid #000;
+    align-content: center;
+    background: lightcyan;
     display: grid;
+    justify-content: center;
 
     &.large {
-        height: 44px;
+        min-height: 44px;
         .disabled { height: 44px; width: 44px; }
     }
     &.medium {
-        height: 36px;
+        min-height: 36px;
         .disabled { height: 36px; width: 36px; }
     }
     &.small {
-        height: 32px;
+        min-height: 32px;
         .disabled { height: 32px; width: 32px; }
     }
 

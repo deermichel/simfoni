@@ -1,8 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { SkipForward, SkipBack } from "react-feather";
-import Clickable from "~/components/Clickable";
-import styles from "./style.scss";
+import IconButton from "~/components/IconButton";
 
 export const SkipDirection = {
     FORWARD: "FORWARD",
@@ -16,23 +15,16 @@ const propTypes = {
 };
 const defaultProps = {
     onSkip: null,
-    direction: null,
+    direction: SkipDirection.FORWARD,
     disabled: false,
 };
 
 const SkipButton = ({ direction, onSkip, disabled }) => (
-    <div className={styles.skipbutton}>
-        <Clickable onClick={onSkip} disabled={disabled}>
-            <div className={(disabled) ? styles.disabled : styles.hovercolor}>
-                {direction === SkipDirection.FORWARD
-                    && <SkipForward size={24} />
-                }
-                {direction === SkipDirection.BACKWARD
-                    && <SkipBack size={24} />
-                }
-            </div>
-        </Clickable>
-    </div>
+    <IconButton
+        onClick={onSkip}
+        disabled={disabled}
+        icon={(direction === SkipDirection.FORWARD) ? SkipForward : SkipBack}
+    />
 );
 
 SkipButton.propTypes = propTypes;

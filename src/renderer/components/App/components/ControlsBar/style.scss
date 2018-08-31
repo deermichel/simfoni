@@ -20,10 +20,9 @@
 }
 
 .buttons {
-    align-items: stretch;
-    display: inline-grid;
+    background: lightblue;
+    display: grid;
     grid-template-columns: 1fr 2fr 1fr;
-    justify-items: stretch;
 }
 
 .volumecontrol, .menubutton {

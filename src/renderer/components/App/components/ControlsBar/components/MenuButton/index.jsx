@@ -1,8 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { MoreVertical } from "react-feather";
-import Clickable from "~/components/Clickable";
-import styles from "./style.scss";
+import IconButton, { ButtonSize } from "~/components/IconButton";
 
 const propTypes = {
     onShowMenu: PropTypes.func,
@@ -12,13 +11,11 @@ const defaultProps = {
 };
 
 const MenuButton = ({ onShowMenu }) => (
-    <div className={styles.menubutton}>
-        <Clickable onClick={onShowMenu}>
-            <div className={styles.hovercolor}>
-                <MoreVertical size={20} />
-            </div>
-        </Clickable>
-    </div>
+    <IconButton
+        onClick={onShowMenu}
+        icon={MoreVertical}
+        size={ButtonSize.SMALL}
+    />
 );
 
 MenuButton.propTypes = propTypes;

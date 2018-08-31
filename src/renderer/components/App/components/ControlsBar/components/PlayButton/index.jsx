@@ -1,35 +1,33 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Play, Pause } from "react-feather";
-import Clickable from "~/components/Clickable";
-import styles from "./style.scss";
+import IconButton, { ButtonSize } from "~/components/IconButton";
 
 const propTypes = {
     onPlay: PropTypes.func,
     playing: PropTypes.bool,
+    disabled: PropTypes.bool,
 };
 const defaultProps = {
     onPlay: null,
     playing: false,
+    disabled: false,
 };
 
-export const PlayWithMargin = () => ( // looks better
+export const PlayWithMargin = ({ size }) => ( // looks better
     <div style={{ display: "grid", marginLeft: 5 }}>
-        <Play size={32} />
+        <Play size={size} />
     </div>
 );
+PlayWithMargin.propTypes = { size: PropTypes.number.isRequired };
 
-const PlayButton = ({ onPlay, playing }) => (
-    <div className={styles.playbutton}>
-        <Clickable onClick={onPlay}>
-            <div className={styles.hovercolor}>
-                {playing
-                    ? <Pause size={32} />
-                    : <PlayWithMargin />
-                }
-            </div>
-        </Clickable>
-    </div>
+const PlayButton = ({ onPlay, playing, disabled }) => (
+    <IconButton
+        onClick={onPlay}
+        disabled={disabled}
+        icon={(playing) ? Pause : PlayWithMargin}
+        size={ButtonSize.LARGE}
+    />
 );
 
 PlayButton.propTypes = propTypes;

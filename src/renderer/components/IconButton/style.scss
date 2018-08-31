@@ -1,8 +1,5 @@
 .iconbutton {
-    align-content: center;
-    background: lightcyan;
     display: grid;
-    justify-content: center;
 
     &.large {
         min-height: 44px;
@@ -19,9 +16,11 @@
 
     .disabled {
         align-content: center;
+        align-self: center;
         border-radius: 100%;
         display: grid;
         justify-content: center;
+        justify-self: center;
         opacity: .3;
         transition:
             background .1s ease-out,

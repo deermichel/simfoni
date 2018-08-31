@@ -13,7 +13,7 @@ const defaultProps = {
 };
 
 const Clickable = ({ children, onClick, disabled }) => (
-    <div onClick={(disabled) ? null : onClick}>
+    <div onClick={(disabled) ? null : onClick} style={{ display: "grid" }}>
         {children}
     </div>
 );

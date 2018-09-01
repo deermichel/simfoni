@@ -1,8 +1,8 @@
 import types from "./types";
 
-const addSearchPath = (path) => ({
-    type: types.ADD_SEARCH_PATH,
-    payload: { path },
+const addSearchPaths = (paths) => ({
+    type: types.ADD_SEARCH_PATHS,
+    payload: { paths },
 });
 
 const removeSearchPath = (path) => ({
@@ -11,6 +11,6 @@ const removeSearchPath = (path) => ({
 });
 
 export default {
-    addSearchPath,
+    addSearchPaths,
     removeSearchPath,
 };

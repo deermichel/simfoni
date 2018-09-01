@@ -1,8 +1,8 @@
 import actions from "./actions";
 
-const { addSearchPath, removeSearchPath } = actions;
+const { addSearchPaths, removeSearchPath } = actions;
 
 export default {
-    addSearchPath,
+    addSearchPaths,
     removeSearchPath,
 };

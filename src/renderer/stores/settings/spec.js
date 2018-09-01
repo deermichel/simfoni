@@ -12,15 +12,15 @@ describe("settings reducer", () => {
         }));
     });
 
-    it("handles ADD_SEARCH_PATH", () => {
+    it("handles ADD_SEARCH_PATHS", () => {
         const initialState = fromJS({
             searchPaths: ["a", "b", "c"],
         });
-        const action = actions.addSearchPath("d");
+        const action = actions.addSearchPaths(["d", "e"]);
         const nextState = reducer(initialState, action);
 
         expect(nextState).to.equal(fromJS({
-            searchPaths: ["a", "b", "c", "d"],
+            searchPaths: ["a", "b", "c", "d", "e"],
         }));
     });
 

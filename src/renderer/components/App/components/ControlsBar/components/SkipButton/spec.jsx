@@ -1,33 +1,26 @@
 import React from "react";
-import { shallow } from "enzyme";
+import { mount } from "enzyme";
 import { expect } from "chai";
 import { SkipForward, SkipBack } from "react-feather";
 import SkipButton, { SkipDirection } from "./index";
-import Button from "~/components/Button";
+import Clickable from "~/components/Clickable";
 
 describe("SkipButton", () => {
     it("renders itself", () => {
-        const component = shallow(<SkipButton />);
+        const component = mount(<SkipButton />);
 
         expect(component).to.be.present();
     });
 
-    it("displays no icon without direction prop", () => {
-        const component = shallow(<SkipButton />);
-
-        expect(component).to.have.exactly(0).descendants(SkipForward);
-        expect(component).to.have.exactly(0).descendants(SkipBack);
-    });
-
-    it("displays a skip forward icon", () => {
-        const component = shallow(<SkipButton direction={SkipDirection.FORWARD} />);
+    it("displays a skip forward icon by default", () => {
+        const component = mount(<SkipButton />);
 
         expect(component).to.have.exactly(1).descendants(SkipForward);
         expect(component).to.have.exactly(0).descendants(SkipBack);
     });
 
     it("displays a skip backward icon", () => {
-        const component = shallow(<SkipButton direction={SkipDirection.BACKWARD} />);
+        const component = mount(<SkipButton direction={SkipDirection.BACKWARD} />);
 
         expect(component).to.have.exactly(0).descendants(SkipForward);
         expect(component).to.have.exactly(1).descendants(SkipBack);
@@ -36,15 +29,15 @@ describe("SkipButton", () => {
     it("invokes callback on click", () => {
         let callbackInvoked = false;
         const onClick = () => { callbackInvoked = true; };
-        const component = shallow(<SkipButton onSkip={onClick} />);
-        component.find(Button).simulate("click");
+        const component = mount(<SkipButton onSkip={onClick} />);
+        component.find(Clickable).simulate("click");
 
         expect(callbackInvoked).to.equal(true);
     });
 
     it("disables button when disabled", () => {
-        const component = shallow(<SkipButton disabled />);
+        const component = mount(<SkipButton disabled />);
 
-        expect(component.find(Button).prop("disabled")).to.equal(true);
+        expect(component.find(Clickable).prop("disabled")).to.equal(true);
     });
 });

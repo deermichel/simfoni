@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styles from "./style.scss";
-import Button from "~/components/Button";
+import Clickable from "~/components/Clickable";
 
 const propTypes = {
     text: PropTypes.string,
@@ -23,7 +23,7 @@ const MenuItem = ({
     onClick,
 }) => (
     <div className={styles.menuitem}>
-        <Button onClick={onClick}>
+        <Clickable onClick={onClick}>
             <div className={(active) ? styles.active : styles.inactive}>
                 {icon && (
                     <div className={styles.icon}>
@@ -32,7 +32,7 @@ const MenuItem = ({
                 )}
                 {text}
             </div>
-        </Button>
+        </Clickable>
     </div>
 );
 

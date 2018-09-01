@@ -1,31 +1,31 @@
 import React from "react";
 import { shallow } from "enzyme";
 import { expect } from "chai";
-import Button from "./index";
+import Clickable from "./index";
 
-describe("Button", () => {
+describe("Clickable", () => {
     it("renders itself", () => {
-        const component = shallow(<Button />);
+        const component = shallow(<Clickable />);
 
         expect(component).to.be.present();
     });
 
     it("renders its children", () => {
         const component = shallow((
-            <Button>
+            <Clickable>
                 <span>
-                    Button Text
+                    Clickable Text
                 </span>
                 <span>
                     Another One
                 </span>
-            </Button>
+            </Clickable>
         ));
 
         expect(component).to.have.exactly(2).descendants("span");
         expect(component).to.contain((
             <span>
-                Button Text
+                Clickable Text
             </span>
         ));
         expect(component).to.contain((
@@ -38,7 +38,7 @@ describe("Button", () => {
     it("invokes callback on click", () => {
         let callbackInvoked = false;
         const onClick = () => { callbackInvoked = true; };
-        const component = shallow(<Button onClick={onClick} />);
+        const component = shallow(<Clickable onClick={onClick} />);
         component.simulate("click");
 
         expect(callbackInvoked).to.equal(true);
@@ -47,7 +47,7 @@ describe("Button", () => {
     it("does not invoke callback on click when disabled", () => {
         let callbackInvoked = false;
         const onClick = () => { callbackInvoked = true; };
-        const component = shallow(<Button onClick={onClick} disabled />);
+        const component = shallow(<Clickable onClick={onClick} disabled />);
         component.simulate("click");
 
         expect(callbackInvoked).to.equal(false);

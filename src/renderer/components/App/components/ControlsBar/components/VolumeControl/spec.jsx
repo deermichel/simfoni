@@ -8,7 +8,7 @@ import {
     VolumeX,
 } from "react-feather";
 import VolumeControl from "./index";
-import Button from "~/components/Button";
+import Clickable from "~/components/Clickable";
 
 describe("VolumeControl", () => {
     it("renders itself", () => {
@@ -57,7 +57,7 @@ describe("VolumeControl", () => {
         let callbackInvoked = false;
         const onClick = () => { callbackInvoked = true; };
         const component = mount(<VolumeControl onMute={onClick} />);
-        component.find(Button).simulate("click");
+        component.find(Clickable).simulate("click");
 
         expect(callbackInvoked).to.equal(true);
     });

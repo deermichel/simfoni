@@ -1,23 +1,43 @@
 .iconbutton {
     display: grid;
 
-    .hovercolor {
-        align-content: center;
-        border-radius: 100%;
-        display: grid;
-        height: 32px;
-        justify-content: center;
-        transition: background .1s ease-out;
-        width: 32px;
+    &.large {
+        min-height: 44px;
+        .disabled { height: 44px; width: 44px; }
     }
-    &:hover .hovercolor {
-        background: __COLOR_PRIMARY_BASE;
+    &.medium {
+        min-height: 36px;
+        .disabled { height: 36px; width: 36px; }
+    }
+    &.small {
+        min-height: 32px;
+        .disabled { height: 32px; width: 32px; }
     }
 
-    .destructive {
-        @extend .hovercolor;
+    .disabled {
+        align-content: center;
+        align-self: center;
+        border-radius: 100%;
+        display: grid;
+        justify-content: center;
+        justify-self: center;
+        opacity: .3;
+        transition:
+            background .1s ease-out,
+            opacity .2s ease-out;
     }
-    &:hover .destructive {
-        background: lighten(__COLOR_SECONDARY_LIGHT, 25);
+
+    .container {
+        @extend .disabled;
+
+        opacity: 1;
+    }
+
+    &:hover .container {
+        background: __COLOR_PRIMARY_BASE;
+
+        &.destructive {
+            background: lighten(__COLOR_SECONDARY_LIGHT, 25);
+        }
     }
 }

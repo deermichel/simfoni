@@ -8,6 +8,9 @@ import {
 } from "react-feather";
 import Clickable from "~/components/Clickable";
 import styles from "./style.scss";
+import { ButtonSize } from "~/components/IconButton";
+
+const { iconSize } = ButtonSize.SMALL;
 
 const propTypes = {
     onMute: PropTypes.func,
@@ -29,7 +32,7 @@ class VolumeControl extends React.Component {
         this.stopInteraction = this.stopInteraction.bind(this);
         this.mouseMove = this.mouseMove.bind(this);
         this.setVolume = this.setVolume.bind(this);
-        this.state = { hoverCoverStyle: null, setVolumeMode: false };
+        this.state = { bubbleStyle: null, setVolumeMode: false };
     }
 
     componentDidMount() {
@@ -57,7 +60,7 @@ class VolumeControl extends React.Component {
     stopInteraction() {
         window.removeEventListener("mouseup", this.stopInteraction);
         window.removeEventListener("mousemove", this.mouseMove);
-        this.setState({ hoverCoverStyle: null });
+        this.setState({ bubbleStyle: null });
     }
 
     mouseMove(e) {
@@ -75,11 +78,10 @@ class VolumeControl extends React.Component {
         this.setVolume(volume);
 
         this.setState({
-            hoverCoverStyle: {
+            bubbleStyle: {
                 animationDuration: "6s",
                 background: "__COLOR_PRIMARY_BASE",
                 height: size,
-                position: "fixed",
                 width: size,
             },
             setVolumeMode: true,
@@ -87,24 +89,26 @@ class VolumeControl extends React.Component {
     }
 
     render() {
-        const { hoverCoverStyle, setVolumeMode } = this.state;
+        const { bubbleStyle, setVolumeMode } = this.state;
         const { onMute, volume, muted } = this.props;
-        let icon = <VolumeX size={20} />;
+        let icon = <VolumeX size={iconSize} />;
         if (!muted) {
             if (volume < 0.33) {
-                icon = <Volume size={20} />;
+                icon = <Volume size={iconSize} />;
             } else if (volume < 0.66) {
-                icon = <Volume1 size={20} />;
+                icon = <Volume1 size={iconSize} />;
             } else {
-                icon = <Volume2 size={20} />;
+                icon = <Volume2 size={iconSize} />;
             }
         }
 
         return (
             <div className={styles.volumecontrol} ref={(el) => { this.container = el; }}>
-                <Clickable onClick={(!setVolumeMode) ? onMute : null}>
-                    <div className={styles.hovercolor} style={hoverCoverStyle}>
-                        {icon}
+                <Clickable onClick={onMute} disabled={setVolumeMode}>
+                    <div className={styles.container}>
+                        <div className={styles.bubble} style={bubbleStyle}>
+                            {icon}
+                        </div>
                     </div>
                 </Clickable>
             </div>

@@ -9,15 +9,15 @@ import styles from "./style.scss";
 const propTypes = {
     paths: ImmutablePropTypes.list,
     onAdd: PropTypes.func,
-    onDelete: PropTypes.func,
+    onRemove: PropTypes.func,
 };
 const defaultProps = {
     paths: List(),
     onAdd: () => 0,
-    onDelete: () => 0,
+    onRemove: () => 0,
 };
 
-const SearchPaths = ({ paths, onAdd, onDelete }) => (
+const SearchPaths = ({ paths, onAdd, onRemove }) => (
     <div className={styles.searchpaths}>
         <div className={styles.title}>
             Search Paths
@@ -30,13 +30,13 @@ const SearchPaths = ({ paths, onAdd, onDelete }) => (
             </div>
 
             {paths.map((path) => (
-                <div className={styles.pathitem}>
+                <div className={styles.pathitem} key={path}>
                     {path}
                     <IconButton
                         icon={Delete}
                         size={ButtonSize.SMALL}
                         destructive
-                        onClick={() => onDelete(path)}
+                        onClick={() => onRemove(path)}
                     />
                 </div>
             ))}

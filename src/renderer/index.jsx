@@ -21,6 +21,7 @@ store.dispatch(tracksOperations.setTracks([
         album: "Answers",
         duration: 243, // 4:03
         source: "_mp3/Believa.mp3",
+        _trackProvider: { searchPath: "/" },
     },
     {
         id: "pumped",
@@ -29,6 +30,7 @@ store.dispatch(tracksOperations.setTracks([
         album: "Torches",
         duration: 240, // 4:00
         source: "_mp3/Pumped Up Kicks.mp3",
+        _trackProvider: { searchPath: "/" },
     },
     {
         id: "no",

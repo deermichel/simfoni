@@ -4,6 +4,7 @@ import { Iterable } from "immutable";
 import { createLogger } from "redux-logger";
 import rootReducer from "./rootReducer";
 import playerMiddleware from "~/middleware/player";
+import trackProviderMiddleware from "~/middleware/trackProvider";
 
 const stateTransformer = (state) => {
     const newState = {};
@@ -26,6 +27,7 @@ const configureStore = (history, initialState) => createStore(
         routerMiddleware(history),
         loggerMiddleware,
         playerMiddleware(),
+        trackProviderMiddleware,
     ),
 );
 

@@ -14,7 +14,7 @@ describe("PlayButton", () => {
 
     it("displays a play icon", () => {
         const component = mount(<PlayButton />);
-        const icon = mount(<PlayWithMargin />);
+        const icon = mount(<PlayWithMargin size={32} />);
 
         expect(icon).to.have.exactly(1).descendants(Play);
         expect(component).to.have.exactly(1).descendants(PlayWithMargin);

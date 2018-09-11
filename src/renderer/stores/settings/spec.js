@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { fromJS } from "immutable";
+import { fromJS, Set } from "immutable";
 import actions from "./actions";
 import reducer from "./reducers";
 
@@ -8,7 +8,7 @@ describe("settings reducer", () => {
         const nextState = reducer(undefined, {});
 
         expect(nextState).to.equal(fromJS({
-            searchPaths: [],
+            searchPaths: Set(),
         }));
     });
 

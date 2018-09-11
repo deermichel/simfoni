@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow, mount } from "enzyme";
 import { expect } from "chai";
-import { fromJS } from "immutable";
+import { Set } from "immutable";
 import { Delete, Plus } from "react-feather";
 import Clickable from "~/components/Clickable";
 import IconButton from "~/components/IconButton";
@@ -15,7 +15,7 @@ describe("SearchPaths", () => {
     });
 
     it("displays the paths", () => {
-        const paths = fromJS(["pathA", "pathB"]);
+        const paths = Set(["pathA", "pathB"]);
         const component = shallow(<SearchPaths paths={paths} />);
 
         expect(component).to.contain.text("pathA");
@@ -24,7 +24,7 @@ describe("SearchPaths", () => {
 
     it("has a delete button for each path", () => {
         const removed = [];
-        const paths = fromJS(["pathA", "pathB"]);
+        const paths = Set(["pathA", "pathB"]);
         const onRemove = (path) => removed.push(path);
         const component = mount(<SearchPaths paths={paths} onRemove={onRemove} />);
 

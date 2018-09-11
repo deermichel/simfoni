@@ -9,10 +9,15 @@ import Songs from "./views/Songs";
 import Settings from "./views/Settings";
 import configureStore from "./stores/configureStore";
 import { tracksOperations } from "./stores/tracks";
+import { settingsOperations } from "./stores/settings";
 import Views from "./constants/Views";
 
 const history = createMemoryHistory();
 const store = configureStore(history);
+
+// load settings
+store.dispatch(settingsOperations.loadSearchPaths());
+
 store.dispatch(tracksOperations.setTracks([
     {
         id: "believa",

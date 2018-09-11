@@ -2,18 +2,18 @@ import React from "react";
 import { remote } from "electron";
 import PropTypes from "prop-types";
 import ImmutablePropTypes from "react-immutable-proptypes";
-import { List } from "immutable";
+import { Set } from "immutable";
 import { Delete, Plus } from "react-feather";
 import IconButton, { ButtonSize } from "~/components/IconButton";
 import styles from "./style.scss";
 
 const propTypes = {
-    paths: ImmutablePropTypes.list,
+    paths: ImmutablePropTypes.set,
     onAdd: PropTypes.func,
     onRemove: PropTypes.func,
 };
 const defaultProps = {
-    paths: List(),
+    paths: Set(),
     onAdd: () => 0,
     onRemove: () => 0,
 };

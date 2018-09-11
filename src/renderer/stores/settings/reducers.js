@@ -1,13 +1,13 @@
-import { Map, List } from "immutable";
+import { Map, Set } from "immutable";
 import types from "./types";
 
 const INITIAL_STATE = Map({
-    searchPaths: List(),
+    searchPaths: Set(),
 });
 
 const addSearchPaths = (state, payload) => {
     const searchPaths = state.get("searchPaths");
-    const newPaths = List(payload.paths);
+    const newPaths = Set(payload.paths);
     return state.set("searchPaths", searchPaths.concat(newPaths));
 };
 

@@ -5,7 +5,9 @@ const isDevelopment = process.env.NODE_ENV !== "production";
 let mainWindow;
 
 const createMainWindow = () => {
-    const window = new BrowserWindow();
+    const window = new BrowserWindow({
+        webPreferences: { webSecurity: false }, // TODO: better player to avoid file:// urls
+    });
 
     if (isDevelopment) {
         window.webContents.openDevTools();

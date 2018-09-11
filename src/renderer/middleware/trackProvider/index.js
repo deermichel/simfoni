@@ -11,6 +11,9 @@ const getFiles = (added) => new Promise((resolve, reject) => {
     let done = 0;
     let allFiles = [];
     const ignore = (file, stats) => stats.isFile() && !supportedTypes.includes(path.extname(file));
+    if (added.size === 0) {
+        resolve([]);
+    }
     added.forEach((p) => {
         recursiveReaddir(p, [ignore])
             .then((files) => {
@@ -52,7 +55,9 @@ export default (store) => (next) => (action) => {
     const added = currentPaths.filterNot((p) => previousPaths.includes(p));
     getFiles(added).then((files) => {
         const newTracks = files.map((f) => Map({
-            title: path.basename(f, path.extname(f)), source: f, id: f,
+            title: path.basename(f, path.extname(f)),
+            source: `file://${f}`,
+            id: f,
         }));
         tracks = tracks.push(...newTracks);
 

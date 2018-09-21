@@ -32,7 +32,7 @@ class VolumeControl extends React.Component {
         this.stopInteraction = this.stopInteraction.bind(this);
         this.mouseMove = this.mouseMove.bind(this);
         this.setVolume = this.setVolume.bind(this);
-        this.state = { bubbleStyle: null, setVolumeMode: false };
+        this.state = { bubbleStyle: null, setVolumeMode: false, showHoverBlock: false };
     }
 
     componentDidMount() {
@@ -60,7 +60,7 @@ class VolumeControl extends React.Component {
     stopInteraction() {
         window.removeEventListener("mouseup", this.stopInteraction);
         window.removeEventListener("mousemove", this.mouseMove);
-        this.setState({ bubbleStyle: null });
+        this.setState({ bubbleStyle: null, showHoverBlock: false });
     }
 
     mouseMove(e) {
@@ -85,11 +85,12 @@ class VolumeControl extends React.Component {
                 width: size,
             },
             setVolumeMode: true,
+            showHoverBlock: true,
         });
     }
 
     render() {
-        const { bubbleStyle, setVolumeMode } = this.state;
+        const { bubbleStyle, setVolumeMode, showHoverBlock } = this.state;
         const { onMute, volume, muted } = this.props;
         let icon = <VolumeX size={iconSize} />;
         if (!muted) {
@@ -111,6 +112,7 @@ class VolumeControl extends React.Component {
                         </div>
                     </div>
                 </Clickable>
+                {showHoverBlock && <div className={styles.hoverblock} />}
             </div>
         );
     }

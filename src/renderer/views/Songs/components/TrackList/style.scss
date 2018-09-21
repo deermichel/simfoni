@@ -1,6 +1,7 @@
 .tracklist {
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
 }
 
 .header {
@@ -8,9 +9,13 @@
     padding: 5px 0;
 }
 
+.listcontainer {
+    flex-grow: 1;
+}
+
 .tracks {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    overflow-y: overlay;
+    // border-bottom: 1px solid rgba(0, 0, 0, 0.1); // TODO: show below last item
+    // overflow-y: overlay; // applied via style prop
 
     &::-webkit-scrollbar {
         border-left: 1px solid rgba(0, 0, 0, 0.1);
@@ -27,15 +32,14 @@
     .trackitem {
         transition: background .1s ease-out;
 
-        &:nth-child(odd) {
-            background: none;
-        }
-        &:nth-child(even) {
-            background: rgba(0, 0, 0, 0.06);
-        }
-
         &:hover {
             background: __COLOR_PRIMARY_BASE;
         }
+    }
+
+    .oddtrackitem {
+        @extend .trackitem;
+
+        background: rgba(0, 0, 0, 0.06);
     }
 }

@@ -18,6 +18,7 @@
         @extend .container;
 
         position: relative;
+        z-index: 1;
     }
 
     &:hover .bubble {
@@ -30,6 +31,15 @@
         animation-name: animatebubble;
         animation-timing-function: ease-in-out;
     }
+}
+
+.hoverblock {
+    // maybe in future: darken bg with keyframes animation
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
 }
 
 @keyframes animatebubble {

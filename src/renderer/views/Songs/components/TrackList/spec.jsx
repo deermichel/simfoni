@@ -1,5 +1,5 @@
 import React from "react";
-import { shallow } from "enzyme";
+import { shallow, mount } from "enzyme";
 import { expect } from "chai";
 import { fromJS } from "immutable";
 import { Play, Pause } from "react-feather";
@@ -47,7 +47,7 @@ describe("TrackList", () => {
     });
 
     it("contains one <Track /> child per track", () => {
-        const component = shallow(<TrackList tracks={tracks} />);
+        const component = mount(<TrackList tracks={tracks} />);
 
         expect(component).to.have.exactly(3).descendants(Track);
         expect(component).to.contain(<Track
@@ -82,7 +82,7 @@ describe("TrackList", () => {
     it("invokes onClickTrack callback with correct trackId on click", () => {
         let clickedId;
         const onClickTrack = (trackId) => { clickedId = trackId; };
-        const component = shallow(<TrackList tracks={tracks} onClickTrack={onClickTrack} />);
+        const component = mount(<TrackList tracks={tracks} onClickTrack={onClickTrack} />);
         component.find(Clickable).first().simulate("click");
 
         expect(component).to.have.exactly(3).descendants(Clickable);
@@ -91,7 +91,7 @@ describe("TrackList", () => {
 
     it("displays the icons", () => {
         const icons = fromJS({ a: <Play />, b: <Pause /> });
-        const component = shallow(<TrackList tracks={tracks} icons={icons} />);
+        const component = mount(<TrackList tracks={tracks} icons={icons} />);
 
         expect(component.find(Track).at(0).prop("icon")).to.equal(fromJS(<Play />));
         expect(component.find(Track).at(1).prop("icon")).to.equal(fromJS(<Pause />));

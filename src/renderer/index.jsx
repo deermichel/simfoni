@@ -10,6 +10,7 @@ import Settings from "./views/Settings";
 import configureStore from "./stores/configureStore";
 import { tracksOperations } from "./stores/tracks";
 import { settingsOperations } from "./stores/settings";
+// import { libraryOperations } from "./stores/library";
 import Views from "./constants/Views";
 
 const history = createMemoryHistory();
@@ -70,7 +71,7 @@ const app = (
                     <Route path={Views.ALBUMS} />
                     <Route path={Views.SONGS} component={Songs} />
                     <Route path={Views.SETTINGS} component={Settings} />
-                    <Redirect to={Views.SETTINGS} />
+                    <Redirect to={Views.SONGS} />
                 </Switch>
             </ConnectedRouter>
         </App>

@@ -1,8 +1,7 @@
 import recursiveReaddir from "recursive-readdir";
 import { parseFile } from "music-metadata";
 import path from "path";
-import { Map } from "immutable";
-// import { tracksOperations } from "~/stores/tracks";
+import { libraryOperations } from "~/stores/library";
 
 const supportedTypes = [".mp3"];
 
@@ -39,14 +38,13 @@ const getTracksWithMetadata = (files) => new Promise((resolve, reject) => {
     files.forEach((f) => {
         parseFile(f)
             .then((meta) => {
-                tracks.push(Map({
+                tracks.push({
                     title: meta.common.title,
                     artist: meta.common.artist,
                     album: meta.common.album,
                     duration: Math.ceil(meta.format.duration),
-                    source: `file://${f}`,
-                    id: f,
-                }));
+                    uri: `file://${f}`,
+                });
 
                 done++;
                 if (done === files.length) { // finished?
@@ -73,7 +71,6 @@ export default (store) => (next) => (action) => {
     }
 
     currentWorkState = currentState; // set context
-    let { tracks } = currentState;
 
     /* TODO
     // remove tracks - currently not implemented
@@ -83,11 +80,9 @@ export default (store) => (next) => (action) => {
 
     // add tracks
     const added = currentPaths.filterNot((p) => previousPaths.includes(p));
-    getFiles(added).then(getTracksWithMetadata).then((newTracks) => {
-        tracks = tracks.push(...newTracks);
-
+    getFiles(added).then(getTracksWithMetadata).then((tracks) => {
         if (currentWorkState === currentState) { // still relevant?
-            // store.dispatch(tracksOperations.setTracks(tracks));
+            tracks.forEach((track) => store.dispatch(libraryOperations.addTrack(track)));
         }
     });
 

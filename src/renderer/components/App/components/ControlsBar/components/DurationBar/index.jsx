@@ -1,17 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
 import styles from "./style.scss";
-
-const propTypes = {
-    currentTime: PropTypes.number,
-    totalTime: PropTypes.number,
-    onSeek: PropTypes.func,
-};
-const defaultProps = {
-    currentTime: 0,
-    totalTime: 0,
-    onSeek: () => 0,
-};
 
 const formatDuration = (duration) => `${Math.trunc(duration / 60)}:${(duration % 60).toString().padStart(2, "0")}`;
 const generateStyle = (currentTime, totalTime) => {
@@ -28,7 +16,7 @@ const seek = (e, totalTime, onSeek) => {
     onSeek(Math.floor(totalTime * relativePos / width));
 };
 
-const DurationBar = ({ currentTime, totalTime, onSeek }) => (
+const DurationBar = ({ currentTime = 0, totalTime = 0, onSeek }) => (
     <div
         className={styles.durationbar}
         style={generateStyle(currentTime, totalTime)}
@@ -44,8 +32,5 @@ const DurationBar = ({ currentTime, totalTime, onSeek }) => (
         </div>
     </div>
 );
-
-DurationBar.propTypes = propTypes;
-DurationBar.defaultProps = defaultProps;
 
 export default DurationBar;

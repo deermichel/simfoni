@@ -5,11 +5,12 @@ import {
     nowPlayingOperations,
     nowPlayingSelectors,
 } from "~/stores/nowPlaying";
+import { librarySelectors } from "~/stores/library";
 import { uiOperations } from "~/stores/ui";
 import Views from "~/constants/Views";
 
 const mapStateToProps = (state) => ({
-    tracks: state.tracks,
+    tracks: librarySelectors.getTracks(state),
     nowPlaying: nowPlayingSelectors.getNowPlayingWithTrack(state),
     ui: state.ui,
     location: state.router.location,

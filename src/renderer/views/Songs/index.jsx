@@ -1,12 +1,13 @@
 import { connect } from "react-redux";
 import Songs from "./ui";
+import { librarySelectors } from "~/stores/library";
 import {
     nowPlayingOperations,
     nowPlayingSelectors,
 } from "~/stores/nowPlaying";
 
 const mapStateToProps = (state) => ({
-    tracks: state.tracks,
+    tracks: librarySelectors.getTracks(state),
     nowPlaying: nowPlayingSelectors.getNowPlayingWithTrack(state),
 });
 

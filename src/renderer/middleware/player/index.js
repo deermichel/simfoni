@@ -1,5 +1,6 @@
 import AudioPlayer from "./audioPlayer";
 import { nowPlayingOperations } from "~/stores/nowPlaying";
+import { librarySelectors } from "~/stores/library";
 import PlayState from "~/constants/PlayState";
 
 let player = null;
@@ -36,8 +37,9 @@ const update = (previousState, currentState) => {
     const currentTrack = currentState.nowPlaying.get("currentTrack");
     let playRequested = false;
     if (currentTrack !== previousState.nowPlaying.get("currentTrack")) {
-        const track = currentState.tracks.find((t) => t.get("id") === currentTrack);
-        player.load(track.get("source"));
+        const tracks = librarySelectors.getTracks(currentState);
+        const track = tracks.find((t) => t.id === currentTrack);
+        player.load(track.uri);
         playRequested = true;
     }
 

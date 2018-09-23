@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import {
     Volume,
     Volume1,
@@ -11,19 +10,6 @@ import styles from "./style.scss";
 import { ButtonSize } from "~/components/IconButton";
 
 const { iconSize } = ButtonSize.SMALL;
-
-const propTypes = {
-    onMute: PropTypes.func,
-    onSetVolume: PropTypes.func,
-    volume: PropTypes.number,
-    muted: PropTypes.bool,
-};
-const defaultProps = {
-    onMute: () => 0,
-    onSetVolume: () => 0,
-    volume: 1.0,
-    muted: false,
-};
 
 class VolumeControl extends React.Component {
     constructor() {
@@ -117,8 +103,5 @@ class VolumeControl extends React.Component {
         );
     }
 }
-
-VolumeControl.propTypes = propTypes;
-VolumeControl.defaultProps = defaultProps;
 
 export default VolumeControl;

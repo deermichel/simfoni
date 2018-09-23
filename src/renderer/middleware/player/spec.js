@@ -68,10 +68,10 @@ describe("player middleware", () => {
             playerMiddleware(fakePlayer),
         ));
         store.dispatch({
-            type: "SET_TRACKS",
-            payload: { tracks: [{ id: "track", source: "url" }] },
+            type: "ADD_TRACK",
+            payload: { track: { uri: "url" } },
         });
-        const action = nowPlayingActions.playTrack("track");
+        const action = nowPlayingActions.playTrack(0);
         store.dispatch(action);
 
         expect(fakePlayer.load).to.have.been.calledOnceWith("url");
@@ -86,12 +86,12 @@ describe("player middleware", () => {
             playerMiddleware(fakePlayer),
         ));
         store.dispatch({
-            type: "SET_TRACKS",
-            payload: { tracks: [{ id: "track", source: "url" }] },
+            type: "ADD_TRACK",
+            payload: { track: { uri: "url" } },
         });
         store.dispatch({
             type: "PLAY_TRACK",
-            payload: { track: "track" },
+            payload: { track: 0 },
         });
         const action = nowPlayingActions.togglePlayback();
         store.dispatch(action);
@@ -107,12 +107,12 @@ describe("player middleware", () => {
             playerMiddleware(fakePlayer),
         ));
         store.dispatch({
-            type: "SET_TRACKS",
-            payload: { tracks: [{ id: "track", source: "url" }] },
+            type: "ADD_TRACK",
+            payload: { track: { uri: "url" } },
         });
         store.dispatch({
             type: "PLAY_TRACK",
-            payload: { track: "track" },
+            payload: { track: 0 },
         });
         const action = nowPlayingActions.toggleMute();
         store.dispatch(action);
@@ -128,12 +128,12 @@ describe("player middleware", () => {
             playerMiddleware(fakePlayer),
         ));
         store.dispatch({
-            type: "SET_TRACKS",
-            payload: { tracks: [{ id: "track", source: "url" }] },
+            type: "ADD_TRACK",
+            payload: { track: { uri: "url" } },
         });
         store.dispatch({
             type: "PLAY_TRACK",
-            payload: { track: "track" },
+            payload: { track: 0 },
         });
         const action = nowPlayingActions.setVolume(0.5);
         store.dispatch(action);
@@ -149,12 +149,12 @@ describe("player middleware", () => {
             playerMiddleware(fakePlayer),
         ));
         store.dispatch({
-            type: "SET_TRACKS",
-            payload: { tracks: [{ id: "track", source: "url" }] },
+            type: "ADD_TRACK",
+            payload: { track: { uri: "url" } },
         });
         store.dispatch({
             type: "PLAY_TRACK",
-            payload: { track: "track" },
+            payload: { track: 0 },
         });
         const action = nowPlayingActions.seek(23);
         store.dispatch(action);

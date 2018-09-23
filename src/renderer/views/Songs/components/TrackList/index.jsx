@@ -1,28 +1,15 @@
 import React from "react";
-import PropTypes from "prop-types";
-import ImmutablePropTypes from "react-immutable-proptypes";
-import { Map, List } from "immutable";
 import {
     List as VList,
     AutoSizer,
     CellMeasurer,
     CellMeasurerCache,
 } from "react-virtualized";
+import { Map } from "immutable";
 import Clickable from "~/components/Clickable";
 import Track from "./components/Track";
 import Header from "./components/Header";
 import styles from "./style.scss";
-
-const propTypes = {
-    tracks: ImmutablePropTypes.list,
-    icons: ImmutablePropTypes.map,
-    onClickTrack: PropTypes.func,
-};
-const defaultProps = {
-    tracks: List(),
-    icons: Map(),
-    onClickTrack: () => 0,
-};
 
 const cache = new CellMeasurerCache({
     fixedWidth: true,
@@ -30,7 +17,7 @@ const cache = new CellMeasurerCache({
 });
 
 const TrackItem = ({ index, style, parent, tracks, icons, onClickTrack }) => { // eslint-disable-line
-    const track = tracks.get(index);
+    const track = tracks[index];
     return (track) ? (
         <CellMeasurer
             cache={cache}
@@ -39,15 +26,15 @@ const TrackItem = ({ index, style, parent, tracks, icons, onClickTrack }) => { /
             rowIndex={index}
         >
             <div className={(index % 2) ? styles.oddtrackitem : styles.trackitem} style={style}>
-                <Clickable onClick={() => onClickTrack(track.get("id"))}>
-                    <Track track={track} icon={icons.get(track.get("id"))} />
+                <Clickable onClick={() => onClickTrack(track.id)}>
+                    <Track track={track} icon={icons.get(`${track.id}`)} />
                 </Clickable>
             </div>
         </CellMeasurer>
     ) : null;
 };
 
-const TrackList = ({ tracks, icons, onClickTrack }) => (
+const TrackList = ({ tracks = [], icons = Map(), onClickTrack }) => (
     <div className={styles.tracklist}>
         <div className={styles.header}>
             <Header />
@@ -59,7 +46,7 @@ const TrackList = ({ tracks, icons, onClickTrack }) => (
                         deferredMeasurementCache={cache}
                         className={styles.tracks}
                         height={height || 100}
-                        rowCount={tracks.size}
+                        rowCount={tracks.length}
                         rowHeight={cache.rowHeight}
                         rowRenderer={(rowProps) => (
                             <TrackItem
@@ -77,8 +64,5 @@ const TrackList = ({ tracks, icons, onClickTrack }) => (
         </div>
     </div>
 );
-
-TrackList.propTypes = propTypes;
-TrackList.defaultProps = defaultProps;
 
 export default TrackList;

@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import {
     Disc,
     List,
@@ -10,32 +9,14 @@ import styles from "./style.scss";
 import MenuItem from "./components/MenuItem";
 import Views from "~/constants/Views";
 
-const propTypes = {
-    show: PropTypes.bool,
-    onNavigate: PropTypes.shape({
-        artists: PropTypes.func,
-        albums: PropTypes.func,
-        songs: PropTypes.func,
-        settings: PropTypes.func,
-    }),
-    location: PropTypes.shape({
-        pathname: PropTypes.string,
-    }),
-};
-const defaultProps = {
-    show: true,
-    onNavigate: {},
-    location: { pathname: "" },
-};
-
 // later: make resizable?
 
 const isActive = (location, view) => location.pathname.startsWith(view);
 
 const Menu = ({
-    show,
-    onNavigate,
-    location,
+    show = true,
+    onNavigate = {},
+    location = { pathname: "" },
 }) => (
     <div className={styles.menu}>
         <div className={(show) ? styles.container : styles.hidden}>
@@ -85,8 +66,5 @@ const Menu = ({
         </div>
     </div>
 );
-
-Menu.propTypes = propTypes;
-Menu.defaultProps = defaultProps;
 
 export default Menu;

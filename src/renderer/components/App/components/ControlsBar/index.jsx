@@ -1,6 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
-import ImmutablePropTypes from "react-immutable-proptypes";
 import { Map } from "immutable";
 import SkipButton, { SkipDirection } from "./components/SkipButton";
 import PlayButton from "./components/PlayButton";
@@ -11,29 +9,8 @@ import styles from "./style.scss";
 import VolumeControl from "./components/VolumeControl";
 import MenuButton from "./components/MenuButton";
 
-const propTypes = {
-    nowPlaying: ImmutablePropTypes.map,
-    onSkipForward: PropTypes.func,
-    onSkipBackward: PropTypes.func,
-    onPlay: PropTypes.func,
-    onSeek: PropTypes.func,
-    onMute: PropTypes.func,
-    onSetVolume: PropTypes.func,
-    onShowMenu: PropTypes.func,
-};
-const defaultProps = {
-    nowPlaying: Map(),
-    onSkipForward: () => 0,
-    onSkipBackward: () => 0,
-    onPlay: () => 0,
-    onSeek: () => 0,
-    onMute: () => 0,
-    onSetVolume: () => 0,
-    onShowMenu: () => 0,
-};
-
 const ControlsBar = ({
-    nowPlaying,
+    nowPlaying = Map(),
     onSkipForward,
     onSkipBackward,
     onPlay,
@@ -82,8 +59,5 @@ const ControlsBar = ({
         </div>
     </div>
 );
-
-ControlsBar.propTypes = propTypes;
-ControlsBar.defaultProps = defaultProps;
 
 export default ControlsBar;

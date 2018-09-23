@@ -1,7 +1,7 @@
 import actions from "./actions";
 
-const { setTracks } = actions;
+const { addTrack } = actions;
 
 export default {
-    setTracks,
+    addTrack,
 };

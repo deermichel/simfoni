@@ -2,6 +2,8 @@ const { app, BrowserWindow } = require("electron");
 
 const isDevelopment = process.env.NODE_ENV !== "production";
 
+process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = "true"; // TODO: remove
+
 let mainWindow;
 
 const createMainWindow = () => {

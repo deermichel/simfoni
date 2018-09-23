@@ -2,7 +2,7 @@ import recursiveReaddir from "recursive-readdir";
 import { parseFile } from "music-metadata";
 import path from "path";
 import { Map } from "immutable";
-import { tracksOperations } from "~/stores/tracks";
+// import { tracksOperations } from "~/stores/tracks";
 
 const supportedTypes = [".mp3"];
 
@@ -87,7 +87,7 @@ export default (store) => (next) => (action) => {
         tracks = tracks.push(...newTracks);
 
         if (currentWorkState === currentState) { // still relevant?
-            store.dispatch(tracksOperations.setTracks(tracks));
+            // store.dispatch(tracksOperations.setTracks(tracks));
         }
     });
 

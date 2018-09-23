@@ -1,25 +1,12 @@
 import React from "react";
-import PropTypes from "prop-types";
-import ImmutablePropTypes from "react-immutable-proptypes";
 import { List, Map } from "immutable";
 import { Play, Pause } from "react-feather";
 import TrackList from "./components/TrackList";
 import PlayState from "~/constants/PlayState";
 import styles from "./style.scss";
 
-const propTypes = {
-    tracks: ImmutablePropTypes.list,
-    nowPlaying: ImmutablePropTypes.map,
-    onPlayQueue: PropTypes.func,
-};
-const defaultProps = {
-    tracks: List(),
-    nowPlaying: Map(),
-    onPlayQueue: () => 0,
-};
-
 const onClickTrack = (onPlayQueue, tracks, trackId) => {
-    const trackIds = tracks.map((track) => track.get("id"));
+    const trackIds = List(tracks.map((track) => track.id));
     const queue = trackIds.skipUntil((id) => id === trackId);
     const history = trackIds.takeUntil((id) => id === trackId);
     onPlayQueue(queue, history.reverse());
@@ -33,8 +20,8 @@ const icons = (nowPlaying) => Map({
 });
 
 const Songs = ({
-    tracks,
-    nowPlaying,
+    tracks = [],
+    nowPlaying = Map(),
     onPlayQueue,
 }) => (
     <div className={styles.songs}>
@@ -45,8 +32,5 @@ const Songs = ({
         />
     </div>
 );
-
-Songs.propTypes = propTypes;
-Songs.defaultProps = defaultProps;
 
 export default Songs;

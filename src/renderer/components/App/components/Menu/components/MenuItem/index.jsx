@@ -1,20 +1,6 @@
 import React from "react";
-import PropTypes from "prop-types";
 import styles from "./style.scss";
 import Clickable from "~/components/Clickable";
-
-const propTypes = {
-    text: PropTypes.string,
-    active: PropTypes.bool,
-    icon: PropTypes.node,
-    onClick: PropTypes.func,
-};
-const defaultProps = {
-    text: "",
-    active: false,
-    icon: null,
-    onClick: () => 0,
-};
 
 const MenuItem = ({
     text,
@@ -35,8 +21,5 @@ const MenuItem = ({
         </Clickable>
     </div>
 );
-
-MenuItem.propTypes = propTypes;
-MenuItem.defaultProps = defaultProps;
 
 export default MenuItem;

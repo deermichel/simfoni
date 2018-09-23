@@ -1,11 +1,11 @@
 import { combineReducers } from "redux";
-import tracksReducer from "./tracks";
+import libraryReducer from "./library";
 import nowPlayingReducer from "./nowPlaying";
 import uiReducer from "./ui";
 import settingsReducer from "./settings";
 
 const rootReducer = combineReducers({
-    tracks: tracksReducer,
+    library: libraryReducer,
     nowPlaying: nowPlayingReducer,
     ui: uiReducer,
     settings: settingsReducer,

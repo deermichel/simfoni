@@ -1,22 +1,9 @@
 import React from "react";
 import { remote } from "electron";
-import PropTypes from "prop-types";
-import ImmutablePropTypes from "react-immutable-proptypes";
 import { Set } from "immutable";
 import { Delete, Plus } from "react-feather";
 import IconButton, { ButtonSize } from "~/components/IconButton";
 import styles from "./style.scss";
-
-const propTypes = {
-    paths: ImmutablePropTypes.set,
-    onAdd: PropTypes.func,
-    onRemove: PropTypes.func,
-};
-const defaultProps = {
-    paths: Set(),
-    onAdd: () => 0,
-    onRemove: () => 0,
-};
 
 const addPathsDialog = (onAdd) => {
     const newPaths = remote.dialog.showOpenDialog({
@@ -28,7 +15,7 @@ const addPathsDialog = (onAdd) => {
     }
 };
 
-const SearchPaths = ({ paths, onAdd, onRemove }) => (
+const SearchPaths = ({ paths = Set(), onAdd, onRemove }) => (
     <div className={styles.searchpaths}>
         <div className={styles.title}>
             Search Paths
@@ -58,8 +45,5 @@ const SearchPaths = ({ paths, onAdd, onRemove }) => (
         </div>
     </div>
 );
-
-SearchPaths.propTypes = propTypes;
-SearchPaths.defaultProps = defaultProps;
 
 export default SearchPaths;

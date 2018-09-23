@@ -1,13 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
 import styles from "./style.scss";
-
-const propTypes = {
-    text: PropTypes.string,
-};
-const defaultProps = {
-    text: "",
-};
 
 class ScrollingText extends React.Component {
     constructor() {
@@ -55,8 +47,5 @@ class ScrollingText extends React.Component {
         );
     }
 }
-
-ScrollingText.propTypes = propTypes;
-ScrollingText.defaultProps = defaultProps;
 
 export default ScrollingText;

@@ -1,3 +1,4 @@
+import { REHYDRATE } from "redux-persist";
 import AudioPlayer from "./audioPlayer";
 import { nowPlayingOperations } from "~/stores/nowPlaying";
 import { librarySelectors } from "~/stores/library";
@@ -70,7 +71,7 @@ export default (audioPlayer = new AudioPlayer()) => (store) => {
 
     // main middleware
     return (next) => (action) => {
-        if (!action.meta || !action.meta.player) {
+        if (action.type !== REHYDRATE && (!action.meta || !action.meta.player)) {
             return next(action);
         }
 

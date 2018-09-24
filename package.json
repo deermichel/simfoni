@@ -64,7 +64,6 @@
   },
   "dependencies": {
     "connected-react-router": "^4.4.1",
-    "electron-json-storage": "^4.1.2",
     "history": "^4.7.2",
     "immutable": "^3.8.2",
     "react": "^16.4.2",
@@ -76,6 +75,8 @@
     "redux": "^4.0.0",
     "redux-logger": "^3.0.6",
     "redux-orm": "^0.12.1",
+    "redux-persist": "^5.10.0",
+    "redux-persist-transform-immutable": "^5.0.0",
     "redux-thunk": "^2.3.0",
     "reselect": "^3.0.1"
   }

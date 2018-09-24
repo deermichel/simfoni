@@ -1,0 +1,38 @@
+.textbutton {
+    display: grid;
+    min-height: 32px;
+
+    .disabled {
+        align-items: center;
+        align-self: center;
+        border-radius: 32px;
+        display: grid;
+        height: 32px;
+        justify-items: center;
+        justify-self: center;
+        opacity: .3;
+        padding: 0 12px;
+        transition:
+            background .1s ease-out,
+            opacity .2s ease-out;
+
+        &.withicon {
+            grid-template-columns: 32px auto;
+            padding-left: 0;
+        }
+    }
+
+    .container {
+        @extend .disabled;
+
+        opacity: 1;
+    }
+
+    &:hover .container {
+        background: __COLOR_PRIMARY_BASE;
+
+        &.destructive {
+            background: lighten(__COLOR_SECONDARY_LIGHT, 25);
+        }
+    }
+}

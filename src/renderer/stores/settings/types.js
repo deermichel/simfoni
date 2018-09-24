@@ -1,4 +1,0 @@
-export default {
-    ADD_SEARCH_PATHS: "ADD_SEARCH_PATHS",
-    REMOVE_SEARCH_PATH: "REMOVE_SEARCH_PATH",
-};

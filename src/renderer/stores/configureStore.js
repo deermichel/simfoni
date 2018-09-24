@@ -9,7 +9,6 @@ import thunkMiddleware from "redux-thunk";
 import rootReducer from "./rootReducer";
 import PlayState from "~/constants/PlayState";
 import playerMiddleware from "~/middleware/player";
-import trackProviderMiddleware from "~/middleware/trackProvider";
 
 const stateTransformer = (state) => {
     const newState = {};
@@ -46,7 +45,6 @@ const configureStore = (history, initialState) => createStore(
         routerMiddleware(history),
         loggerMiddleware,
         playerMiddleware(),
-        trackProviderMiddleware,
     ),
 );
 

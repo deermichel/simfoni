@@ -7,8 +7,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    onAddSearchPaths: (paths) => dispatch(settingsOperations.addSearchPaths(paths)),
-    onRemoveSearchPath: (path) => dispatch(settingsOperations.removeSearchPath(path)),
+    onImportFolders: (folders) => dispatch(settingsOperations.importFolders(folders)),
 });
 
 const SettingsContainer = connect(

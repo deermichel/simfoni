@@ -4,7 +4,7 @@ import { Iterable } from "immutable";
 import { createLogger } from "redux-logger";
 import { persistReducer, createTransform } from "redux-persist";
 import immutableTransform from "redux-persist-transform-immutable";
-import storage from "redux-persist/lib/storage";
+import createElectronStorage from "redux-persist-electron-storage";
 import thunkMiddleware from "redux-thunk";
 import rootReducer from "./rootReducer";
 import PlayState from "~/constants/PlayState";
@@ -33,7 +33,7 @@ const playStateTransform = createTransform((state) => {
 const persistConfig = {
     transforms: [playStateTransform, immutableTransform()],
     key: "root",
-    storage,
+    storage: createElectronStorage(),
 };
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 

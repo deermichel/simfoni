@@ -3,35 +3,39 @@ import orm from "./orm";
 
 const INITIAL_STATE = orm.getEmptyState();
 
-const addTrack = (session, payload) => {
+const addTracks = (session, payload) => {
     const { Artist, Album, Track } = session;
 
-    let artist = Artist.get({ name: payload.track.artist });
-    if (!artist) {
-        artist = Artist.create({ name: payload.track.artist });
-    }
+    payload.tracks.forEach((track) => {
+        if (Track.exists({ uri: track.uri })) {
+            return;
+        }
 
-    let album = Album.get({ name: payload.track.album, artist: artist.id });
-    if (!album) {
-        album = Album.create({ name: payload.track.album, artist: artist.id });
-    }
+        let artist = Artist.get({ name: track.artist });
+        if (!artist) {
+            artist = Artist.create({ name: track.artist });
+        }
 
-    if (!Track.exists({ uri: payload.track.uri })) {
+        let album = Album.get({ name: track.album, artist: artist.id });
+        if (!album) {
+            album = Album.create({ name: track.album, artist: artist.id });
+        }
+
         Track.create({
-            title: payload.track.title,
-            duration: payload.track.duration,
-            uri: payload.track.uri,
+            title: track.title,
+            duration: track.duration,
+            uri: track.uri,
             album: album.id,
         });
-    }
+    });
 };
 
 const libraryReducer = (state = INITIAL_STATE, action) => {
     const session = orm.session(state);
 
     switch (action.type) {
-        case types.ADD_TRACK:
-            addTrack(session, action.payload);
+        case types.ADD_TRACKS:
+            addTracks(session, action.payload);
             break;
         default:
             break;

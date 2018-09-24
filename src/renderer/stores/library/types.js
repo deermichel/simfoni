@@ -1,3 +1,3 @@
 export default {
-    ADD_TRACK: "ADD_TRACK",
+    ADD_TRACKS: "ADD_TRACKS",
 };

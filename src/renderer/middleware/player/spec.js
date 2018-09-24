@@ -68,8 +68,8 @@ describe("player middleware", () => {
             playerMiddleware(fakePlayer),
         ));
         store.dispatch({
-            type: "ADD_TRACK",
-            payload: { track: { uri: "url" } },
+            type: "ADD_TRACKS",
+            payload: { tracks: [{ uri: "url" }] },
         });
         const action = nowPlayingActions.playTrack(0);
         store.dispatch(action);
@@ -86,8 +86,8 @@ describe("player middleware", () => {
             playerMiddleware(fakePlayer),
         ));
         store.dispatch({
-            type: "ADD_TRACK",
-            payload: { track: { uri: "url" } },
+            type: "ADD_TRACKS",
+            payload: { tracks: [{ uri: "url" }] },
         });
         store.dispatch({
             type: "PLAY_TRACK",
@@ -107,8 +107,8 @@ describe("player middleware", () => {
             playerMiddleware(fakePlayer),
         ));
         store.dispatch({
-            type: "ADD_TRACK",
-            payload: { track: { uri: "url" } },
+            type: "ADD_TRACKS",
+            payload: { tracks: [{ uri: "url" }] },
         });
         store.dispatch({
             type: "PLAY_TRACK",
@@ -128,8 +128,8 @@ describe("player middleware", () => {
             playerMiddleware(fakePlayer),
         ));
         store.dispatch({
-            type: "ADD_TRACK",
-            payload: { track: { uri: "url" } },
+            type: "ADD_TRACKS",
+            payload: { tracks: [{ uri: "url" }] },
         });
         store.dispatch({
             type: "PLAY_TRACK",
@@ -149,8 +149,8 @@ describe("player middleware", () => {
             playerMiddleware(fakePlayer),
         ));
         store.dispatch({
-            type: "ADD_TRACK",
-            payload: { track: { uri: "url" } },
+            type: "ADD_TRACKS",
+            payload: { tracks: [{ uri: "url" }] },
         });
         store.dispatch({
             type: "PLAY_TRACK",

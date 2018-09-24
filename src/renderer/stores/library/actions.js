@@ -1,10 +1,10 @@
 import types from "./types";
 
-const addTrack = (track) => ({
-    type: types.ADD_TRACK,
-    payload: { track },
+const addTracks = (tracks) => ({
+    type: types.ADD_TRACKS,
+    payload: { tracks },
 });
 
 export default {
-    addTrack,
+    addTracks,
 };

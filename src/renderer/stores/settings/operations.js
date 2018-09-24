@@ -55,7 +55,7 @@ const getTracksWithMetadata = (files) => new Promise((resolve, reject) => {
 
 const importFolders = (folders) => (dispatch) => {
     getFiles(folders).then(getTracksWithMetadata).then((tracks) => {
-        tracks.forEach((track) => dispatch(libraryOperations.addTrack(track)));
+        dispatch(libraryOperations.addTracks(tracks));
     });
 };
 

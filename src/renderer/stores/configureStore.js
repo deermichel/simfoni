@@ -5,6 +5,7 @@ import { createLogger } from "redux-logger";
 import thunkMiddleware from "redux-thunk";
 import rootReducer from "./rootReducer";
 import playerMiddleware from "~/middleware/player";
+import persistMiddleware from "~/middleware/persist";
 
 const stateTransformer = (state) => {
     const newState = {};
@@ -27,6 +28,7 @@ const configureStore = (history, initialState) => createStore(
         thunkMiddleware,
         routerMiddleware(history),
         loggerMiddleware,
+        persistMiddleware,
         playerMiddleware(),
     ),
 );

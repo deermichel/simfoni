@@ -29,6 +29,7 @@ const stopPlayback = () => ({ type: types.STOP_PLAYBACK, meta: { player: true } 
 const updateTime = (time) => ({
     type: types.UPDATE_TIME,
     payload: { time },
+    meta: { persist: { ignore: true } }, // love your disk
 });
 
 const toggleMute = () => ({ type: types.TOGGLE_MUTE, meta: { player: true } });

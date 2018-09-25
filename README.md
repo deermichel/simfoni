@@ -3,5 +3,5 @@
 _TODO_
 - Redux-ORM (library store) tests
 - TrackProvider tests
+- Persist tests
 - Vinyl Background
-- Dont persist every UPDATE_TIME!

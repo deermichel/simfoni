@@ -56,7 +56,7 @@ describe("player middleware", () => {
         const action = nowPlayingActions.stopPlayback();
         store.dispatch(action);
 
-        expect(fakePlayer.pause.calledOnce).to.equal(true);
+        expect(fakePlayer.pause.calledTwice).to.equal(true); // one for init (stop), one for action
     });
 
     it("invokes player.load() and player.play() if playback started", () => {
@@ -96,7 +96,7 @@ describe("player middleware", () => {
         const action = nowPlayingActions.togglePlayback();
         store.dispatch(action);
 
-        expect(fakePlayer.pause.calledOnce).to.equal(true);
+        expect(fakePlayer.pause.calledTwice).to.equal(true); // one for init (stop), one for action
     });
 
     it("invokes player.mute() if muted", () => {

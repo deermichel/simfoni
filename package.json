@@ -64,6 +64,7 @@
   },
   "dependencies": {
     "connected-react-router": "^4.4.1",
+    "electron-store": "^2.0.0",
     "history": "^4.7.2",
     "immutable": "^3.8.2",
     "music-metadata": "^3.1.0",
@@ -77,10 +78,8 @@
     "redux": "^4.0.0",
     "redux-logger": "^3.0.6",
     "redux-orm": "^0.12.1",
-    "redux-persist": "^5.10.0",
-    "redux-persist-electron-storage": "^1.1.2",
-    "redux-persist-transform-immutable": "^5.0.0",
     "redux-thunk": "^2.3.0",
+    "remotedev-serialize": "^0.1.1",
     "reselect": "^3.0.1"
   }
 }

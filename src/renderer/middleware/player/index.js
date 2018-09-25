@@ -1,4 +1,4 @@
-import { REHYDRATE } from "redux-persist";
+import { Map } from "immutable";
 import AudioPlayer from "./audioPlayer";
 import { nowPlayingOperations } from "~/stores/nowPlaying";
 import { librarySelectors } from "~/stores/library";
@@ -14,7 +14,7 @@ const updateTime = (store, time) => {
 
 const ended = (store) => store.dispatch(nowPlayingOperations.skipForward());
 
-const update = (previousState, currentState) => {
+const update = (currentState, previousState = { nowPlaying: Map() }) => {
     // stopped?
     const playState = currentState.nowPlaying.get("playState");
     if (playState === PlayState.STOPPED) {
@@ -69,9 +69,18 @@ export default (audioPlayer = new AudioPlayer()) => (store) => {
     player.setUpdateTimeCallback((time) => updateTime(store, time));
     player.setEndedCallback(() => ended(store));
 
+    // init: update player (to persisted state)
+    if (store) {
+        const state = store.getState();
+        if (state.nowPlaying.get("playState") === PlayState.PLAYING) {
+            state.nowPlaying = state.nowPlaying.set("playState", PlayState.PAUSED);
+        }
+        update(state);
+    }
+
     // main middleware
     return (next) => (action) => {
-        if (action.type !== REHYDRATE && (!action.meta || !action.meta.player)) {
+        if (!action.meta || !action.meta.player) {
             return next(action);
         }
 
@@ -79,7 +88,7 @@ export default (audioPlayer = new AudioPlayer()) => (store) => {
         const result = next(action);
         const currentState = store.getState();
 
-        update(previousState, currentState);
+        update(currentState, previousState);
 
         return result;
     };

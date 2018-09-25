@@ -21,7 +21,7 @@ module.exports = (env, argv) => ({
     entry: "./src/renderer/index.jsx",
     output: {
         path: path.join(__dirname, "build"),
-        filename: "bundle.js",
+        filename: "renderer.js",
     },
     target: "electron-renderer",
 
@@ -70,5 +70,6 @@ module.exports = (env, argv) => ({
         contentBase: path.join(__dirname, "build"),
         inline: true,
         hot: true,
+        port: 9000,
     },
 });

@@ -15,7 +15,10 @@
   },
   "main": "src/main/index.js",
   "scripts": {
-    "dev": "concurrently -k 'webpack-dev-server --mode development' 'NODE_ENV=dev electron .'",
+    "dev": "concurrently -k 'yarn dev:remote' 'yarn dev:renderer' 'yarn dev:electron'",
+    "dev:electron": "NODE_ENV=dev electron .",
+    "dev:renderer": "webpack-dev-server --mode development --config=renderer.webpack.config.js",
+    "dev:remote": "webpack-dev-server --mode development --config=remote.webpack.config.js",
     "test": "electron-mocha --require babel-core/register --require ignore-styles --require ./test/setup.js 'src/**/*spec@(.js|.jsx)'",
     "lint": "eslint ./src --ext .js,.jsx",
     "build": "./build.sh"

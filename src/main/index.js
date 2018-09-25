@@ -1,6 +1,6 @@
 const { app, BrowserWindow } = require("electron");
 
-const isDevelopment = process.env.NODE_ENV !== "production";
+const devMode = process.env.NODE_ENV === "dev";
 
 process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = "true"; // TODO: remove
 
@@ -11,11 +11,11 @@ const createMainWindow = () => {
         webPreferences: { webSecurity: false }, // TODO: better player to avoid file:// urls
     });
 
-    if (isDevelopment) {
+    if (devMode) {
         window.webContents.openDevTools();
         window.loadURL("http://localhost:8080");
     } else {
-        // TODO
+        window.loadFile("index.html");
     }
 
     window.on("closed", () => {

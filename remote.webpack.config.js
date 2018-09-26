@@ -21,7 +21,7 @@ module.exports = {
     },
 
     plugins: [
-        new HtmlWebpackPlugin({ title: "simfoni" }),
+        new HtmlWebpackPlugin({ title: "simfoni", filename: "remote.html" }),
     ],
 
     devServer: {

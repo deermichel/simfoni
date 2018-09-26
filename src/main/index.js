@@ -28,17 +28,17 @@ const createMainWindow = () => {
 
 const createRemoteWindow = () => {
     const window = new BrowserWindow({
-        show: true,
+        show: false,
         webPreferences: { webSecurity: false }, // TODO: better player to avoid file:// urls
     });
 
     if (devMode) {
         window.webContents.openDevTools();
         setTimeout(() => {
-            window.loadURL("http://localhost:9001");
+            window.loadURL("http://localhost:9001/remote.html");
         }, 2000);
     } else {
-        window.loadFile("index.html");
+        window.loadFile("remote.html");
     }
 
     return window;

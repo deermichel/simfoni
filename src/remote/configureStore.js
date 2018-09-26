@@ -1,9 +1,10 @@
 import { createStore, applyMiddleware } from "redux";
-import { connectRouter, routerMiddleware } from "connected-react-router";
 import { Iterable } from "immutable";
 import { createLogger } from "redux-logger";
 import thunkMiddleware from "redux-thunk";
-import rootReducer from "./rootReducer";
+import rootReducer from "~/stores/rootReducer";
+import playerMiddleware from "~/middleware/player";
+import persistMiddleware from "~/middleware/persist";
 import remoteMiddleware from "~/middleware/remote";
 
 const stateTransformer = (state) => {
@@ -20,14 +21,15 @@ const stateTransformer = (state) => {
 
 const loggerMiddleware = createLogger({ stateTransformer });
 
-const configureStore = (history, initialState) => createStore(
-    connectRouter(history)(rootReducer),
+const configureStore = (initialState) => createStore(
+    rootReducer,
     initialState,
     applyMiddleware(
         thunkMiddleware,
-        routerMiddleware(history),
         loggerMiddleware,
-        remoteMiddleware("remoteWindow"),
+        persistMiddleware,
+        playerMiddleware(),
+        remoteMiddleware("mainWindow"),
     ),
 );
 

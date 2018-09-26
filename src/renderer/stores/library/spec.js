@@ -69,6 +69,33 @@ describe("library reducer", () => {
         expect(way.duration).to.equal(249);
         expect(way.uri).to.equal("way.mp3");
     });
+
+    it("handles UPDATE_TRACK", () => {
+        const initialState = getPreState();
+        const session = orm.session(initialState);
+        const action = actions.updateTrack({
+            id: session.Track.all().first().id,
+            artist: "Ben Rector & Friends",
+            uri: "newpath.mp3",
+        });
+        const nextState = reducer(initialState, action);
+        const { Artist, Album, Track } = orm.session(nextState);
+
+        expect(Artist.all().count()).to.equal(2);
+        expect(Album.all().count()).to.equal(2);
+        expect(Track.all().count()).to.equal(1);
+
+        expect(Artist.exists({ name: "Ben Rector & Friends" })).to.equal(true);
+        expect(Album.exists({
+            name: "Magic",
+            artist: Artist.get({ name: "Ben Rector & Friends" }).id,
+        })).to.equal(true);
+        const track = Track.all().first();
+        expect(track.title).to.equal("I Will Always Be Yours");
+        expect(track.album.artist.name).to.equal("Ben Rector & Friends");
+        expect(track.album.name).to.equal("Magic");
+        expect(track.uri).to.equal("newpath.mp3");
+    });
 });
 
 describe("library selectors", () => {

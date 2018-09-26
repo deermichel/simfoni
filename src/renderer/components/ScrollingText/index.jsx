@@ -32,7 +32,7 @@ class ScrollingText extends React.Component {
 
     render() {
         const { animate } = this.state;
-        const { text } = this.props;
+        const { text = "" } = this.props;
         return (
             <div className={styles.scrollingtext} ref={(el) => { this.container = el; }}>
                 <span

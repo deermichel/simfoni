@@ -7,6 +7,14 @@ import rootReducer from "~/stores/rootReducer";
 import nowPlayingActions from "~/stores/nowPlaying/actions";
 
 describe("player middleware", () => {
+    const track = {
+        title: "We Dance (orig. by Bethel Music)",
+        artist: "Aileen Haude",
+        album: "Covers",
+        duration: 309,
+        uri: "wedance.mp3",
+    };
+
     it("sets the update time callback", () => {
         const fakePlayer = sinon.createStubInstance(AudioPlayer);
         fakePlayer.setUpdateTimeCallback = sinon.stub();
@@ -69,12 +77,12 @@ describe("player middleware", () => {
         ));
         store.dispatch({
             type: "ADD_TRACKS",
-            payload: { tracks: [{ uri: "url" }] },
+            payload: { tracks: [track] },
         });
         const action = nowPlayingActions.playTrack(0);
         store.dispatch(action);
 
-        expect(fakePlayer.load).to.have.been.calledOnceWith("url");
+        expect(fakePlayer.load).to.have.been.calledOnceWith("wedance.mp3");
         expect(fakePlayer.play.calledOnce).to.equal(true);
     });
 
@@ -87,7 +95,7 @@ describe("player middleware", () => {
         ));
         store.dispatch({
             type: "ADD_TRACKS",
-            payload: { tracks: [{ uri: "url" }] },
+            payload: { tracks: [track] },
         });
         store.dispatch({
             type: "PLAY_TRACK",
@@ -108,7 +116,7 @@ describe("player middleware", () => {
         ));
         store.dispatch({
             type: "ADD_TRACKS",
-            payload: { tracks: [{ uri: "url" }] },
+            payload: { tracks: [track] },
         });
         store.dispatch({
             type: "PLAY_TRACK",
@@ -129,7 +137,7 @@ describe("player middleware", () => {
         ));
         store.dispatch({
             type: "ADD_TRACKS",
-            payload: { tracks: [{ uri: "url" }] },
+            payload: { tracks: [track] },
         });
         store.dispatch({
             type: "PLAY_TRACK",
@@ -150,7 +158,7 @@ describe("player middleware", () => {
         ));
         store.dispatch({
             type: "ADD_TRACKS",
-            payload: { tracks: [{ uri: "url" }] },
+            payload: { tracks: [track] },
         });
         store.dispatch({
             type: "PLAY_TRACK",

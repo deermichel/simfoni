@@ -5,6 +5,9 @@ const addTracks = (tracks) => ({
     payload: { tracks },
 });
 
+const updateTrack = (track) => ({ type: types.UPDATE_TRACK, payload: { track } });
+
 export default {
     addTracks,
+    updateTrack,
 };

@@ -37,9 +37,9 @@ const getTracksWithMetadata = (files) => new Promise((resolve, reject) => {
         parseFile(f)
             .then((meta) => {
                 tracks.push({
-                    title: meta.common.title,
-                    artist: meta.common.artist,
-                    album: meta.common.album,
+                    title: meta.common.title || path.basename(f, path.extname(f)),
+                    artist: meta.common.artist || " ",
+                    album: meta.common.album || " ",
                     duration: Math.ceil(meta.format.duration),
                     uri: `file://${f}`,
                 });

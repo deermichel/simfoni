@@ -71,11 +71,7 @@ export default (audioPlayer = new AudioPlayer()) => (store) => {
 
     // init: update player (to persisted state)
     if (store) {
-        const state = store.getState();
-        if (state.nowPlaying.get("playState") === PlayState.PLAYING) {
-            state.nowPlaying = state.nowPlaying.set("playState", PlayState.PAUSED);
-        }
-        update(state);
+        update(store.getState());
     }
 
     // main middleware

@@ -37,7 +37,7 @@ export default (store) => (next) => (action) => {
 
 export const getPersistedState = () => {
     const keys = metaStore.get("keys", []);
-    const state = [];
+    const state = {};
 
     keys.forEach((key) => {
         const store = new Store({ name: key });

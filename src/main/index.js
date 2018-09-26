@@ -28,7 +28,7 @@ const createMainWindow = () => {
 
 const createRemoteWindow = () => {
     const window = new BrowserWindow({
-        show: false,
+        show: devMode,
         webPreferences: { webSecurity: false }, // TODO: better player to avoid file:// urls
     });
 

@@ -2,5 +2,4 @@
 
 _TODO_
 - TrackProvider tests
-- Persist tests
 - Vinyl Background

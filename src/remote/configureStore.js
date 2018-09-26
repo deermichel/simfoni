@@ -27,7 +27,7 @@ const configureStore = (initialState) => createStore(
     applyMiddleware(
         thunkMiddleware,
         loggerMiddleware,
-        persistMiddleware,
+        persistMiddleware(),
         playerMiddleware(),
         remoteMiddleware("mainWindow"),
     ),

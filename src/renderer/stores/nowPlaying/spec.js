@@ -4,6 +4,7 @@ import actions from "./actions";
 import selectors from "./selectors";
 import reducer from "./reducers";
 import PlayState from "~/constants/PlayState";
+import libraryOrm from "../library/orm";
 
 describe("nowPlaying reducer", () => {
     it("has an initial state", () => {
@@ -322,18 +323,16 @@ describe("nowPlaying reducer", () => {
 });
 
 describe("nowPlaying selectors", () => {
-    xdescribe("getNowPlayingWithTrack", () => { // TODO: test orm
+    describe("getNowPlayingWithTrack", () => {
         it("returns nowPlaying with full track object", () => {
+            const session = libraryOrm.session(libraryOrm.getEmptyState());
+            const artist = session.Artist.create({ name: "AWOLNATION" });
+            const album = session.Album.create({ name: "Megalithic Symphony", artist: artist.id });
+            const track = session.Track.create({ title: "Sail", duration: 259, album: album.id });
             const state = {
-                tracks: fromJS([{
-                    id: "sail",
-                    title: "Sail",
-                    artist: "AWOLNATION",
-                    album: "Megalithic Symphony",
-                    duration: 259,
-                }]),
+                library: session.state,
                 nowPlaying: fromJS({
-                    currentTrack: "sail",
+                    currentTrack: track.id,
                     currentTime: 142,
                     state: PlayState.PAUSED,
                     history: ["sail", "id1", "id2"],
@@ -344,7 +343,7 @@ describe("nowPlaying selectors", () => {
 
             expect(selected).to.equal(fromJS({
                 currentTrack: {
-                    id: "sail",
+                    id: track.id,
                     title: "Sail",
                     artist: "AWOLNATION",
                     album: "Megalithic Symphony",

@@ -5,13 +5,14 @@ const INITIAL_STATE = orm.getEmptyState();
 
 const updateTrack = (session, payload) => {
     const { Artist, Album, Track } = session;
-    let { track } = payload;
+    const { track } = payload;
 
     const saved = Track.withId(track.id);
     if (!saved) {
         return;
     }
-    track = {
+
+    const updatedTrack = {
         title: track.title || saved.title,
         artist: track.artist || saved.album.artist.name,
         album: track.album || saved.album.name,
@@ -19,20 +20,24 @@ const updateTrack = (session, payload) => {
         uri: track.uri || saved.uri,
     };
 
-    let artist = Artist.get({ name: track.artist });
+    let artist = Artist.get({ name: updatedTrack.artist });
     if (!artist) {
-        artist = Artist.create({ name: track.artist });
+        artist = Artist.create({ name: updatedTrack.artist });
     }
 
-    let album = Album.get({ name: track.album, artist: artist.id });
+    let album = Album.get({ name: updatedTrack.album, artist: artist.id });
     if (!album) {
-        album = Album.create({ name: track.album, artist: artist.id });
+        album = Album.create({ name: updatedTrack.album, artist: artist.id });
+    }
+
+    if (track.coverart) {
+        album.coverart = track.coverart;
     }
 
     saved.update({
-        title: track.title,
-        duration: track.duration,
-        uri: track.uri,
+        title: updatedTrack.title,
+        duration: updatedTrack.duration,
+        uri: updatedTrack.uri,
         album: album.id,
     });
 };
@@ -40,12 +45,14 @@ const updateTrack = (session, payload) => {
 const addTracks = (session, payload) => {
     const { Track } = session;
 
-    payload.tracks.forEach((track) => {
-        let saved = Track.get({ uri: track.uri });
+    payload.tracks.forEach((t) => {
+        let saved = Track.get({ uri: t.uri });
         if (!saved) {
-            saved = Track.create({ uri: track.uri });
+            saved = Track.create({ uri: t.uri });
         }
-        updateTrack(session, { track: { id: saved.id, ...track } });
+        const track = t;
+        track.id = saved.id;
+        updateTrack(session, { track });
     });
 };
 

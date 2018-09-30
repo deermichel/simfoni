@@ -6,6 +6,7 @@ Album.modelName = "Album";
 Album.fields = {
     name: attr(),
     artist: fk("Artist", "albums"),
+    coverart: attr(),
 };
 
 export default Album;

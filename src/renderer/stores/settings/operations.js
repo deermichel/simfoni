@@ -36,13 +36,18 @@ const getTracksWithMetadata = (files) => new Promise((resolve, reject) => {
     files.forEach((f) => {
         parseFile(f)
             .then((meta) => {
-                tracks.push({
+                const track = {
                     title: meta.common.title || path.basename(f, path.extname(f)),
                     artist: meta.common.artist || " ",
                     album: meta.common.album || " ",
                     duration: Math.ceil(meta.format.duration),
                     uri: `file://${f}`,
-                });
+                };
+                if (meta.common.picture && meta.common.picture.length > 0) {
+                    const { data, format } = meta.common.picture[0];
+                    track.coverart = { data, type: format };
+                }
+                tracks.push(track);
 
                 done++;
                 if (done === files.length) { // finished?
@@ -55,7 +60,10 @@ const getTracksWithMetadata = (files) => new Promise((resolve, reject) => {
 
 const importFolders = (folders) => (dispatch) => {
     getFiles(folders).then(getTracksWithMetadata).then((tracks) => {
-        dispatch(libraryOperations.addTracks(tracks));
+        for (let i = 0; i < tracks.length; i += 64) {
+            const batch = tracks.splice(i, 64);
+            dispatch(libraryOperations.addTracks(batch));
+        }
     });
 };
 

@@ -13,12 +13,10 @@ const getTracks = createSelector(
             artist: track.album.artist.name,
         };
 
-        // const { coverart } = track.album;
-        // if (coverart) {
-        //     const blob = new Blob([new Uint8Array(coverart.data.data)], { type: coverart.type });
-        //     const url = window.URL.createObjectURL(blob);
-        //     trackObj.coverart = url;
-        // }
+        const { coverart } = track.album;
+        if (coverart) {
+            trackObj.coverart = coverart;
+        }
 
         return trackObj;
     }),

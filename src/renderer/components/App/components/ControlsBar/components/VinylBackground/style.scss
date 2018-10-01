@@ -1,0 +1,40 @@
+.container {
+    align-content: center;
+    align-items: center;
+    display: grid;
+    filter: grayscale(.6) blur(1px);
+    height: 100%;
+    justify-items: center;
+    opacity: .1;
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+}
+
+.image {
+    animation-duration: 25s;
+    animation-iteration-count: infinite;
+    animation-name: vinyl;
+    animation-timing-function: linear;
+    border-radius: 100%;
+    width: 95%;
+}
+
+.cutout {
+    background: __COLOR_PRIMARY_LIGHT;
+    border: 4px solid darken($color: __COLOR_PRIMARY_LIGHT, $amount: 30%);
+    border-radius: 100%;
+    left: 50%;
+    height: 20vw;
+    opacity: .9;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 20vw;
+}
+
+@keyframes vinyl {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}

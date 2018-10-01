@@ -76,6 +76,7 @@ describe("library reducer", () => {
         const action = actions.updateTrack({
             id: session.Track.all().first().id,
             artist: "Ben Rector & Friends",
+            coverart: "imageurl",
             uri: "newpath.mp3",
         });
         const nextState = reducer(initialState, action);
@@ -94,6 +95,7 @@ describe("library reducer", () => {
         expect(track.title).to.equal("I Will Always Be Yours");
         expect(track.album.artist.name).to.equal("Ben Rector & Friends");
         expect(track.album.name).to.equal("Magic");
+        expect(track.album.coverart).to.equal("imageurl");
         expect(track.uri).to.equal("newpath.mp3");
     });
 });

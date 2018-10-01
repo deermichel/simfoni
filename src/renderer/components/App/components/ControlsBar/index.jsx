@@ -8,6 +8,7 @@ import PlayState from "~/constants/PlayState";
 import styles from "./style.scss";
 import VolumeControl from "./components/VolumeControl";
 import MenuButton from "./components/MenuButton";
+import VinylBackground from "./components/VinylBackground";
 
 const ControlsBar = ({
     nowPlaying = Map(),
@@ -26,6 +27,10 @@ const ControlsBar = ({
             onSeek={onSeek}
         />
         <div className={styles.container}>
+            <VinylBackground
+                imageUrl={nowPlaying.getIn(["currentTrack", "coverart"])}
+                isPlaying={nowPlaying.get("playState") === PlayState.PLAYING}
+            />
             <div className={styles.menubutton}>
                 <MenuButton onShowMenu={onShowMenu} />
             </div>

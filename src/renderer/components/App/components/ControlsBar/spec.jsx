@@ -10,6 +10,7 @@ import PlayState from "~/constants/PlayState";
 import ScrollingText from "~/components/ScrollingText";
 import VolumeControl from "./components/VolumeControl";
 import MenuButton from "./components/MenuButton";
+import VinylBackground from "./components/VinylBackground";
 
 describe("ControlsBar", () => {
     const nowPlaying = fromJS({
@@ -19,6 +20,7 @@ describe("ControlsBar", () => {
             artist: "Raelee Nikole",
             album: "Answers",
             duration: 243,
+            coverart: "url",
         },
         currentTime: 203,
         playState: PlayState.PLAYING,
@@ -62,6 +64,12 @@ describe("ControlsBar", () => {
         expect(component).to.have.exactly(1).descendants(MenuButton);
     });
 
+    it("contains one <VinylBackground />", () => {
+        const component = shallow(<ControlsBar />);
+
+        expect(component).to.have.exactly(1).descendants(VinylBackground);
+    });
+
     it("displays the current title and artist", () => {
         const component = shallow(<ControlsBar nowPlaying={nowPlaying} />);
 
@@ -75,6 +83,7 @@ describe("ControlsBar", () => {
         expect(component.find(PlayButton)).to.have.prop("playing", true);
         expect(component.find(SkipButton).at(0).prop("disabled")).to.equal(false);
         expect(component.find(SkipButton).at(1).prop("disabled")).to.equal(false);
+        expect(component.find(VinylBackground)).to.have.prop("isPlaying", true);
     });
 
     it("disables skip buttons when playback stopped", () => {

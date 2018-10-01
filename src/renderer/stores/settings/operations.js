@@ -45,7 +45,7 @@ const getTracksWithMetadata = (files) => new Promise((resolve, reject) => {
                 };
                 if (meta.common.picture && meta.common.picture.length > 0) {
                     const { data, format } = meta.common.picture[0];
-                    track.coverart = { data, type: format };
+                    track.coverart = `data:${format};base64,${data.toString("base64")}`;
                 }
                 tracks.push(track);
 

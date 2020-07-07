@@ -40,7 +40,7 @@
     "chai-immutable": "^1.6.0",
     "concurrently": "^4.0.1",
     "css-loader": "^1.0.0",
-    "electron": "^2.0.8",
+    "electron": "^9.1.0",
     "electron-mocha": "^6.0.4",
     "electron-packager": "^12.1.2",
     "enzyme": "^3.3.0",
